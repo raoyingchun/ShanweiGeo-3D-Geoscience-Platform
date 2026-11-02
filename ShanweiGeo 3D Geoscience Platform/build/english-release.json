@@ -1,9 +1,9 @@
 {
   "appId": "cn.shanwei.geology.english",
   "productName": "ShanweiGeo 3D Geoscience Platform",
-  "artifactName": "ShanweiGeo 3D Geoscience Platform-Windows-x64.${ext}",
+  "artifactName": "ShanweiGeo-3D-Geoscience-Platform-Windows-x64.${ext}",
   "directories": {
-    "output": "dist-english-20261021"
+    "output": "dist-release"
   },
   "electronDist": "node_modules/electron/dist",
   "asar": true,
