@@ -1,0 +1,10 @@
+Block Model 2.csv
+  exported from Leapfrog Geo
+  encoding: UTF-8
+  azimuth: 0.0 degrees (rotate clockwise when looking down)
+  block size: 10 10 10
+  size in blocks: 137 79 78 = 844194
+  minimum centroid: 3028022.232045167 37431359.17153011 -241.2
+  maximum centroid: 3029382.232045167 37432139.17153011 528.8
+  minimum corner: 3028017.232045167 37431354.17153011 -246.2
+  maximum corner: 3029387.232045167 37432144.17153011 533.8

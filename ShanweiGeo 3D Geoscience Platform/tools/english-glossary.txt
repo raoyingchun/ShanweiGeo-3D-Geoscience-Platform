@@ -1,0 +1,2058 @@
+# Long UI messages and terminology. User data and filesystem paths are not translated.
+山维智勘三维地质模型可视化系统|ShanweiGeo 3D Geoscience Platform
+山维智勘数据库|ShanweiGeo Workspace
+山维智勘|ShanweiGeo
+请打开三维标签页并导入与图片同坐标系的三维模型后|Open a 3D view and import a model in the same coordinate system as the image, then
+按当前视图所有已导入三维模型的最大水平范围裁剪|Clip to the horizontal extent of all models in the current view
+参数应取自测区公共点或经过核验的参数成果|Use parameters derived from local control points or independently verified results
+列的值需与场景中已导入模型的文件名一致|Column values must match the filenames of models in the scene
+把所有与地层同名的岩性一次性套成地层色|Apply formation colors to all lithologies with matching names
+请先在图件管理中双击打开该图片后重试|Double-click the image under Maps and Figures, then try again
+检测到该模型与当前视图不在同一坐标系|The model appears to use a different coordinate system from the current view
+再从图件管理拖拽该图片生成贴图平面|Then drag the image from Maps and Figures to create a textured plane
+边缘零值需确认不是实际高程后再隐藏|Hide edge zeros only after confirming they are not valid elevations
+请先导入具有有效水平范围的三维模型|Import a 3D model with a valid horizontal extent first
+并已在三维视图生成半透明贴图平面|A translucent image plane has also been created in the 3D view
+需先导入与图片同坐标系的三维模型|First import a 3D model in the same coordinate system as the image
+勾选后该钻孔在三维视图中不再显示|Select to hide this drillhole in the 3D view
+请检查文件是否损坏或格式是否正确|Check that the file is intact and uses the expected format
+第一个点定的列会作为本类别的模板|The first point defines the attribute columns for this category
+列的值需与已导入模型的文件名一致|Column values must match imported model filenames
+参数设置和文件转换在原程序中完成|Configure parameters and convert files in the original application
+自定义高斯可设置常数和投影面高程|Custom Gauss projection supports a scale factor and projection-plane elevation
+自定义格式和合并数据仍使用原程序|Use the original application for custom formats and merged data
+设置保存在本机并应用于各三维视图|Settings are stored locally and applied to all 3D views
+将读取影像自带坐标或配套世界文件|Read embedded georeferencing or the associated world file
+请手动重启桌面程序以使改动生效|Restart the desktop application to apply the changes
+右键点击图片上已知坐标的特征点|Right-click a feature with known coordinates on the image
+未在三维视图中找到三维地质模型|No 3D geological model was found in the view
+将自动新建视图标签页显示该模型|A new view tab will be created for this model
+必须指定唯一的左下角或中心坐标|Specify exactly one lower-left corner or cell-center origin
+没有可组成地形面的有效高程格网|No valid elevation grid is available to build a terrain surface
+请在桌面程序中选择结果保存目录|Select an output folder in the desktop application
+请重启桌面程序后使用原程序入口|Restart the desktop application before launching the original tool
+请先手动配准或选择同名世界文件|Register the image manually or select its matching world file first
+可通过配准按钮设置控制点后显示|Set control points using Register before displaying the image
+地球化学色阶设置面板的额外样式|Additional styles for the geochemical color scale panel
+右键三维钻孔查看岩芯图片|Right-click a drillhole in 3D to view core images
+右键三维钻孔查看化验数据|Right-click a drillhole in 3D to view assay data
+右键三维钻孔查看柱状图|Right-click a drillhole in 3D to view its log
+自定义属性列可自由增删改|Custom attribute columns can be added, removed, and edited
+请先点击标签上的锁图标|Click the lock icon on the tab first
+图片请在桌面程序中打开|Open this image in the desktop application
+导入期间切换了三维标签|The active 3D tab changed during import
+请回到目标标签重新导入|Return to the target tab and import again
+未找到对应的图片标签页|The corresponding image tab was not found
+重新打开图片标签页再试|Reopen the image tab and try again
+请为各点填写坐标并点击|Enter coordinates for each point and click
+可在图层管理中点选高亮|Click its entry in Layers to highlight it
+暂不支持在新标签页预览|Preview in a new tab is not supported yet
+自动打开矢量平面标签页|Automatically open a 2D vector tab
+该分类下暂无图件可输出|This category contains no maps or figures to export
+未从文件中解析到线要素|No line features were found in the file
+未能构建可显示的线几何|Unable to construct displayable line geometry
+按住鼠标划过内容做标记|Drag across content to highlight it
+孔口表格解析失败或为空|The collar table could not be parsed or is empty
+测斜表格解析失败或为空|The survey table could not be parsed or is empty
+解析失败或无有效数值段|Parsing failed or no valid numeric intervals were found
+该工作表为空或数据不足|The worksheet is empty or contains insufficient data
+无法从该文件读取工作表|Unable to read worksheets from this file
+左键点模型表面即可落点|Left-click the model surface to place a point
+退出绘制状态并自动保存|Exit drawing mode and save automatically
+属性列名重复已自动去重|Duplicate attribute column names have been made unique
+请先右键某个点类别再选|First right-click a point category, then select
+该点类别暂无数据可导出|This point category has no data to export
+该分类下暂无表格可输出|This category has no tables to export
+属性表第一个工作表为空|The first worksheet in the attribute table is empty
+不选行则按同名自动套用|If no row is selected, apply by matching names
+同一视图中模型名称重复|Duplicate model names exist in this view
+丢弃草稿并载入演示数据|Discard draft and load demo data
+高程数量与行列数不一致|The elevation count does not match the grid dimensions
+请删除该图层后重新导入|Remove this layer and import it again
+当前视图已存在同名模型|A model with this name already exists in the current view
+通道仅在桌面程序中可用|This operation is only available in the desktop application
+输入输出不自动附加带号|Zone prefixes are not automatically added to input or output
+不是支持的坐标参数文件|This coordinate parameter file is not supported
+带宽通过中央子午线指定|The zone is determined by the central meridian
+参数已填入对应转换面板|Parameters have been applied to the corresponding conversion panel
+主进程修改后请重启程序|Restart the application after changes to the main process
+三参数时旋转和尺度设为|For a three-parameter transformation, set rotation and scale to
+请确认列顺序和表头设置|Check the column order and header settings
+精细画质会增加显卡负担|High quality increases GPU workload
+请先在两个区域导入模型|Import models into both regions first
+请先选择对应的上级区域|Select the appropriate parent region first
+模型坐标和配准结果保留|Model coordinates and registration results are retained
+请在桌面程序中导入图片|Import images in the desktop application
+只能删除自行导入的图片|Only user-imported images can be deleted
+该分类没有可输出的高程|This category has no elevation data to export
+该分类没有可输出的影像|This category has no imagery to export
+请确认两者都采用模型的|Make sure both use the model's
+遥感贴图源文件不可读取|The source imagery texture cannot be read
+按影像现有坐标贴合地形|Drape over terrain using the image georeferencing
+选择是否贴合到高程地形|Choose whether to drape the image over elevation terrain
+个地形顶点在影像范围内|terrain vertices lie within the image extent
+后端返回了无效协议消息|The backend returned an invalid protocol message
+不允许的计算请求来源|This computation request origin is not allowed
+水平投影资源量估算图|Horizontal projection resource estimate map
+未找到该块体模型类别|Block model category not found
+请检查图片文件路径后|Check the image file path, then
+请先在左侧图件管理中|First, under Maps and Figures on the left,
+且页面通过本地服务器|and the page is served by a local server
+未找到该分类的子容器|The category's child container was not found
+再右键该类别导入文件|Then right-click the category to import files
+请减小文件大小后重试|Reduce the file size and try again
+内容为空或格式不正确|The content is empty or incorrectly formatted
+未能在正文中定位标题|Unable to locate the heading in the document
+文档后可在此记录笔记|documents to take notes here
+按住鼠标在页面上绘制|Drag on the page to draw
+是固定几何列的保留名|is reserved for a fixed geometry column
+该点无法定位到数据行|Unable to locate the data row for this point
+可能是导入的历史数据|This may be data imported by an earlier version
+属性表中未找到工作表|No worksheet was found in the attribute table
+在地层里没有同名岩性|No formation has a matching lithology name
+可能是早期导入的数据|This may be data imported by an earlier version
+请先降低分辨率后导入|Reduce the resolution before importing
+已有计算任务正在执行|Another computation is already running
+块体二进制缓存不完整|The block model binary cache is incomplete
+模型二进制缓存不完整|The model binary cache is incomplete
+请先浏览并选择源文件|Browse and select a source file first
+正在启动原版文件转换|Starting the original file converter
+在原程序设置其他参数|Configure additional parameters in the original application
+其他正方向按上方设置|Other positive directions follow the settings above
+经纬度使用十进制度或|Use decimal degrees for longitude and latitude, or
+第二轴平面中的逆时针|counterclockwise in the plane of the second axis
+跨基准转换需提供参数|Transformation between datums requires parameters
+历史项目记录保存失败|Unable to save the recent project history
+目标区域已有同名模型|The target region already contains a model with this name
+研究区域存档格式无效|Invalid saved research region format
+本地岩石材质库不可用|The local rock material library is unavailable
+请重新确认配准后贴合|Verify the registration again before draping
+请重启桌面程序以启用|Restart the desktop application to enable
+不自动加带号或交换轴|No zone prefix or axis swap is applied automatically
+可重新进行控制点配准|Control-point registration can be performed again
+无效的自定义材质编号|Invalid custom material ID
+拖到三维画布恢复显示|Drag into the 3D view to display again
+在三维视图中是否显示|Visibility in the 3D view
+隐藏右侧二维联动面板|Hide the linked 2D panel on the right
+点击三维模型查看属性|Click a 3D model to view its properties
+软件不在指定目录中|The application is not in the specified folder
+即将切换到其他标签|Switching to another tab
+即将关闭当前标签页|Closing the current tab
+可能是格式不受支持|The format may not be supported
+文件损坏或尺寸超限|The file is corrupt or exceeds the size limit
+请输入矿区钻孔名称|Enter a drillhole group name
+请输入图件分组名称|Enter a map group name
+暂时无法选取特征点|A control point cannot be selected at the moment
+该控制点已确认保存|This control point has been confirmed and saved
+请在图片上点击选取|Click the image to select
+个控制点填写完整的|control points with complete
+请确认图片文件存在|Check that the image file exists
+不影响原始文件内容|The original file content is unchanged
+文件中未找到工作表|No worksheets were found in the file
+文档后自动提取大纲|documents to extract the outline automatically
+将当前位置加为标签|Bookmark the current position
+文件可能损坏或加密|The file may be corrupt or encrypted
+未找到地球化学属性|No geochemical attributes were found
+未能生成任何钻孔段|No drillhole intervals could be generated
+请选择要导入的一个|Select one to import
+如需导出请右键类别|Right-click the category to export
+结束点绘制保存失败|Unable to save after finishing point drawing
+列名可点击表头修改|Click a column header to rename it
+请先勾选要删除的点|Select the points to delete first
+未找到该点所在图层|The point's layer was not found
+属性表结构无法识别|The attribute table structure is not recognized
+没有匹配到任何模型|No matching models were found
+未解析到有效三角形|No valid triangles were found
+处颜色改动尚未确认|color changes have not been confirmed
+图片也可直接命名为|The image can also be named
+正在加载此画布模型|Loading models for this view
+当前正在绘制点类别|Currently drawing points in category
+检测到上次工作现场|A previous session was detected
+高程边界缓存不完整|The elevation boundary cache is incomplete
+转换后显示结果文件|Show output files after conversion
+已识别带号平面坐标|Projected coordinates with a zone prefix were detected
+文件不包含这些参数|The file does not contain these parameters
+请选择结果保存目录|Select an output folder
+默认平面坐标顺序为|The default projected coordinate order is
+并确认地图投影设置|and confirm the map projection settings
+所有坐标计算均由原|All coordinate computations are performed by the original
+参数必须为有效数值|Parameters must be valid numbers
+至少两个不同公共点|At least two distinct common points are required
+坐标类型取上方设置|Coordinate types follow the settings above
+反算使用矩阵逆运算|The inverse uses matrix inversion
+请填写参数方案名称|Enter a parameter preset name
+输入笔记后自动建立|Created automatically when you enter a note
+无法加载本地解析库|Unable to load the local parsing library
+两侧须为同一坐标系|Both sides must use the same coordinate system
+请检查源文件后重试|Check the source file and try again
+已取消切换三维视图|Switching the 3D view was canceled
+研究区域必须按矿床|Research regions must follow the hierarchy: deposit,
+再删除最后一个矿床|before deleting the last deposit
+模型和配准结果保留|Models and registration results are retained
+自定义图片读取失败|Unable to read the custom image
+导入自定义材质图片|Import a custom material image
+按模型推荐纹理尺寸|Recommend texture size from the model
+地球化学或坑道模型|geochemical or tunnel models
+请将影像另存为普通|Save the image as a standard
+范围外保留高程配色|Keep elevation colors outside the image extent
+自定义材质读取失败|Unable to read the custom material
+图片不是文件或超过|The image is not a regular file or exceeds
+不允许删除链接目录|Linked directories cannot be deleted
+笔记数据无效或超过|Note data is invalid or exceeds
+请提供配套世界文件|Provide the corresponding world file
+可点击切换锁定状态|Click to toggle the lock
+在中心区域填充显示|Fill the center workspace
+从三维视图彻底移除|Remove completely from the 3D view
+需从项目树拖拽恢复|Drag from the project tree to restore
+荧光笔标注重点内容|Highlight important content
+结束绘制后自动保存|Save automatically when drawing finishes
+如需调整请右键类别|Right-click the category to adjust
+主进程文件已修改|The main process file has changed
+跳过不存在的文件|Skip missing files
+无效模型缓存标识|Invalid model cache ID
+无效块体缓存标识|Invalid block cache ID
+即将打开新标签页|Opening a new tab
+解除锁定后再删除|Unlock it before deleting
+创建高亮描边失败|Unable to create a highlight outline
+请输入新模型名称|Enter a new model name
+新建地球化学模型|New geochemical model
+新建三维块体模型|New 3D block model
+正在解析块体模型|Parsing block model
+解析块体模型失败|Unable to parse block model
+新建三维坑道模型|New 3D tunnel model
+右键此处填写坐标|Right-click here to enter coordinates
+尚未进入配准模式|Registration mode is not active
+右键该图片右侧的|Right-click the image's
+按钮进入配准模式|button to enter registration mode
+无法生成贴图平面|Unable to generate the image plane
+贴图图片无法加载|Unable to load the texture image
+在图件管理中点击|Under Maps and Figures, click
+请先打开三维视图|Open a 3D view first
+无法添加矢量节点|Unable to add the vector node
+请右键图件子分类|Right-click a map subcategory
+当前支持实体类型|Currently supported entity types
+新建三维标签显示|Display in a new 3D tab
+无法添加图件节点|Unable to add the map node
+正在构建三维模型|Building 3D model
+同线号连成一条线|Connect points with the same line ID
+全部点连成一条线|Connect all points into a single line
+滚到底部继续加载|Scroll to the bottom to load more
+正在解析剩余数据|Parsing remaining data
+第一个工作表为空|The first worksheet is empty
+文档格式不受支持|This document format is not supported
+本文档无可用大纲|No outline is available for this document
+书签无法解析页码|Unable to resolve the bookmark page
+在阅读页选中文字|Select text on a document page
+按住鼠标擦除涂鸦|Drag to erase ink
+不支持的文件格式|Unsupported file format
+将当前页加为标签|Bookmark the current page
+分类下导入属性表|category to import an attribute table
+表解析失败或为空|table could not be parsed or is empty
+其他地球化学属性|Other geochemical attributes
+地球化学属性钻孔|Drillholes colored by geochemical attributes
+无法在三维中显示|Unable to display in 3D
+没有可撤销的步骤|Nothing to undo
+没有可重做的步骤|Nothing to redo
+暂无可撤销的落点|No point placement to undo
+个点写入项目存档|points written to the project
+自定义列名与内容|Custom column names and values
+可在下载目录查看|Available in the Downloads folder
+不能用作属性列名|cannot be used as an attribute column name
+已存在同名属性列|An attribute column with this name already exists
+该操作会立即保存|This operation saves immediately
+无法定位该点坐标|Unable to locate this point's coordinates
+请把属性表另存为|Save the attribute table as
+个模型应用属性表|models updated from the attribute table
+可带或不带扩展名|with or without the extension
+个三维模型文件吗|3D model files?
+未解析到有效顶点|No valid vertices were found
+正在解析坑道模型|Parsing tunnel model
+两个文件配对导入|Import the two files as a pair
+解析坑道模型失败|Unable to parse tunnel model
+在三维视图中隐藏|Hide in 3D view
+在三维视图中显示|Show in 3D view
+从三维视图中删除|Remove from 3D view
+钻孔岩性颜色设置|Drillhole lithology colors
+请先导入地层模型|Import formation models first
+点上方岩性行选中|Select a lithology row above
+再点下方色块套用|then click a color swatch below to apply
+地球化学色阶设置|Geochemical color scale
+钻孔地球化学设置|Drillhole geochemistry settings
+会自动按深度排序|Automatically sorted by depth
+未识别的钻孔分类|Unrecognized drillhole category
+请重试或手动保存|Try again or save manually
+已退出点绘制状态|Point drawing mode exited
+当前不是桌面环境|This operation requires the desktop application
+无法保存项目文件|Unable to save the project file
+山维智勘项目文件|ShanweiGeo project file
+命中坑道模型缓存|Tunnel model cache hit
+即将打开其他项目|Opening another project
+无法打开项目文件|Unable to open the project file
+读取项目文件失败|Unable to read the project file
+项目文件解析失败|Unable to parse the project file
+即将新建其他项目|Creating another project
+请输入新项目名称|Enter a new project name
+正在恢复上次现场|Restoring the previous session
+是否恢复上次现场|Restore the previous session?
+缺少原始地形信息|Original terrain information is missing
+原始高程保持不变|Original elevations are unchanged
+测量和拾取时使用|Used for measurement and picking
+块体后台处理失败|Block model backend processing failed
+数据文件不含表头|The data file must not contain a header row
+选择格式和源文件|Select a format and source files
+参数设置尚未接入|Parameter configuration is not connected yet
+选择目标坐标类型|Target coordinate type
+目标平面坐标共用|Shared target projected coordinates
+合并转换前后数据|Merge input and output data
+不支持的坐标类型|Unsupported coordinate type
+选择已保存的参数|Select a saved parameter preset
+不自动换成正常高|No automatic conversion to normal height
+正在启动本地计算|Starting local computation
+七参数求解与应用|Seven-parameter estimation and transformation
+原软件的网格拟合|The original application's grid fitting
+和一步法尚未内置|and one-step method are not built in yet
+已暂存本机浏览器|Saved temporarily in local browser storage
+继续使用柔和光照|Continue using soft lighting
+展示设置保存失败|Unable to save presentation settings
+边缘抗锯齿已启用|Edge antialiasing enabled
+背景设置保存失败|Unable to save background settings
+同步剖切实际坐标|Synchronize clipping in world coordinates
+选择已有三维视图|Select an open 3D view
+研究区域节点无效|Invalid research region node
+请先新增其他矿床|Create another deposit first
+材质目录读取失败|Unable to read the material catalog
+岩石贴图加载失败|Unable to load the rock texture
+应用到同类别模型|Apply to models in this category
+修正平直边界明暗|Correct shading along flat boundaries
+正在加载本地材质|Loading local materials
+请重新导入后输出|Import again before exporting
+原始影像不可读取|The original image cannot be read
+原始文件不会删除|The original file will not be deleted
+手动配准变换无效|Invalid manual registration transform
+恢复完整遥感影像|Restore full imagery extent
+遥感影像贴合高程|Drape imagery over terrain
+将使用手动配准的|Use the manual registration's
+目标地形已经移除|The target terrain has been removed
+世界文件格式无效|Invalid world file format
+点击打开项目菜单|Open project menu
+分组可导入点文件|groups support point-file import
+删除所有测距线段|Delete all measurement lines
+导入模型后将显示|Shown after a model is imported
+是否保存当前项目|Save the current project?
+文件为空或超过|The file is empty or exceeds
+影像预处理失败|Image preprocessing failed
+新地球化学模型|New geochemical model
+新三维块体模型|New block model
+个点已全部确认|points have all been confirmed
+如需调整请点击|To adjust, click
+坐标未填写完整|Coordinates are incomplete
+请重启桌面程序|Restart the desktop application
+正在读取并解析|Reading and parsing
+已加入三维视图|Added to the 3D view
+矢量数据不存在|Vector data does not exist
+回退自研解析器|Falling back to the built-in parser
+解析线文件失败|Unable to parse the line file
+重命名矿区钻孔|Rename drillhole group
+三维视图中隐藏|Hidden in 3D view
+可能是网络问题|A network problem may have occurred
+请刷新页面重试|Refresh the page and try again
+或将文件另存为|or save the file as
+新建文件夹名称|New folder name
+确定删除文件夹|Delete this folder?
+该书签无法定位|Unable to locate this bookmark
+大纲项缺少页码|The outline entry has no page number
+目录后重新打开|folder and reopen
+个文件解析失败|files could not be parsed
+解析库加载失败|Unable to load the parsing library
+可直接划选复制|Select and copy text directly
+此页无可选文字|No selectable text on this page
+未找到孔口表格|Collar table not found
+未找到测斜表格|Survey table not found
+初始化当前标签|Initialize the current tab
+请检查测斜数据|Check the survey data
+为渐变数值色阶|uses a continuous numeric color scale
+为分段类别着色|uses discrete category colors
+请检查表头字段|Check the column headers
+请将文件另存为|Save the file as
+为空或数据不足|is empty or has insufficient data
+且解析库未加载|and its parser has not been loaded
+字段或数据为空|The field or data is empty
+撤销上一个落点|Undo last point
+重做被撤销的点|Redo point placement
+没有可重做的点|No point placement to redo
+该类别无属性列|This category has no attribute columns
+下右键某个类别|right-click a category under
+即将导入点数据|Importing point data
+再右键该类别选|then right-click the category and select
+确定删除线类别|Delete this line category?
+确定删除线文件|Delete this line file?
+未命中任何模型|No model was hit
+点击重命名此列|Click to rename this column
+该类别还没有点|This category contains no points
+本次改名未生效|The rename was not applied
+点数据保存失败|Unable to save point data
+或用顶部全选框|or use Select all above
+复制点保存失败|Unable to save copied points
+删除点保存失败|Unable to save deleted points
+正在导入点文件|Importing point file
+即将导入属性表|Importing attribute table
+属性表内容为空|The attribute table is empty
+解析属性表失败|Unable to parse the attribute table
+重命名三维模型|Rename 3D model
+不影响原始文件|The original file is unchanged
+重命名模型分类|Rename model category
+格式的模型文件|model files
+已存在同名模型|A model with this name already exists
+其余请手动点选|Select the remaining entries manually
+未找到该点类别|Point category not found
+在模型表面落点|Place points on the model surface
+已在视图中显示|Already visible in this view
+已显示块体模型|Block model displayed
+部分模型未加载|Some models have not loaded
+已取消本次切换|Switching canceled
+即将导入新文件|Importing a new file
+项目序列化失败|Unable to serialize the project
+文件可能已损坏|The file may be corrupt
+包含无效高程值|Contains invalid elevation values
+垂直比例范围为|Vertical scale range:
+请保留边缘零值|Keep edge zero values
+未找到有效块体|No valid blocks were found
+尚未选择源文件|No source file selected
+已识别大地坐标|Geographic coordinates detected
+文件转换器处理|file converter
+已填入示例坐标|Example coordinates loaded
+选择源坐标类型|Source coordinate type
+高斯三度带投影|Gauss-Kruger 3-degree zone
+高斯六度带投影|Gauss-Kruger 6-degree zone
+自定义高斯投影|Custom Gauss-Kruger projection
+基准纬度固定为|The latitude of origin is fixed at
+文件列表已清空|File list cleared
+旋转为数学正向|Rotation follows the mathematical positive direction
+个非共线公共点|non-collinear common points
+坐标与投影转换|Coordinate and projection conversion
+平面四参数转换|2D four-parameter transformation
+高斯投影正反算|Forward/inverse Gauss-Kruger projection
+参数方案已保存|Parameter preset saved
+参数方案已载入|Parameter preset loaded
+参数文件已载入|Parameter file loaded
+已保留恢复副本|A recovery copy has been retained
+笔记自动保存为|Notes are saved automatically to
+环境光照不可用|Environment lighting is unavailable
+不删除项目文件|The project file is not deleted
+不修改模型坐标|Model coordinates are unchanged
+拖拽可调整顺序|Drag to reorder
+请选择三维视图|Select a 3D view
+原模型未能加载|The original model could not be loaded
+研究区域不存在|Research region does not exist
+未找到资料分类|Data category not found
+恢复的块体模型|Restored block model
+只改变项目归属|Only the project ownership changes
+本地岩石材质库|Local rock material library
+岩石材质缩略图|Rock material thumbnail
+应用到当前模型|Apply to current model
+自定义材质名称|Custom material name
+删除自定义材质|Delete custom material
+个有效坐标参数|valid coordinate parameters
+需同时选择配套|Also select the associated
+模型没有有效的|The model has no valid
+平面范围不重合|Horizontal extents do not overlap
+请检查水平坐标|Check the horizontal coordinates
+贴合到所选高程|Drape over selected terrain
+已存在同名影像|An image with this name already exists
+平面高程默认为|Default plane elevation:
+可另选贴合高程|You can choose a terrain to drape over
+影像记录不存在|Image record does not exist
+坐标头不受支持|Unsupported coordinate header
+参数必须为对象|Parameters must be an object
+清理进程退出码|Cleanup process exit code
+页面开始加载|Page loading started
+页面加载完成|Page loaded
+页面加载失败|Page loading failed
+自动刷新页面|Refresh page automatically
+预览解码失败|Preview decoding failed
+重新加载页面|Reload page
+开始功能诊断|Starting diagnostics
+检查图件节点|Check map nodes
+加载图片文件|Load image file
+函数是否存在|Function availability
+测试图件节点|Test map node
+创建一个临时|Create a temporary
+图片解码失败|Image decoding failed
+图片加载超时|Image loading timed out
+文件原点建议|Suggested file origin
+文件可能损坏|The file may be corrupt
+三维坑道模型|3D Tunnel Models
+图片无法显示|Unable to display image
+从包围盒推断|Infer from bounding box
+新增矿区模型|Add model group
+新增矿区钻孔|Add drillhole group
+可能已被删除|It may have been deleted
+三维块体模型|3D Block Models
+新建图件分组|New map group
+下新建子分类|Create a subcategory under
+已新建子分类|Subcategory created
+点击重新配准|Click to register again
+无法进入配准|Unable to enter registration mode
+坐标网格交点|Coordinate grid intersection
+按钮完成配准|button to finish registration
+如需重选请先|To select again, first
+请先导入模型|Import a model first
+图片加载失败|Image loading failed
+不是图片格式|Not an image format
+即将导入图件|Importing map or figure
+文件实体统计|File entity statistics
+确定删除矢量|Delete this vector?
+确定删除图件|Delete this map or figure?
+请先右键左侧|First right-click on the left
+地球化学信息|Geochemical Data
+个表格文件吗|table files?
+即将导入表格|Importing table
+但表格解析库|but the spreadsheet parser
+重命名文件夹|Rename folder
+大纲提取失败|Outline extraction failed
+自动生成大纲|Generate outline automatically
+逐页提取首行|Extract first lines page by page
+正在提取大纲|Extracting outline
+页码解析失败|Unable to resolve page number
+该项没有页码|This entry has no page number
+双击名称或点|Double-click its name or click
+正在排版文档|Laying out document
+文档解析失败|Document parsing failed
+确定清除当前|Clear all annotations in the current
+的全部标注吗|?
+没有可打印的|Nothing available to print
+请先打开文档|Open a document first
+个子文件夹吗|subfolders?
+测试数据导入|Import test data
+确定删除文件|Delete this file?
+复制选中文字|Copy selected text
+可能是扫描件|This may be a scanned document
+导入孔口数据|Import collar data
+检查表头字段|Check column headers
+钻孔地球化学|Drillhole Geochemistry
+地球化学属性|Geochemical Attributes
+未找到工作表|Worksheet not found
+请另存为文本|Save as a text file
+暂无点位数据|No point data
+重命名点类别|Rename point category
+撤销才会产生|Available after undo
+当前还没有点|No points have been created
+点绘制已结束|Point drawing finished
+删除该属性列|Delete this attribute column
+未指定点类别|No point category specified
+有多个点类别|Multiple point categories exist
+重命名线类别|Rename line category
+重命名线文件|Rename line file
+删除此属性列|Delete this attribute column
+列名不能为空|Column name cannot be empty
+已保留原列名|Original column name retained
+点数据已更新|Point data updated
+已新增属性列|Attribute column added
+改后立即移动|Move immediately after editing
+单点保存失败|Unable to save the point
+该点已不存在|This point no longer exists
+未选择工作表|No worksheet selected
+确定删除表格|Delete this table?
+解析库不可用|Parsing library unavailable
+未匹配到模型|No matching model
+当前场景模型|Models in current scene
+该入口仅导入|This action only imports
+坑道模型需要|A tunnel model requires
+的同名文件对|file pair with a matching base name
+未找到匹配的|No matching
+解析文件失败|Unable to parse file
+设置岩性颜色|Set lithology colors
+暂无岩性数据|No lithology data
+点击修改颜色|Click to change color
+三维地质模型|3D Geological Models
+同名一键套用|Apply to matching names
+已按同名套用|Applied to matching names
+自定义两端色|Custom endpoint colors
+恢复经典色阶|Restore classic color scale
+钻孔孔口设置|Collar settings
+钻孔岩性设置|Lithology settings
+钻孔轨迹设置|Drillhole trajectory settings
+的柱状图图片|log images
+下已有子分类|already contains subcategories
+再在其上右键|then right-click it
+可拖拽的分类|Draggable category
+请右键该类别|Right-click this category
+已显示点类别|Point category displayed
+坐标系不一致|Coordinate systems differ
+当前视图原点|Current view origin
+缺少模型快照|Model snapshot is missing
+会先保存项目|The project will be saved first
+正在保存项目|Saving project
+保存项目失败|Unable to save project
+标签恢复失败|Unable to restore tab
+模型恢复失败|Unable to restore model
+正在打开项目|Opening project
+项目打开完成|Project opened
+个文件未找到|files not found
+打开项目失败|Unable to open project
+个源文件缺失|source files missing
+恢复现场失败|Unable to restore session
+表头数值无效|Invalid numeric header values
+当前支持最多|Maximum supported:
+万个高程格网|x 10,000 elevation cells
+边缘连通零值|Boundary-connected zeros
+有效显示高程|Displayed elevation range
+垂直显示比例|Vertical display scale
+叠加地质模型|Overlay geological models
+隐藏边界零值|Hide boundary zeros
+地形垂直比例|Terrain vertical scale
+正在读取高程|Reading elevations
+正在构建高程|Building terrain
+本地计算失败|Local computation failed
+本地块体解析|Local block model parsing
+本地模型解析|Local model parsing
+每次最多选择|Maximum files per selection:
+结果将保存到|Output folder:
+文件转换完成|File conversion complete
+空间直角坐标|Geocentric Cartesian coordinates
+网页操作界面|Web interface
+原版程序计算|Original application computation
+在原程序打开|Open in original application
+地图投影设置|Map projection settings
+当前接入范围|Currently supported operations
+输出目标坐标|Target coordinates
+选择保存目录|Select output folder
+文件格式设置|File format settings
+原版预设格式|Original preset formats
+可使用原程序|Use the original application
+源文件不改写|Source files are unchanged
+大地坐标输入|Geographic coordinate input
+平面坐标输入|Projected coordinate input
+参数不能为空|Parameters cannot be empty
+参数文件缺少|Parameter file is missing
+不支持的椭球|Unsupported ellipsoid
+转换参数无效|Invalid transformation parameters
+旋转约定无效|Invalid rotation convention
+高程保持原值|Height is unchanged
+可切换后使用|Switch to use
+参数方案名称|Parameter preset name
+输入目标坐标|Enter target coordinates
+坐标表达转换|Coordinate notation conversion
+参数方案保存|Save parameter preset
+坐标转换参数|Coordinate transformation parameters
+坐标转换结果|Coordinate transformation results
+笔记读取失败|Unable to read notes
+展示模式设置|Presentation settings
+关闭展示设置|Close presentation settings
+开启展示模式|Enable presentation mode
+柔和光照亮度|Soft lighting brightness
+画布背景颜色|Canvas background color
+暂无历史项目|No recent projects
+移除历史记录|Remove from recent projects
+显示辅助网格|Show reference grid
+设置无法保存|Unable to save settings
+两侧独立操作|Independent controls
+同步两侧旋转|Synchronize rotation
+同步剖切位置|Synchronize clipping position
+保留高坐标侧|Keep higher-coordinate side
+保留低坐标侧|Keep lower-coordinate side
+选择三维视图|Select 3D view
+两侧同步操作|Synchronized controls
+调整对比宽度|Adjust pane widths
+拖动选择终点|Drag to select endpoint
+仅作用于本侧|Applies to this pane only
+删除研究区域|Delete research region
+研究区域名称|Research region name
+研究区域管理|Research region management
+右键新建矿床|Right-click to create a deposit
+研究区域编辑|Edit research region
+移动资料归属|Move data to another region
+纹理重复间距|Texture repeat spacing
+表面细节强度|Surface detail strength
+正在保存图片|Saving image
+矿石与矿化岩|Ores and mineralized rocks
+地表与覆盖层|Surface and cover
+水平纹理方向|Horizontal texture direction
+选择岩石材质|Choose rock material
+及其高程图层|and its elevation layer
+世界文件需要|The world file requires
+控制点的模型|control-point model
+坐标标签过大|Coordinate labels are too large
+影像解码失败|Image decoding failed
+影像缺少坐标|Image has no georeferencing
+所有三维模型|All 3D models
+显存占用较高|High GPU memory usage
+影像已有坐标|Image is georeferenced
+影像不可读取|Image cannot be read
+导入遥感影像|Import remote sensing imagery
+影像没有坐标|Image is not georeferenced
+三维显示失败|3D display failed
+影像读取失败|Unable to read image
+材质名称需为|Material name must be
+材质目录越界|Material path is outside the allowed directory
+文档身份无效|Invalid document identity
+后端正在退出|Backend is shutting down
+请求参数过大|Request parameters are too large
+后端消息过大|Backend message is too large
+未知消息类型|Unknown message type
+地球化学模型|Geochemical Models
+右键子文件夹|Right-click a subfolder
+导入块体模型|Import block model
+测试数据管理|Test Data
+地球物理专题|Geophysics
+水文地质专题|Hydrogeology
+打开网页界面|Open web interface
+三维视图画布|3D canvas
+回到适应窗口|Fit to window
+滚轮同样可用|The mouse wheel also works
+改动先记草稿|Changes are held as a draft
+点确认才生效|Applied after confirmation
+在此输入笔记|Enter notes here
+该点居中显示|Center on this point
+查看该点属性|View point properties
+关闭前请选择|Choose an action before closing
+列名可自定义|Column names are customizable
+为固定几何列|are fixed geometry columns
+使用该工作表|Use this worksheet
+检测到改动|Changes detected
+窗口不存在|Window does not exist
+未捕获异常|Unhandled exception
+资源估算图|Resource estimate map
+收起项目树|Collapse project tree
+展开项目树|Expand project tree
+标签已锁定|Tab is locked
+面索引越界|Triangle index out of bounds
+最大顶点号|Maximum vertex index
+包围盒为空|Bounding box is empty
+结束点绘制|Finish point drawing
+新坑道模型|New tunnel model
+新建子分类|New subcategory
+请输入名称|Enter a name
+未重复创建|Existing tab reused
+控制点配准|Control-point registration
+重置标记点|Reset control points
+如钻孔孔口|e.g. drillhole collars
+控制点已满|Maximum control points reached
+坐标已录入|Coordinates entered
+后重新选取|then select again
+填写完整的|Enter complete
+控制点不足|Insufficient control points
+控制点无效|Invalid control point
+图片未配准|Image is not registered
+配准已保存|Registration saved
+等暂不支持|are not supported yet
+请重新导入|Import again
+重命名分类|Rename category
+重命名图件|Rename map or figure
+新建线类别|New line category
+支持的格式|Supported formats
+每行一个点|One point per row
+也可带表头|A header row is optional
+该矿区钻孔|This drillhole group
+数据量过大|The dataset is too large
+格式后导入|format before importing
+新建文件夹|New folder
+文件已跳过|File skipped
+个顶层节点|top-level nodes
+无内置书签|No embedded bookmarks
+压缩包内无|Not found in the archive:
+需自带书签|Embedded bookmarks are required
+未能定位到|Unable to locate
+未命名标签|Untitled tab
+重命名文件|Rename file
+文字层渲染|Text layer rendering
+个文本节点|text nodes
+分组下右键|Right-click under the group
+已导入属性|Attributes imported
+可视化完成|Visualization complete
+扩展名却是|but its extension is
+点类别名称|Point category name
+已撤销一步|Undone
+已重做一步|Redone
+已保存项目|Project saved
+未指定类别|No category specified
+暂无属性列|No attribute columns
+添加属性列|Add attribute column
+请先在左侧|First, on the left,
+添加手绘点|Add points manually
+新建点类别|New point category
+编辑点数据|Edit point data
+线类别名称|Line category name
+即将导入线|Importing lines
+该类别下的|In this category,
+个点类别为|point categories:
+新增属性列|Add attribute column
+列名已改为|Column renamed to
+保存并刷新|Save and refresh
+至少需保留|Keep at least
+已标记删除|Marked for deletion
+请刷新视图|Refresh the view
+确定删除点|Delete this point?
+已居中到点|Centered on point
+重命名表格|Rename table
+三角形索引|Triangle index
+超出顶点数|exceeds the vertex count
+坑道解析器|Tunnel parser
+请重新选择|Select again
+图层透明度|Layer opacity
+确定放弃吗|Discard the changes?
+确认后生效|Applied after confirmation
+点色块取色|Click a swatch to choose a color
+属性表信息|Attribute table information
+的化验数据|assay data
+的岩芯图片|core images
+请在项目树|In the project tree,
+建一个名为|create a category named
+的形式放入|in this form
+新建标签页|New tab
+删除测距线|Delete measurement line
+正在点绘制|Point drawing is active
+保存并离开|Save and leave
+是否先保存|Save first?
+未命名项目|Untitled project
+项目已保存|Project saved
+未记录路径|No path recorded
+矿区地质图|Geological map
+现场已恢复|Session restored
+需要有效的|Requires valid
+显示三角面|Show triangles
+倍垂直比例|vertical exaggeration
+个地形顶点|terrain vertices
+可取消恢复|Restoration can be canceled
+页面已关闭|Page closed
+结果保存在|Results saved to
+正在启动原|Starting original
+结果来自原|Results from original
+可直接转换|Ready to convert
+重置为示例|Load example
+七参数转换|Seven-parameter transformation
+输入源坐标|Source coordinates
+中央子午线|Central meridian
+投影面高程|Projection-plane elevation
+可设置尺度|Scale factor is configurable
+选择源文件|Select source files
+保留源文件|Keep source files
+参数值无效|Invalid parameter value
+三参数至少|Three parameters require at least
+七参数至少|Seven parameters require at least
+公共点求参|Estimate from common points
+应用测区三|Apply local three-
+使用小角度|Use small-angle
+平面四参数|2D four-parameter
+空间三参数|3D three-parameter
+空间七参数|3D seven-parameter
+待计算坐标|Coordinates to transform
+首行是表头|First row is a header
+输出源坐标|Include source coordinates
+请分批导入|Import in smaller batches
+待自动保存|Pending autosave
+已自动保存|Saved automatically
+功能待接入|Not connected yet
+环境光强度|Ambient light intensity
+柔和电影感|Soft cinematic
+抗锯齿画质|Antialiasing quality
+轴文字大小|Axis label size
+缩放和平移|Zoom and pan
+同坐标剖切|Clip at matching coordinates
+剖切保留侧|Clipping side to keep
+未绑定区域|No region assigned
+项目根目录|Project root
+未找到材质|Material not found
+模型已关闭|Model closed
+关闭材质库|Close material library
+原地质配色|Original geological colors
+请重新配准|Register again
+带号东坐标|Zone-prefixed easting
+原始行列数|Original grid dimensions
+加世界文件|with a world file
+贴图清晰度|Texture resolution
+影像已导入|Image imported
+再选择贴合|then choose Drape
+地形高度由|Terrain heights are defined by
+自定义图片|Custom image
+标签不完整|Incomplete tab
+任务已取消|Task canceled
+任务已停止|Task stopped
+图片标签页|Image tab
+表格标签页|Table tab
+阅读标签页|Document tab
+图层可见性|Layer visibility
+当前不可见|Currently hidden
+倾角方位角|Dip and azimuth
+撤销掉的点|Undone points
+请导入模型|Import a model
+导入点文件|Import point file
+导入属性表|Import attribute table
+保存并退出|Save and exit
+不保存退出|Exit without saving
+点图层着色|Point layer coloring
+编辑属性列|Edit attribute columns
+选择工作表|Select worksheet
+跳过此文件|Skip this file
+渲染模式|Rendering mode
+软件渲染|Software rendering
+硬件加速|Hardware acceleration
+图片缩放|Image scaling
+图片处理|Image processing
+处理失败|Processing failed
+返回原图|Use original image
+加载失败|Loading failed
+文件监听|File watcher
+跳过刷新|Refresh skipped
+启动失败|Startup failed
+预览限制|Preview limit
+笑脸软件|COORD
+路径为空|Path is empty
+内容为空|Content is empty
+应用错误|Application error
+三维画布|3D canvas
+图层管理|Layers
+属性面板|Properties
+联动按钮|Link button
+诊断结果|Diagnostic results
+诊断完成|Diagnostics complete
+诊断失败|Diagnostics failed
+尝试调用|Attempting to call
+正在调用|Calling
+调用成功|Call succeeded
+测试所有|Test all
+文档阅读|Documents
+二维联动|Linked 2D View
+三维视图|3D View
+点击锁定|Click to lock
+点击解锁|Click to unlock
+已被锁定|is locked
+无法删除|Unable to delete
+中未找到|not found in
+三角面行|Triangle row
+地球化学|Geochemistry
+表格预览|Table preview
+显示数值|Show values
+显示公式|Show formulas
+未能解码|Unable to decode
+坐标标签|Coordinate labels
+当前标签|Current tab
+三维模型|3D Models
+新文件夹|New folder
+新点类别|New point category
+新线类别|New line category
+矿区钻孔|Drillholes
+遥感影像|Remote Sensing Imagery
+块体模型|Block Model
+矿区图件|Maps and Figures
+如钻孔号|e.g. drillhole ID
+岩芯资料|Core Data
+新子分类|New subcategory
+图件管理|Maps and Figures
+下的分类|categories under
+确定删除|Confirm deletion
+依次定位|Locate in sequence
+个特征点|features
+点击下方|Click below
+个控制点|control points
+不可修改|Read-only
+真实坐标|World coordinates
+配准完成|Registration complete
+已配准到|Registered to
+调透明度|Adjust opacity
+贴图平面|Image plane
+无法预览|Preview unavailable
+即将导入|Importing
+矢量导入|Vector import
+后再导入|then import
+文件大小|File size
+会被跳过|will be skipped
+解析完成|Parsing complete
+文件失败|file failed
+图件导入|Map import
+导入图件|Import map or figure
+个图件吗|maps or figures?
+检测到非|Detected non-
+重新解码|Decode again
+解析失败|Parsing failed
+矢量图件|Vector Maps
+带分组列|With a group column
+自动置于|Automatically place in
+无分组列|No group column
+孔口表格|Collar Table
+钻孔测斜|Downhole Survey
+地质信息|Geological Data
+蚀变信息|Alteration Data
+忽略钻孔|Hide drillhole
+表格为空|Table is empty
+仅显示前|Showing the first
+已加载约|Loaded approximately
+钻孔编号|Drillhole ID
+钻孔孔号|Drillhole ID
+正在导入|Importing
+正在解析|Parsing
+不被支持|is not supported
+为空文件|is an empty file
+起始深度|From depth
+结束深度|To depth
+导入完成|Import complete
+导入提示|Import information
+该文件夹|This folder
+原生书签|Embedded bookmarks
+标题样式|Heading styles
+样式撰写|styled content
+已扫描前|Scanned first
+大纲跳转|Outline navigation
+无法跳转|Unable to navigate
+添加标签|Add bookmark
+单击跳转|Click to navigate
+渲染引擎|Rendering engine
+文件读取|File reading
+读取失败|Read failed
+逐页渲染|Render pages sequentially
+排版渲染|Layout and rendering
+打印失败|Print failed
+个文件吗|files?
+当前位置|Current position
+首页渲染|First page rendering
+含文字层|with a text layer
+文字可选|Selectable text
+请先导入|Import first
+钻孔蚀变|Drillhole Alteration
+钻孔岩性|Drillhole Lithology
+是否匹配|Match status
+同时显示|Show together
+是否继续|Continue?
+钻孔孔口|Drillhole Collars
+个孔口点|collar points
+个工作表|worksheets
+文件实为|The file is actually
+该点类别|This point category
+保存失败|Save failed
+点绘制中|Drawing points
+已添加点|Point added
+请在左侧|On the left,
+新建类别|New category
+没有匹配|No match
+添加一个|Add a
+个属性列|attribute columns
+已删除列|Column deleted
+表格修改|Table changes
+点已更新|Point updated
+已复制为|Copied as
+已删除点|Point deleted
+导入失败|Import failed
+个表格吗|tables?
+应为数组|must be an array
+建议颜色|Suggested color
+无法关联|Unable to link
+缺文件名|Filename missing
+支持格式|Supported formats
+表头需含|Required headers
+显示名称|Display name
+模型文件|Model file
+已过滤掉|Filtered out
+请选择如|Select, for example,
+点击显示|Click to show
+点击隐藏|Click to hide
+钻孔设置|Drillhole settings
+设置色阶|Set color scale
+圆柱粗细|Cylinder radius
+尚未确认|Not confirmed
+再点这里|then click here
+岩性名称|Lithology name
+地层名称|Formation name
+配色方案|Color scheme
+图标颜色|Icon color
+字体颜色|Text color
+轨迹颜色|Trajectory color
+基本信息|General information
+几何信息|Geometry
+三角面数|Triangles
+显示属性|Display properties
+钻孔信息|Drillhole information
+孔口坐标|Collar coordinates
+岩性分段|Lithology intervals
+化验元素|Assayed elements
+终止深度|End depth
+钻孔联动|Linked drillhole data
+岩芯图片|Core images
+的子分类|subcategories
+是空类别|is an empty category
+还没有点|No points yet
+模型原点|Model origin
+新坐标系|New coordinate system
+清除剖切|Clear clipping
+会话恢复|Session restoration
+项目名称|Project name
+延迟恢复|Deferred restoration
+保存项目|Save project
+写入失败|Write failed
+项目恢复|Project restoration
+几何缓存|Geometry cache
+模型缓存|Model cache
+打开项目|Open project
+未知错误|Unknown error
+新建项目|New project
+清空失败|Unable to clear
+清空中断|Clear interrupted
+个标签页|tabs
+表头重复|Duplicate headers
+地形信息|Terrain information
+当前隐藏|Currently hidden
+格网间距|Cell size
+遥感贴图|Imagery texture
+高程配色|Elevation colors
+垂直比例|Vertical scale
+导入高程|Import elevation data
+文件超过|File exceeds
+缓存命中|Cache hit
+首次解析|Initial parsing
+统计块体|Counting blocks
+和类别列|and category column
+构建块体|Building blocks
+空格分隔|Space-delimited
+英文逗号|Comma-delimited
+平面逗号|Projected comma-delimited
+文件为空|File is empty
+角度格式|Angle format
+带号由原|Zone number handled by original
+个源文件|source files
+请确认源|Verify source
+目标椭球|Target ellipsoid
+转换完成|Conversion complete
+已打开原|Original application opened
+大地坐标|Geographic coordinates
+平面坐标|Projected coordinates
+坐标转换|Coordinate Conversion
+工具菜单|Tools menu
+保存文件|Save file
+平面转换|2D transformation
+高程拟合|Height fitting
+转换坐标|Convert coordinates
+投影类型|Projection type
+平均纬度|Mean latitude
+选择格式|Select format
+清空列表|Clear list
+结果文件|Output files
+结果目录|Output folder
+选择目录|Choose folder
+结果命名|Output naming
+扩展名加|Append to extension
+文件名加|Append to filename
+同名输出|Keep filename
+每次最多|Maximum per operation
+单点转换|Single point
+文件转换|Batch files
+关闭预览|Close preview
+正在取消|Canceling
+高斯平面|Gauss-Kruger plane
+空间直角|Geocentric Cartesian
+椭球基准|Reference ellipsoid
+坐标类型|Coordinate type
+纬度原点|Latitude of origin
+比例系数|Scale factor
+为椭球高|is ellipsoidal height
+输入第一|Enter first
+单位角秒|Unit: arcseconds
+目标坐标|Target coordinates
+计算参数|Estimate parameters
+保存参数|Save parameters
+导出参数|Export parameters
+导入参数|Import parameters
+尺度变化|Scale change
+旋转约定|Rotation convention
+位置向量|Position vector
+坐标框架|Coordinate frame
+拟合方法|Fitting method
+反向转换|Inverse transformation
+填入示例|Load example
+导出结果|Export results
+内置功能|Built-in tools
+视图功能|View tools
+区域对比|Region Comparison
+实用工具|Utilities
+展示模式|Presentation Mode
+光照亮度|Lighting brightness
+哑光材质|Matte materials
+画布背景|Canvas background
+恢复默认|Restore defaults
+环境光照|Ambient lighting
+色调映射|Tone mapping
+历史项目|Recent projects
+清空历史|Clear history
+画布外观|Canvas appearance
+背景颜色|Background color
+轴及刻度|Axes and ticks
+网格颜色|Grid color
+显示性能|Display performance
+渲染质量|Rendering quality
+同步操作|Synchronize
+同步剖切|Sync clipping
+交换左右|Swap panes
+两侧适配|Fit both
+退出对比|Exit comparison
+当前显示|Current display
+当前操作|Active pane
+独立控制|Independent controls
+暂无图层|No layers
+画布工具|Canvas tools
+独立剖切|Independent clipping
+默认矿床|Default Deposit
+默认矿区|Default Area
+未分矿段|Unassigned Section
+矿段排列|section order
+名称应为|Name must contain
+新建矿床|New deposit
+及其下级|and its descendants
+确认删除|Confirm deletion
+右键管理|Right-click to manage
+研究区域|Research Regions
+目标条目|Destination
+当前分类|Current category
+移动归属|Move to region
+当前模型|Current model
+关闭纹理|Texture off
+图片原色|Original image colors
+凹凸强度|Bump strength
+材质名称|Material name
+保存图片|Save image
+材质图片|Material image
+通用岩石|General rocks
+人工材质|Artificial materials
+其他图片|Other images
+导入图片|Import image
+删除失败|Delete failed
+平行层理|Parallel bedding
+层理间距|Bedding spacing
+启用层理|Enable bedding
+层理样式|Bedding style
+褶皱幅度|Fold amplitude
+褶皱波长|Fold wavelength
+褶皱轴向|Fold axis direction
+应用失败|Apply failed
+不可读取|Cannot be read
+缺少原始|Missing original
+影像显示|Imagery display
+暗部提亮|Lift shadows
+原图颜色|Original colors
+自然增强|Natural enhancement
+不能共线|must not be collinear
+坐标文件|Coordinate file
+无法读取|Unable to read
+平面范围|Horizontal extent
+目标高程|Target terrain
+贴合高程|Drape over terrain
+影像超过|Image exceeds
+已有坐标|Georeferenced
+贴合完成|Draping complete
+标签越界|Tag out of bounds
+标签过多|Too many tags
+不支持的|Unsupported
+清理失败|Cleanup failed
+任务超时|Task timed out
+清理超时|Cleanup timed out
+应用退出|Application exit
+固定标签|Fixed tab
+不可删除|Cannot be deleted
+锁定按钮|Lock button
+锁定状态|Lock state
+确认保存|Confirm and save
+配准模式|Registration mode
+画布居中|Center canvas
+视角参数|View parameters
+钻孔面板|Drillhole panel
+一并移除|Remove together
+如需恢复|To restore
+批量选中|Select multiple
+新建分类|New category
+右键分类|Right-click category
+子文件夹|Subfolder
+报告管理|Reports
+计算由原|Computed by original
+模型属性|Model Properties
+适应窗口|Fit to window
+实际大小|Actual size
+擦除涂鸦|Erase ink
+高亮笔画|Highlighter
+画笔颜色|Pen color
+清除当前|Clear current
+清除标注|Clear annotations
+打印当前|Print current
+重置视角|Reset view
+坐标开关|Toggle coordinates
+刻度开关|Toggle ticks
+图例开关|Toggle legend
+剖切控制|Clipping controls
+关闭剖切|Disable clipping
+水平剖切|Horizontal clipping
+保留上方|Keep above
+保留下方|Keep below
+垂直剖切|Vertical clipping
+保留正侧|Keep positive side
+保留负侧|Keep negative side
+类别落点|Place point in category
+结束绘制|Finish drawing
+化验数据|Assay Data
+智勘助手|Geo Assistant
+点击提问|Click to ask
+导入表格|Import table
+编辑此点|Edit point
+复制此点|Duplicate point
+删除此点|Delete point
+输出块体|Export blocks
+当前项目|Current project
+尚未保存|Not saved
+着色依据|Color by
+适合品位|Suitable for grades
+自动算出|Calculated automatically
+确定添加|Confirm addition
+删除选中|Delete selected
+不可增删|Cannot be added or removed
+主页面|Main page
+主进程|Main process
+需重启|Restart required
+已启动|Started
+热刷新|Live reload
+项目树|Project tree
+工具栏|Toolbar
+标签栏|Tab bar
+柱状图|Drillhole Log
+未命名|Untitled
+该标签|This tab
+知道了|OK
+解析器|Parser
+顶点行|Vertex row
+顶点数|Vertices
+从模型|From model
+包围盒|Bounding box
+新矿区|New area
+新模型|New model
+点绘制|Draw points
+已输出|Exported
+个块体|blocks
+剖面图|Cross Sections
+中段图|Level Plans
+矿权图|Mining Rights Maps
+地质图|Geological Maps
+请右键|Right-click
+再新建|then create
+子分类|Subcategory
+已存在|already exists
+该分组|This group
+及其下|and its
+个图件|maps or figures
+已配准|Registered
+已确认|Confirmed
+已锁定|Locked
+已选取|Selected
+请为点|For point
+请为第|For number
+坐标系|Coordinate system
+个要素|features
+检测到|Detected
+重命名|Rename
+该分类|This category
+该矢量|This vector
+该图件|This map or figure
+东坐标|Easting
+北坐标|Northing
+线编号|Line ID
+线标识|Line identifier
+平面线|2D lines
+分组列|Group column
+线导入|Line import
+线类别|Line category
+钻孔号|Drillhole ID
+请稍候|Please wait
+个文件|files
+的格式|format
+大小为|size:
+超过了|exceeds
+的上限|limit
+无标题|Untitled
+条标题|headings
+请使用|Use
+无页码|No page number
+的位置|position
+文档内|in document
+未找到|Not found
+放置到|Place in
+该文件|This file
+文字层|Text layer
+方位角|Azimuth
+未分类|Uncategorized
+请先在|First, in
+字段或|field or
+个钻孔|drillholes
+不可与|must not overlap
+孔口点|Collar points
+行数据|data rows
+解析库|Parsing library
+未加载|Not loaded
+后导入|then import
+工作表|Worksheet
+二进制|Binary
+点文件|Point file
+属性列|Attribute column
+不改色|Keep colors
+点图层|Point layer
+手绘点|Manual points
+已保存|Saved
+已落点|Points placed
+可撤销|Undo available
+可重做|Redo available
+前一步|Previous step
+导出点|Export points
+点右下|Click lower right
+再落点|then place points
+已取消|Canceled
+上右键|right-click
+新名称|New name
+点数据|Point data
+已导出|Exported
+全不选|Deselect all
+点上方|Click above
+新增点|Add point
+筛选出|Filter
+后生效|to apply
+编辑点|Edit point
+已跳过|Skipped
+该表格|This table
+后重试|then try again
+文件名|Filename
+属性表|Attribute table
+该模型|This model
+需至少|Requires at least
+请选择|Select
+三角形|Triangle
+文件对|File pair
+透明度|Opacity
+低值色|Low-value color
+高值色|High-value color
+可见性|Visibility
+岩芯图|Core image
+无启用|None enabled
+不保存|Don't save
+线恢复|Line restoration
+地形图|Topographic map
+新项目|New project
+不可用|Unavailable
+保存于|Saved to
+个模型|models
+且至少|and at least
+个格网|grid cells
+请检查|Check
+椭球高|Ellipsoidal height
+已选择|Selected
+打开原|Open original
+正方向|Positive direction
+源文件|Source files
+经纬度|Longitude/latitude
+北常数|False northing
+东常数|False easting
+或空间|or spatial
+尺度为|Scale:
+源坐标|Source coordinates
+七参数|Seven parameters
+四参数|Four parameters
+可通过|Use
+已导入|Imported
+和涂鸦|and ink
+轴颜色|Axis color
+空视图|Empty view
+个字符|characters
+个区域|regions
+份资料|data items
+将归入|will be assigned to
+原文件|Original file
+沉积岩|Sedimentary rocks
+岩浆岩|Igneous rocks
+变质岩|Metamorphic rocks
+饱和度|Saturation
+必须为|must be
+的整数|integer
+右上角|upper right
+草稿态|Draft
+比例尺|Scale bar
+可选中|Selectable
+只切换|Switch only
+半透明|Translucent
+钻孔类|Drillhole category
+钻孔组|Drillhole group
+文档组|Document group
+可复制|Copyable
+同原点|Same origin
+同尺寸|Same size
+拖拽中|Dragging
+工具条|Toolbar
+上一页|Previous page
+下一页|Next page
+橡皮擦|Eraser
+指北针|North arrow
+任意值|Any value
+列管理|Manage columns
+页面|Page
+像素|px
+来源|Source
+副本|Copy
+检查|Check
+对象|Object
+场景|Scene
+元素|Element
+环境|Environment
+尺寸|Dimensions
+测试|Test
+图件|Maps
+状态|Status
+等待|Waiting
+名是|name is
+大纲|Outline
+平面|Plane
+影像|Imagery
+表格|Tables
+文档|Documents
+解锁|Unlock
+关闭|Close
+标签|Bookmark
+橙色|Orange
+提示|Information
+取消|Cancel
+矿体|Orebody
+地层|Formation
+构造|Structure
+蚀变|Alteration
+阅读|Read
+图片|Image
+为空|is empty
+推断|Infer
+位数|digits
+高程|Elevation
+图层|Layer
+导入|Import
+模型|Model
+文件|File
+读取|Read
+显示|Show
+配准|Register
+个点|points
+坐标|Coordinates
+确认|Confirm
+删除|Delete
+打开|Open
+贴图|Texture
+按钮|button
+启用|Enable
+预览|Preview
+成功|Success
+解析|Parse
+编码|Encoding
+已按|Applied by
+东距|Easting
+北距|Northing
+标高|Elevation
+海拔|Altitude
+线号|Line ID
+线名|Line name
+分组|Group
+组号|Group ID
+类别|Category
+名称|Name
+推荐|Recommended
+条线|lines
+原始|Original
+忽略|Ignore
+孔号|Hole ID
+格式|Format
+失败|Failed
+书签|Bookmarks
+笔记|Notes
+扫描|Scan
+标题|Heading
+全文|Full text
+右键|Right-click
+改名|Rename
+请将|Please
+完成|Complete
+画笔|Pen
+退出|Exit
+高亮|Highlight
+橡皮|Eraser
+内容|Content
+打印|Print
+引擎|Engine
+渲染|Render
+孔口|Collar
+测斜|Survey
+地质|Geology
+岩性|Lithology
+总深|Total depth
+深度|Depth
+倾角|Dip
+方位|Direction
+起始|From
+终止|To
+矿脉|Vein
+类型|Type
+钻孔|Drillholes
+字段|Field
+需含|must include
+属性|Attributes
+数值|Value
+半径|Radius
+首行|First row
+单色|Single color
+个值|values
+孔深|Hole depth
+当前|Current
+先点|First click
+列名|Column name
+全选|Select all
+的点|points
+已选|Selected
+固定|Fixed
+请用|Use
+行号|Row number
+颜色|Color
+已为|Applied to
+例如|e.g.
+过滤|Filter
+顶点|Vertex
+跳过|Skip
+缺失|Missing
+使用|Use
+粗细|Width
+草稿|Draft
+经典|Classic
+分类|Category
+范围|Extent
+可见|Visible
+隐藏|Hide
+备注|Notes
+剖切|Clip
+测距|Measure
+截图|Screenshot
+选择|Select
+已落|Placed
+命中|Hit
+但有|but
+项目|Project
+确定|OK
+覆盖|Overwrite
+渐变|Gradient
+输出|Export
+本地|Local
+毫秒|Milliseconds
+分秒|Minutes/seconds
+北京|Beijing
+西安|Xian
+国家|National
+空格|Space
+点号|Point ID
+逗号|Comma
+纬度|Latitude
+经度|Longitude
+其它|Other
+超过|exceeds
+椭球|Ellipsoid
+设置|Settings
+帮助|Help
+投影|Projection
+尺度|Scale
+常数|Constant
+浏览|Browse
+转换|Convert
+每个|each
+总计|Total
+每行|Each row
+可选|Optional
+目标|Target
+每点|Per point
+软件|Application
+载入|Load
+角秒|arcsec
+旋转|Rotate
+计算|Calculate
+批量|Batch
+浅灰|Light gray
+暖白|Warm white
+深色|Dark
+标准|Standard
+曝光|Exposure
+流畅|Fast
+均衡|Balanced
+精细|High quality
+高清|High resolution
+应用|Apply
+方向|Direction
+矿床|Deposit
+矿区|Area
+矿段|Section
+资料|Data
+左侧|Left
+右侧|Right
+块体|Block
+坑道|Tunnel
+视图|View
+新建|New
+涉及|Affected
+新增|Add
+保存|Save
+移动|Move
+外观|Appearance
+平行|Parallel
+褶皱|Folded
+材质|Material
+亮度|Brightness
+解码|Decode
+恢复|Restore
+裁剪|Crop
+默认|Default
+超清|Ultra
+变换|Transform
+提供|Provide
+贴合|Drape
+限制|Limit
+业务|Operation
+临时|Temporary
+开锁|Unlocked
+输入|Input
+缩放|Zoom
+关键|Key
+重合|Overlap
+校准|Calibrate
+注意|Note
+规则|Rules
+缩进|Indent
+移除|Remove
+定位|Locate
+拖动|Drag
+图例|Legend
+绘制|Draw
+蓝色|Blue
+表示|indicates
+灰色|Gray
+地表|Surface
+专题|Themes
+执行|Run
+联动|Link
+放大|Zoom in
+缩小|Zoom out
+重置|Reset
+清空|Clear
+复位|Reset
+在线|Online
+数据|Data
+可改|Editable
+筛选|Filter
+导出|Export
+原|Original
+用|with
+行|Rows
+列|Columns
+轴|Axis
+东|East
+北|North
+块|blocks
+在|in
+如|e.g.
+吗|?
+点|Point
+共|Total
+无|None
+线|Line
+或|or
+是|is
+自|from
+起|From
+止|To
+至|to
+个|items
+该|This
+页|Page
+条|entries
+第|No.
+与|and
+需|Requires
+含|Includes
+表|Table
+段|intervals
+空|Empty
+旧|Old
+步|step
+把|Apply
+的|of
+剩|Remaining
+有|with
+种|types
+蓝|Blue
+青|Cyan
+绿|Green
+黄|Yellow
+红|Red
+张|images
+到|to
+下|under
+和|and
+倍|x
+米|m
+度|Degrees
+分|Minutes
+秒|Seconds
+前|First
+项|items
+源|Source
+南|South
+西|West
+三|Three
+四|Four
+带|Zone
+此|This
+由|by
+给|to
+加|Add
+随|with
+使|make
+节|section
+走|use
+上|above
+见|See
+为|as
+黑|Black
+低|Low
+高|High
+橙|Orange
+紫|Purple
+开始图片加载测试|Starting image loading test
+图片加载测试结果|Image loading test results
+图片加载测试完成|Image loading test complete
+图片加载测试失败|Image loading test failed
+开始超大图片测试|Starting large image test
+张图片的显示能力|images tested for display support
+元素测试图片是否能解码|Check whether the image element can decode the image
+超大图片测试结果|Large image test results
+超大图片测试完成|Large image test complete
+超大图片测试失败|Large image test failed
+跳过无效顶点行|Skip invalid vertex row
+该块体模型没有可输出的块|This block model has no blocks to export
+该块体模型下没有可输出的文件|This block model has no files to export
+无法在此节点下新建子分类|A subcategory cannot be created under this node
+图片加载失败或尚未加载完成|The image failed to load or is still loading
+请继续右键点击图片选取第|Right-click the image to select control point
+然后再右键图片选取特征点|Then right-click a feature on the image
+个控制点并确认坐标后再点|control points and confirm their coordinates before clicking
+三个控制点不能在图片上共线|The three control points must not be collinear on the image
+请重新选取不在一条直线上的|Select non-collinear points again
+该三维视图尚未设置坐标原点|The 3D view has no coordinate origin yet
+再拖拽已配准图片生成贴图平面|Then drag the registered image to create an image plane
+该图件缺少可加载的图片数据|This map has no image data available to load
+未找到文件路径或内存数据|No file path or in-memory data was found
+请重新导入该图件后再配准|Import the map again before registration
+请先对该图片进行控制点配准|Register this image using control points first
+再拖拽到三维视图生成贴图平面|Then drag into the 3D view to create an image plane
+未解析到可显示的矢量要素|No displayable vector features were found
+个非|non-
+文档处理各阶段耗时|Document processing stage timings
+加密或包含不支持的复杂版式|encrypted or containing unsupported complex layouts
+将从三维视图移除以下条目|Remove the following items from the 3D view
+下右键你想绘制的那个类别再选|right-click the target category and choose
+个线文件都会从视图中移除|line files will be removed from the view
+请把准星对准地质体后再点|Aim the crosshair at the geological body before clicking
+如需清空请先删除该类别下的点|Delete the category's points first to clear it
+确定从三维视图和项目树中删除|Remove from both the 3D view and the project tree?
+该模型下没有可输出的三维文件|This model has no 3D files to export
+请同时选择同一基名的两个文件|Select both files with the same base name
+或把已移除的模型拖回画布|or drag a removed model back into the canvas
+请先点上方要套用的岩性行|Select the target lithology row above first
+模型没有有效的顶点或三角面|The model contains no valid vertices or triangles
+则丢弃本次尚未保存的改动|discards the unsaved changes
+这不是有效的山维智勘项目文件|This is not a valid ShanweiGeo project file
+打开项目将替换当前工作内容|Opening a project replaces the current workspace
+如需保留当前内容请先保存|Save first to keep the current workspace
+新建项目将清空当前工作内容|Creating a project clears the current workspace
+自动重读源文件并恢复现场|Reload source files and restore the session automatically
+当前边缘处理会隐藏全部地形|The current edge treatment would hide all terrain
+仅隐藏与外边界连通的零高程|Hide only zero elevations connected to the outer boundary
+请重启桌面程序后使用此工具|Restart the desktop application before using this tool
+再选择结果保存目录后转换|then select an output folder and convert
+请在桌面程序中选择本地文件|Select a local file in the desktop application
+中央子午线和结果目录后转换|central meridian and output folder before converting
+选择坐标转换结果保存目录|Choose coordinate conversion output folder
+已经完成的文件保留在结果目录|Completed files remain in the output folder
+请填写有效的地图投影参数|Enter valid map projection parameters
+请填写完整的三个源坐标值|Enter all three source coordinate values
+六度带的尺度和常数按原版固定|Scale and offsets for 6-degree zones follow the original application
+合并及自定义格式尚未接入|Merged output and custom formats are not connected yet
+已有同名结果会另存为新名称|Existing output files are preserved by using a new name
+平面坐标请先去掉带号前缀|Remove zone prefixes from projected coordinates first
+原软件入口仅在桌面程序中可用|The original tool can only be launched from the desktop application
+原软件仍从你指定的目录运行|The original application runs from your configured folder
+左右分屏对比已有三维视图|Compare open 3D views side by side
+打开两个三维视图后再进行对比|Open two 3D views before comparing
+请先重命名或选择其他区域|Rename the model or select another region first
+同一层级存在重名研究区域|Duplicate research region names exist at the same level
+同一上级下已存在这个名称|This name already exists under the same parent
+模型已关闭或不支持岩石材质|The model is closed or does not support rock materials
+正在使用的模型恢复原配色|Models using it revert to their original colors
+当前视图没有可设置的地质|The current view has no supported geological
+手动配准无法反算水平位置|Manual registration cannot resolve horizontal positions
+旧配准记录缺少图片像素尺寸|The old registration record has no image pixel dimensions
+影像与高程坐标范围不重合|The imagery and elevation extents do not overlap
+所选模型没有有效的水平范围|The selected model has no valid horizontal extent
+三维模型与影像所在区域的|of the area containing the 3D model and imagery
+正在读取坐标并生成地形纹理|Reading coordinates and generating terrain textures
+文件内容不是支持的图片格式|The file content is not a supported image format
+请选择支持的本地影像文件|Select a supported local image file
+异常退出或未返回完整结果|exited unexpectedly or returned an incomplete result
+在计算结果与公式原文之间切换|Switch between calculated values and formula text
+仅含公式的表格有效|Only applies to tables containing formulas
+在页面上按住鼠标自由绘制|Drag on the page to draw freely
+的全部标注|all annotations
+坐标轴刻度标签|Axis tick labels
+正在往|Writing to
+左键拖拽旋转视角不会误落点|Left-drag rotates the view without placing a point
+后一步|Next step
+重做被|Redo
+类别的点全部写入项目存档|all points in the category to the project
+后续阶段接入自动暂存|Autosave will be connected in a later stage
+新模型与当前视图同一坐标系|The new model uses the same coordinate system as the current view
+不勾选则自动新建视图标签页|If unchecked, a new view tab is created automatically
+该类别属性列已由第一个点定型|The first point has defined this category's attribute columns
+steps 必须为 1 至 100 的整数|steps must be an integer from 1 to 100
+本地诊断中|Running local diagnostics
+预期的诊断错误|Expected diagnostic error
+不支持的业务|Unsupported operation
+未找到有效块体，请检查坐标、尺寸和GM列|No valid blocks found; check coordinates, dimensions, and the GM column
+块体原点无效|Invalid block origin
+坐标和参数必须为有限数值|Coordinates and parameters must be finite numbers
+角度使用十进制度或 度:分:秒 格式|Use decimal degrees or degrees:minutes:seconds for angles
+分和秒必须在 0 至 60 之间|Minutes and seconds must be in the range 0 to 60
+请先输入坐标数据|Enter coordinate data first
+单次最多 5000 行，请分批计算|At most 5,000 rows per operation; process in batches
+投影参数范围无效|Projection parameters are outside the valid range
+纬度或经度超出范围|Latitude or longitude is out of range
+空间坐标接近地心，无法确定经纬度|Coordinates are too close to the geocenter to determine latitude and longitude
+未知旋转约定|Unknown rotation convention
+尺度因子不能为零|The scale factor cannot be zero
+不同基准之间转换需要测区三/七参数，不能仅更换椭球名称|A local three- or seven-parameter transformation is required between datums; changing the ellipsoid name is insufficient
+坐标转换中|Converting coordinates
+高程原值|Original height
+编号|ID
+不支持的拟合方法|Unsupported fitting method
+公共点重合，无法解算四参数|Common points coincide; the four parameters cannot be estimated
+公共点重合，无法解算七参数|Common points coincide; the seven parameters cannot be estimated
+公共点几何退化（如共线），无法唯一解算七参数|Degenerate control-point geometry prevents a unique seven-parameter estimate
+拟合尺度无效|Invalid fitted scale
+总残差|Total residual
+残差 = 计算值 - 目标值；RMS 为每点残差范数的均方根。三/七参数残差在空间直角坐标中计算。|Residual = computed minus target value. RMS is the root mean square of per-point residual norms. Three- and seven-parameter residuals use geocentric Cartesian coordinates.
+原 COORD 自动化目前仅支持 Windows|Legacy COORD automation currently supports Windows only
+COORD 子进程已退出|The COORD subprocess has exited
+COORD 控件响应超时|COORD control response timed out
+指定目录中的原 COORD.exe 不存在|COORD.exe was not found in the configured directory
+原 CSV 格式配置与已验证版本不同|The legacy CSV format configuration differs from the tested version
+原 COORD 启动后立即退出|COORD exited immediately after launch
+未找到原 COORD 主窗口|The COORD main window was not found
+原 COORD 窗口仍显示异常|The COORD window is still in an unexpected state
+原 COORD 正在等待其他对话框确认|COORD is waiting for another dialog to be confirmed
+原 COORD 坐标选择未生效|The COORD coordinate selection was not applied
+原 COORD 角度格式切换未生效|The COORD angle format was not applied
+原 COORD 椭球写入失败|Unable to set the ellipsoid in COORD
+无法打开原投影设置|Unable to open the legacy projection settings
+未找到原 COORD 投影设置弹窗|The COORD projection settings dialog was not found
+原 COORD 投影类型与已验证版本不同|The COORD projection types differ from the tested version
+原 COORD 投影选项未生效|The COORD projection selection was not applied
+原 COORD 投影参数填写失败|Unable to enter COORD projection parameters
+原投影设置确认按钮不匹配|The projection confirmation button does not match
+原投影参数未通过校验|The legacy projection parameters failed validation
+原投影设置未完成确认|The legacy projection settings were not confirmed
+原 COORD 正在等待投影设置|COORD is waiting for projection settings
+原 COORD 已经忙碌|COORD is busy
+原 COORD 椭球列表与已验证版本不同|The COORD ellipsoid list differs from the tested version
+原 COORD 默认转换选项与已验证状态不同|The default COORD transformation options differ from the tested state
+正在调用原版转换|Running legacy conversion
+原 COORD 未返回完整结果|COORD did not return a complete result
+未找到原 COORD |Legacy COORD dialog not found:
+原文件设置未通过校验|Legacy file settings failed validation
+原 COORD 设置未完成确认|COORD settings were not confirmed
+原文件转换页切换失败|Unable to switch to legacy file conversion
+原 COORD 文件格式列表与已验证版本不同|The COORD file format list differs from the tested version
+原输出文件命名方式设置失败|Unable to set legacy output naming
+原合并数据选项设置失败|Unable to set the legacy merge option
+原文件格式设置未生效|The legacy file format settings were not applied
+原 COORD 源文件列表为空|The COORD source file list is empty
+原文件转换确认按钮不匹配|The legacy conversion confirmation button does not match
+原 COORD 未完成文件转换|COORD did not finish file conversion
+平面坐标需要填写地图投影参数|Projected coordinates require map projection parameters
+不支持的投影类型|Unsupported projection type
+投影参数必须为数值|Projection parameters must be numeric
+投影参数必须为有限数值|Projection parameters must be finite
+中央子午线范围为 -180 至 180 度|The central meridian must be between -180 and 180 degrees
+平均纬度范围无效；当前高斯/UTM基准纬度为0|Invalid mean latitude; the latitude of origin is zero for the current Gauss/UTM modes
+投影尺度必须大于0且不大于10|The projection scale must be greater than 0 and at most 10
+原高斯投影尺度固定为1，可调尺度使用UTM模式|Legacy Gauss projection uses scale 1; use UTM mode for adjustable scale
+三/六度带模式使用固定常数，需修改常数或投影面高程请选择自定义高斯|Three- and six-degree zones use fixed offsets; choose custom Gauss to change offsets or projection-plane elevation
+原UTM模式不能设置投影面高程|Legacy UTM mode does not support projection-plane elevation
+地图投影参数无效|Invalid map projection parameters
+坐标参数必须是对象|Coordinate parameters must be an object
+未知坐标类型|Unknown coordinate type
+未知椭球|Unknown ellipsoid
+跨基准七参数尚未接入，请使用原 COORD 设置参数后转换|Cross-datum seven-parameter conversion is not connected; configure parameters in COORD first
+未知角度格式|Unknown angle format
+请填写三个坐标值，每个值不超过100字符|Enter three coordinate values, each no longer than 100 characters
+空间坐标和高程必须为有限数值|Cartesian coordinates and height must be finite numbers
+输出目录存在同名文件夹|A directory with the output filename already exists
+未知原文件格式|Unknown legacy file format
+原文件格式与源坐标类型不匹配|Legacy file format does not match the source coordinate type
+未知结果命名方式|Unknown output naming method
+合并数据选项无效|Invalid merge option
+合并前后数据格式尚未接入，请在原 COORD 中操作|Merged input/output format is not connected; use COORD directly
+每次请选择1至20个源文件|Select 1 to 20 source files per operation
+源文件必须为普通文件，每个不超过10MB|Source files must be regular files of at most 10 MB each
+所有文件总大小不能超过50MB|Total file size must not exceed 50 MB
+请选择已有的结果输出目录|Select an existing output folder
+业务请求来源不是本地桌面进程|The request did not originate from the local desktop process
+超时COORD进程未退出|The timed-out COORD process did not exit
+模型含非有限坐标|The model contains non-finite coordinates
+坑道需要配套STR文件|The tunnel model requires an accompanying STR file
+仅支持TS、OBJ或DTM/STR|Only TS, OBJ, and DTM/STR are supported
+模型没有有效顶点或三角面|The model contains no valid vertices or triangles
+模型三角形索引越界|A model triangle index is out of bounds
+模型源文件不存在：|Model source file does not exist:
+本地解析 |Local parsing:
+模型解析完成|Model parsing complete
+ASC 表头重复：|Duplicate ASC header:
+ASC 表头数值无效：|Invalid ASC header value:
+ASC 需要有效行列数和格网间距|ASC requires valid dimensions and cell size
+当前支持最多100万个高程格网|At most 1,000,000 elevation cells are supported
+ASC 必须指定唯一的左下角或中心坐标|ASC must specify exactly one lower-left corner or center origin
+ASC 高程数量与行列数不一致|ASC elevation count does not match grid dimensions
+ASC 包含无效高程值|ASC contains invalid elevation values
+ASC 没有可组成地形面的有效高程格网|ASC has no valid elevation grid from which to construct a surface
+ASC 文件超过100MB|ASC file exceeds 100 MB
+本地ASC解析与边界零值|Local ASC parsing and boundary zero handling
+公共点重合，无法计算四参数|Coincident common points prevent four-parameter estimation
+公共点重合，无法计算七参数|Coincident common points prevent seven-parameter estimation
+公共点几何退化（如共线），无法唯一求解七参数|Degenerate control-point geometry prevents a unique seven-parameter estimate
+点残差(米)|Point residual (m)
+残差 = 计算值 - 目标值；RMS 为每点残差向量的均方根。三/七参数残差在空间直角坐标中计算。|Residual = computed minus target value. RMS is the root mean square of per-point residual vectors. Three- and seven-parameter residuals use geocentric Cartesian coordinates.
+原 COORD 接入目前仅支持 Windows|Legacy COORD integration supports Windows only
+COORD 窗口已退出|The COORD window has closed
+原 COORD 下拉选择未生效|The COORD dropdown selection was not applied
+原 COORD 坐标类型切换未生效|The COORD coordinate type was not applied
+原 COORD 投影选择未生效|The COORD projection selection was not applied
+原投影弹窗确认按钮不匹配|The projection dialog confirmation button does not match
+原投影设置未通过校验|Legacy projection settings failed validation
+原投影弹窗未完成确认|The projection dialog was not confirmed
+原 COORD 仍在等待投影参数|COORD is still waiting for projection parameters
+原 COORD 已就绪|COORD is ready
+原 COORD 默认转换开关与已验证状态不同|Default COORD conversion switches differ from the tested state
+ 弹窗| dialog
+原 COORD 弹窗未完成确认|The COORD dialog was not confirmed
+请确定已经设置转换关系了!|Confirm the transformation relationship first!
+平均纬度范围无效，当前高斯/UTM基准纬度为0|Invalid mean latitude; the current Gauss/UTM latitude of origin is zero
+投影尺度必须大于0且不超过10|Projection scale must be greater than zero and at most 10
+原高斯投影尺度固定为1；可调尺度使用UTM模式|Legacy Gauss projection uses scale 1; use UTM for adjustable scale
+三/六度带模式使用固定常数；修改常数或投影面高程请选择自定义高斯|Three- and six-degree zones use fixed offsets; choose custom Gauss to change offsets or projection-plane elevation
+原UTM模式不允许设置投影面高程|Legacy UTM does not support projection-plane elevation
+坐标正方向无效|Invalid coordinate positive direction
+请求参数必须是对象|Request parameters must be an object
+跨基准测区参数尚未接入，请使用原 COORD 设置并计算|Local cross-datum parameters are not connected; configure and calculate in COORD
+输出目录中同名文件过多|Too many output files with the same name
+原文件格式列与源坐标类型不匹配|Legacy file format does not match the source coordinate type
+未知输出命名方式|Unknown output naming method
+源文件必须为普通文件且每个不超过10MB|Source files must be regular files of at most 10 MB each
+单批文件总大小不能超过50MB|Total batch size must not exceed 50 MB
+请选择已有的结果保存目录|Select an existing output folder
+不允许清理非本程序工作副本|Only this application's own working copy may be cleaned up
+临时COORD进程未退出|The temporary COORD process has not exited
+解析ASC格网与边界零值|Parsing ASC grid and boundary zeros

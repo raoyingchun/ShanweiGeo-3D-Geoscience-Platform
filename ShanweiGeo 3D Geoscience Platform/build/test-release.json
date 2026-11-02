@@ -1,0 +1,58 @@
+{
+  "appId": "cn.shanwei.geology.test",
+  "productName": "山维智勘测试版",
+  "artifactName": "ShanweiGeo-Test-20261019-x64.${ext}",
+  "directories": {
+    "output": "dist-test-20261019"
+  },
+  "electronDist": "node_modules/electron/dist",
+  "asar": true,
+  "files": [
+    "main.js",
+    "preload.js",
+    "desktop/**/*.js",
+    "src/app/**/*",
+    "src/lib/**/*",
+    "src/*.js",
+    "src/index8.html",
+    "src/assets/**/*",
+    "!src/assets/**/*.blend",
+    "!src/assets/**/*.exr",
+    "!src/assets/**/.material-monitor-state.json",
+    "!src/assets/**/*.html",
+    "!src/assets/**/*.txt"
+  ],
+  "extraResources": [
+    {
+      "from": "backend",
+      "to": "backend",
+      "filter": [
+        "**/*.py",
+        "!vendor/**",
+        "!**/__pycache__/**",
+        "!operations/coordinates.py"
+      ]
+    },
+    {
+      "from": "runtime/python",
+      "to": "runtime/python"
+    }
+  ],
+  "win": {
+    "target": [
+      "zip"
+    ],
+    "icon": null,
+    "signAndEditExecutable": false
+  },
+  "extraFiles": [
+    {
+      "from": "build/测试使用说明.txt",
+      "to": "测试使用说明.txt"
+    },
+    {
+      "from": "build/test-fixtures",
+      "to": "测试样例"
+    }
+  ]
+}

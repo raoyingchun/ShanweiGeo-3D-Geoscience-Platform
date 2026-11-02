@@ -1,0 +1,50 @@
+# ---- Dependencies (restore with `npm install`) ----
+node_modules/
+
+# ---- Build outputs (restore with `npm run build:english`) ----
+dist/
+dist-*/
+build/electron-dist/
+build/package-smoke-copy/
+build/english-validation/
+build/*.zip
+*.exe
+*.zip
+
+# ---- Python runtime & vendored wheels ----
+# The embedded CPython runtime and the offline wheel set are release
+# artifacts, not source. See build/english-release.json for how they are
+# packed into the distributable.
+runtime/
+backend/vendor/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+
+# ---- Logs & editor noise ----
+*.log
+debug.log
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# ---- Runtime user data ----
+userData/
+cache/
+logs/
+
+# ---- Large geological figure library ----
+# src/图件/ (~440 MB of scanned JPG) is tracked via Git LFS — see
+# .gitattributes. Only the reference imagery under 素材库/ is excluded;
+# nothing reads it at runtime (see docs/DATA-SETUP.md).
+素材库/
+
+# ---- Poly Haven source assets ----
+# The .blend and .exr originals are re-downloadable from polyhaven.com and
+# are excluded from the packaged build; only the JPG/PNG runtime textures
+# are tracked.
+src/assets/textures/**/*.blend
+src/assets/textures/**/*.exr

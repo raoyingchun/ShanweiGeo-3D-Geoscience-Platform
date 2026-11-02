@@ -1,0 +1,17 @@
+**/node_modules/
+**/userData/
+**/cache/
+**/logs/
+**/dist*/
+**/runtime/
+**/backend/vendor/
+**/__pycache__/
+*.pyc
+*.log
+.env
+.env.*
+
+/Test data/3D Models/Block Models/Block Model 2.csv
+/Test data/3D Models/Block Models/ljx_2.csv
+/Test data/Surface/Model_Aligned_Zone37_XY_Swapped_Full_Extent/image_xy37_full.tif
+/Test data\Surface\Model_Aligned_Zone37_XY_Swapped_Full_Extent\image_xy37_full.tif.zip

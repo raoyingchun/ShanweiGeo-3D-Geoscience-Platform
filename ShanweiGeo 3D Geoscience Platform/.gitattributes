@@ -1,0 +1,33 @@
+# Normalize line endings for text files, keep binaries untouched.
+* text=auto eol=lf
+
+*.js   text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.yml  text eol=lf
+*.vbs  text eol=lf
+*.bat  text eol=crlf
+
+# Binary assets
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.ts   text eol=lf
+*.tif  binary
+*.tiff binary
+*.dll  binary
+*.exe  binary
+*.asar binary
+*.pyd  binary
+*.whl  binary
+
+# ---- Git LFS: large scanned geological figures ----
+# ~440 MB of JPG. Stored in LFS so the git history stays small while the
+# data remains available to collaborators. See docs/DATA-SETUP.md.

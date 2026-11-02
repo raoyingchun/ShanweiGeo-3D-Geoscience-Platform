@@ -1,0 +1,52 @@
+[
+  {
+    "source": "影像\\遥感影像\\Level19\\遥感影像.tif",
+    "output": "影像\\模型适配_37带号_XY交换_完整范围\\image_xy37_full.tif",
+    "originalSize": [
+      3983,
+      5555
+    ],
+    "newSize": [
+      5555,
+      3983
+    ],
+    "gridCells": 22125565,
+    "allValuesPreserved": true,
+    "sourceUnchanged": true,
+    "clipped": false,
+    "resampled": false,
+    "modelTransform": [
+      3027921.0067018787,
+      0.2825005720886826,
+      0,
+      37432181.26376151,
+      0,
+      -0.2825005720886826
+    ]
+  },
+  {
+    "source": "影像\\高程\\Level18\\高程.asc",
+    "output": "影像\\模型适配_37带号_XY交换_完整范围\\dem_xy37_full.tif",
+    "originalSize": [
+      123,
+      172
+    ],
+    "newSize": [
+      172,
+      123
+    ],
+    "gridCells": 21156,
+    "allValuesPreserved": true,
+    "sourceUnchanged": true,
+    "clipped": false,
+    "resampled": false,
+    "modelTransform": [
+      3027934.822277578,
+      9.127728138,
+      0,
+      37432175.9019316,
+      0,
+      -9.127728138
+    ]
+  }
+]

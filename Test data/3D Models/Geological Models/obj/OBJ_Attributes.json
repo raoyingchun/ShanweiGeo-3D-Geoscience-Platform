@@ -1,0 +1,9 @@
+[
+  {"file": "GM - 1-1.obj", "code": "1-1", "vertices": 295, "faces": 586, "bbox": {"x": [3028242.74, 3028805.47], "y": [37431746.28, 37432138.80], "z": [-243.80, 216.83]}, "zSpan": 460.63, "suggestedColor": "#E24B4A", "type": "金矿脉1", "note": ""},
+  {"file": "GM - 1-2.obj", "code": "1-2", "vertices": 315, "faces": 626, "bbox": {"x": [3028228.92, 3028773.75], "y": [37431773.89, 37432138.80], "z": [-233.67, 215.58]}, "zSpan": 449.25, "suggestedColor": "#D85A30", "type": "金矿脉2", "note": ""},
+  {"file": "GM - F.obj", "code": "F", "vertices": 577, "faces": 1150, "bbox": {"x": [3028017.23, 3028560.79], "y": [37431501.73, 37432096.60], "z": [-243.80, 332.73]}, "zSpan": 576.53, "suggestedColor": "#854F0B", "type": "断层", "note": ""},
+  {"file": "GM - Mineralized Alteration Zone.obj", "code": "Mineralized Alteration Zone", "vertices": 1578, "faces": 3160, "bbox": {"x": [3028057.30, 3029378.43], "y": [37431482.70, 37432138.80], "z": [-243.80, 458.80]}, "zSpan": 702.60, "suggestedColor": "#1D9E75", "type": "蚀变带", "note": "原名 Mineralized Alteration Zone（矿化蚀变带）"},
+  {"file": "GM - Ptfz.obj", "code": "Ptfz", "vertices": 1330, "faces": 2652, "bbox": {"x": [3028017.23, 3029378.43], "y": [37431354.17, 37432138.80], "z": [-243.80, 442.54]}, "zSpan": 686.34, "suggestedColor": "#378ADD", "type": "上覆围岩", "note": ""},
+  {"file": "GM - Ptfz2.obj", "code": "Ptfz2", "vertices": 1802, "faces": 3600, "bbox": {"x": [3028017.23, 3029378.43], "y": [37431448.71, 37432138.80], "z": [-243.80, 488.22]}, "zSpan": 732.02, "suggestedColor": "#7F77DD", "type": "上覆围岩", "note": "与 Ptfz 同属上覆围岩，两段网格"},
+  {"file": "GM - Q.obj", "code": "Q", "vertices": 1036, "faces": 2080, "bbox": {"x": [3028017.23, 3029378.43], "y": [37431354.17, 37432138.80], "z": [263.46, 501.29]}, "zSpan": 237.83, "suggestedColor": "#D4537E", "type": "残积坡层", "note": ""}
+]

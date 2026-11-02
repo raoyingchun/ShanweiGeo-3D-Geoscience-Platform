@@ -1,0 +1,71 @@
+.coord-shell { width:min(940px,94vw); margin:auto; max-height:90vh; padding:0; border:1px solid #c4ced7; border-radius:10px; background:#f4f6f8; color:#263644; box-shadow:0 20px 80px #0005; font:14px "Microsoft YaHei",sans-serif; }
+.coord-shell::backdrop { background:#20334470; }
+.cs-head { display:flex; align-items:center; justify-content:space-between; padding:17px 22px; background:#fff; border-bottom:1px solid #dce3e9; }
+.cs-head h2 { margin:0; font-size:19px; font-weight:600; }
+.cs-head p { margin:4px 0 0; font-size:12px; color:#6c7c8b; }
+.cs-head button { width:30px; height:30px; border:0; border-radius:4px; background:#f0f3f5; color:#526473; font-size:22px; cursor:pointer; }
+.cs-body { padding:0 22px 18px; overflow:auto; max-height:calc(90vh - 140px); }
+.cs-menu { display:flex; gap:5px; padding:10px 0 14px; position:relative; }
+.cs-menu details { position:relative; }
+.cs-menu summary { cursor:pointer; list-style:none; padding:5px 11px; border-radius:4px; }
+.cs-menu summary:hover,.cs-menu details[open] summary { background:#e4ebf2; }
+.cs-menu-pop { position:absolute; left:0; top:34px; min-width:210px; padding:5px; background:white; border:1px solid #cbd5de; border-radius:5px; box-shadow:0 5px 18px #0002; z-index:2; }
+.cs-menu-pop button { display:block; width:100%; text-align:left; border:0!important; background:white!important; color:#263644!important; }
+.cs-menu-pop button:hover { background:#edf3f9!important; }
+.cs-layout { display:grid; grid-template-columns:minmax(0,1fr) 178px minmax(0,1fr); gap:14px 16px; }
+.cs-layout fieldset { min-width:0; margin:0; padding:14px 15px 15px; border:1px solid #ccd6df; border-radius:6px; background:#fff; }
+.cs-layout legend { padding:0 6px; color:#3b5265; font-weight:600; }
+.cs-options { display:flex; flex-direction:column; gap:13px; }
+.cs-option { display:flex; align-items:center; gap:7px; min-height:23px; }
+.cs-option input { margin:0; accent-color:#3076b7; }
+.cs-option select { flex:1; min-width:0; max-width:132px; font-size:12px; }
+.coord-shell input[type=text],.coord-shell select { box-sizing:border-box; height:31px; border:1px solid #bccbd8; border-radius:4px; background:#fff; color:#263644; padding:4px 8px; }
+.cs-option.unavailable { color:#8b98a3; }
+.coord-shell select:disabled { background:#f1f4f6; }
+.cs-ellipsoid { display:flex; align-items:center; gap:10px; }
+.cs-ellipsoid select { flex:1; width:0; }
+.cs-coordinates { display:flex; flex-direction:column; gap:12px; }
+.cs-coordinates label { display:flex; gap:10px; align-items:center; }
+.cs-coordinates label span { width:24px; flex-shrink:0; font:15px Consolas,monospace; }
+.cs-coordinates input { width:0; flex:1; font:14px Consolas,monospace; }
+.cs-coordinates input[readonly] { background:#f2f7fb; border-color:#d1dde7; color:#215982; }
+.cs-convert-area { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:9px; }
+.coord-shell .cs-body button,.coord-shell .cs-foot button { padding:7px 13px; border:1px solid #bccbd8; border-radius:4px; background:#fff; color:#344e63; cursor:pointer; font:13px "Microsoft YaHei",sans-serif; }
+.coord-shell .cs-body button.primary { padding:10px 16px; background:#2d73b1; color:white; border-color:#2d73b1; font-size:15px; }
+.coord-shell button:disabled { opacity:.5; cursor:default!important; }
+.cs-foot { display:flex; gap:8px; align-items:center; margin:0; border-top:1px solid #cbd5df; padding:10px 22px 14px; background:#f4f6f8; }
+.cs-foot button.active { border-color:#2d73b1!important; color:#2d73b1!important; background:#eaf3fb!important; }
+.cs-foot .spacer { flex:1; }
+.cs-note { margin:12px 0 0; font-size:12px; color:#6a7e8e; line-height:1.75; }
+.cs-status { min-height:22px; margin:12px 0 0; font-size:13px; color:#2d637e; white-space:pre-wrap; }
+.cs-status.error { color:#b53b39; }
+.cs-projection { margin-top:16px; padding:11px 13px; border:1px solid #ccd6df; border-radius:5px; background:#fff; }
+.cs-projection summary { cursor:pointer; color:#37556d; font-weight:600; }
+.cs-projection summary span { margin-left:12px; color:#82919d; font-size:12px; font-weight:normal; }
+.cs-projection-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:12px; }
+.cs-projection-fields label { display:flex; flex-direction:column; gap:5px; font-size:12px; }
+.cs-projection-fields input,.cs-projection-fields select { width:100%; }
+.cs-projection-fields input[type=number] { height:31px; box-sizing:border-box; padding:4px 8px; border:1px solid #bccbd8; border-radius:4px; color:#263644; }
+.cs-projection-fields input:disabled { background:#f1f4f6; color:#82919d; }
+.coord-shell [hidden] { display:none!important; }
+.cs-file-pane { display:grid; grid-template-columns:110px minmax(0,1fr) 98px minmax(0,1fr); gap:12px; margin-top:16px; }
+.cs-file-tools { display:flex; flex-direction:column; align-items:stretch; gap:8px; }
+.cs-file-tools small { color:#738493; margin-bottom:10px; overflow-wrap:anywhere; }
+.cs-file-list { border:1px solid #cbd6e0; border-radius:5px; background:#fff; min-height:175px; max-height:250px; overflow:auto; }
+.cs-file-list h3 { position:sticky; top:0; padding:9px 12px; margin:0; font-size:13px; color:#566e83; background:#eef3f7; border-bottom:1px solid #d7e0e8; }
+.cs-file-empty { color:#8b98a3; text-align:center; font-size:12px; margin:45px 10px; }
+.coord-shell .cs-body button.cs-file-item { display:block; width:100%; border:0; border-radius:0; text-align:left; padding:10px 12px; overflow-wrap:anywhere; }
+.coord-shell .cs-body button.cs-file-item:hover,.coord-shell .cs-body button.cs-file-item.selected { background:#eaf3fb; }
+.cs-file-arrow { display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center; }
+.coord-shell .cs-body .cs-file-arrow button.primary { padding:9px 10px; font-size:14px; }
+.cs-file-output-row { display:flex; gap:10px; margin-top:12px; align-items:center; }
+.cs-file-output-row label { display:flex; align-items:center; flex:1; gap:10px; white-space:nowrap; }
+.cs-file-output-row input { width:0; flex:1; font-size:12px; }
+.cs-preview { width:min(780px,90vw); max-height:75vh; margin:auto; padding:0; border:1px solid #bccbd8; border-radius:7px; background:#fff; color:#263644; }
+.cs-preview::backdrop { background:#20334455; }
+.cs-preview header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #d7e0e8; }
+.cs-preview h3 { font-size:14px; margin:0; overflow-wrap:anywhere; }
+.cs-preview button { border:0; background:#eef3f7; padding:3px 9px; font-size:22px; cursor:pointer; }
+.cs-preview pre { margin:0; padding:16px; max-height:calc(75vh - 60px); overflow:auto; white-space:pre-wrap; font:13px Consolas,"Microsoft YaHei",monospace; }
+.coord-shell input:focus-visible,.coord-shell select:focus-visible,.coord-shell button:focus-visible,.cs-menu summary:focus-visible { outline:2px solid #438cc4; outline-offset:2px; }
+@media(max-width:760px) { .cs-layout { grid-template-columns:minmax(0,1fr) 136px minmax(0,1fr); gap:12px 8px; } .cs-body{padding:0 12px 14px;} .cs-layout fieldset{padding:10px 8px;} .cs-option{gap:4px;font-size:12px;} .cs-coordinates input{font-size:12px;} }

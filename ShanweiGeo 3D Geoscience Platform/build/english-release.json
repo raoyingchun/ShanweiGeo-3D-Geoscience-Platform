@@ -1,0 +1,58 @@
+{
+  "appId": "cn.shanwei.geology.english",
+  "productName": "ShanweiGeo 3D Geoscience Platform",
+  "artifactName": "ShanweiGeo 3D Geoscience Platform-Windows-x64.${ext}",
+  "directories": {
+    "output": "dist-english-20261021"
+  },
+  "electronDist": "node_modules/electron/dist",
+  "asar": true,
+  "files": [
+    "main.js",
+    "preload.js",
+    "desktop/**/*.js",
+    "src/app/**/*",
+    "src/lib/**/*",
+    "src/*.js",
+    "src/index8.html",
+    "src/assets/**/*",
+    "!src/assets/**/*.blend",
+    "!src/assets/**/*.exr",
+    "!src/assets/**/.material-monitor-state.json",
+    "!src/assets/**/*.html",
+    "!src/assets/**/*.txt"
+  ],
+  "extraResources": [
+    {
+      "from": "backend",
+      "to": "backend",
+      "filter": [
+        "**/*.py",
+        "!vendor/**",
+        "!**/__pycache__/**",
+        "!operations/coordinates.py"
+      ]
+    },
+    {
+      "from": "runtime/python",
+      "to": "runtime/python"
+    }
+  ],
+  "win": {
+    "target": [
+      "zip"
+    ],
+    "icon": null,
+    "signAndEditExecutable": false
+  },
+  "extraFiles": [
+    {
+      "from": "build/English-README.txt",
+      "to": "README.txt"
+    },
+    {
+      "from": "build/test-fixtures",
+      "to": "Sample Data"
+    }
+  ]
+}

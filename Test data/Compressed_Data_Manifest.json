@@ -1,0 +1,28 @@
+[
+  {
+    "path": "Test data/3D Models/Block Models/Block Model 2.csv",
+    "archive": "Test data\\3D Models\\Block Models\\Block Model 2.csv.zip",
+    "sha256": "43e9abac18f1771abd7fffd72b301986f94d6a97fae535ee437bd3a2aae538ea"
+  },
+  {
+    "path": "Test data/3D Models/Block Models/ljx_2.csv",
+    "archive": "Test data\\3D Models\\Block Models\\ljx_2.csv.zip",
+    "sha256": "51c11398ed4e3f16013975cd7d1b2a2fbb340d68e6c3b17fb251d06484240883"
+  },
+  {
+    "path": "Test data/Surface/Model_Aligned_Zone37_XY_Swapped_Full_Extent/image_xy37_full.tif",
+    "archive": "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip",
+    "sha256": "eacffba288f3a80b9b25e4fdc6fe931b9d40b4dd039efe988c06802704ac2834",
+    "parts": [
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part001",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part002",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part003",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part004",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part005",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part006",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part007",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part008",
+      "Test data\\Surface\\Model_Aligned_Zone37_XY_Swapped_Full_Extent\\image_xy37_full.tif.zip.part009"
+    ]
+  }
+]

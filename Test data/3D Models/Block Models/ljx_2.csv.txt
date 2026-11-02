@@ -1,0 +1,13 @@
+ljx_2.csv
+  exported from Leapfrog Geo
+  encoding: UTF-8
+  rotation type: Leapfrog
+  azimuth: 0 degrees (rotate clockwise around the Z axis when looking down)
+  dip: 0 degrees (then rotate around the X' axis down from the horizontal plane)
+  pitch: 0 degrees (then rotate clockwise around the Z'' axis when looking down)
+  block size: 10 10 10
+  size in blocks: 137 68 108 = 1006128
+  minimum centroid: 3028022.199705736 37431360.22432747 -398.34
+  maximum centroid: 3029382.199705736 37432030.22432747 671.66
+  minimum corner: 3028017.199705736 37431355.22432747 -403.34
+  maximum corner: 3029387.199705736 37432035.22432747 676.66

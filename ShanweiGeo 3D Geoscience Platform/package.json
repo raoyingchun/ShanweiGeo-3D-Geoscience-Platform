@@ -1,0 +1,56 @@
+{
+  "name": "shanweigeo-platform",
+  "version": "1.0.0",
+  "description": "ShanweiGeo 3D Geoscience Platform",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder --win",
+    "build:portable": "electron-builder --win portable",
+    "build:test": "electron-builder --win zip --config build/test-release.json",
+    "build:english": "electron-builder --win zip --config build/english-release.json"
+  },
+  "author": "Rao Yingchun",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "cn.shanwei.geology.english",
+    "productName": "ShanweiGeo 3D Geoscience Platform",
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "desktop/**/*",
+      "src/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend",
+        "to": "backend",
+        "filter": [
+          "**/*.py",
+          "!vendor/**",
+          "!**/__pycache__/**"
+        ]
+      }
+    ],
+    "portable": {
+      "artifactName": "ShanweiGeo 3D Geoscience Platform-English.exe"
+    }
+  },
+  "dependencies": {
+    "@mapbox/shp-write": "^0.4.3",
+    "iconv-lite": "^0.6.3",
+    "shapefile": "^0.6.6",
+    "sharp": "^0.35.3"
+  }
+}

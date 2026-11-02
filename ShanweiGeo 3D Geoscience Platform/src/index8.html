@@ -1,0 +1,3645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" class="app-initializing" data-page-node-id="xEtnPN9obmu77LjSdF6Ec8"><head data-page-node-id="aXeabG45uoqm4TKnphbpBD">
+<meta charset="UTF-8" data-page-node-id="5R7SGB0GmOEPN9qBXYErPj">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="amYxmbzQrEqEvDjmxWseoQ">
+<title>ShanweiGeo 3D Geoscience Platform 3D Geoscience Platform</title>
+<link rel="stylesheet" href="app/english-layout.css">
+<style>
+  html.app-initializing body>*{visibility:hidden}
+  .lp-header .lp-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .center-toolbar button{white-space:nowrap;flex-shrink:0}
+  :root {
+    --bg: #ffffff;
+    --bg2: #f6f8fa;
+    --bg3: #eef1f5;
+    --surface: #e8ecf0;
+    --surface-hover: #e0e5eb;
+    --border: #d1d5da;
+    --text: #1f2328;
+    --text-muted: #656d76;
+    --brand: #0969da;
+  --brand-dim: rgba(9,105,218,0.28);
+    --accent: #cf5c00;
+    --accent2: #1a7f37;
+    --danger: #cf222e;
+    --sp-4: 4px;
+    --sp-6: 6px;
+    --sp-8: 8px;
+    --sp-10: 10px;
+    --sp-12: 12px;
+    --sp-16: 16px;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; font-family: var(--font-sans); background: var(--bg); color: var(--text); }
+
+  /* ========== CENTER TAB BAR ========== */
+  .center-tab-bar {
+    height: 34px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    padding: 0 8px;
+    gap: 2px;
+    flex-shrink: 0;
+    user-select: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .center-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    bottom: 0;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .center-tab svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+  .center-tab { flex-shrink: 0; max-width: 340px; }
+  .center-tab-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .center-tab::before { content: attr(data-kind-label); font-size: 10px; color: var(--brand); background: var(--brand-dim); border-radius: 3px; padding: 1px 4px; flex-shrink: 0; }
+  .center-tab-label[contenteditable="true"] { overflow: visible; text-overflow: clip; }
+  .center-tab-new { flex-shrink: 0; }
+  .center-tab:hover {
+    color: var(--text);
+    background: var(--surface-hover);
+  }
+  .center-tab.active {
+    background: var(--bg);
+    color: var(--brand);
+    border-color: var(--border);
+    height: 29px;
+    box-shadow: 0 -1px 0 rgba(88,166,255,0.25) inset;
+  }
+  .center-tab-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+  .center-tab-close:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+    opacity: 1;
+  }
+  /* 固定标签：关闭按钮隐藏（不可删除） */
+  .center-tab.pinned .center-tab-close {
+    display: none;
+  }
+  /* 锁定按钮：默认显示开锁图标，可点击切换锁定状态 */
+  .center-tab-lock-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    margin-left: 2px;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.45;
+    transition: all 0.12s;
+    flex-shrink: 0;
+  }
+  .center-tab-lock-btn:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+    opacity: 1;
+  }
+  .center-tab-lock-btn svg { width: 13px; height: 13px; }
+  /* 开锁/闭锁图标切换：默认显示开锁，隐藏闭锁 */
+  .center-tab-lock-btn .lock-open { display: inline-block; }
+  .center-tab-lock-btn .lock-closed { display: none; }
+  /* 锁定状态：显示闭锁图标，橙色高亮 */
+  .center-tab.locked .center-tab-lock-btn {
+    color: #f0a020;
+    opacity: 1;
+  }
+  .center-tab.locked .center-tab-lock-btn .lock-open { display: none; }
+  .center-tab.locked .center-tab-lock-btn .lock-closed { display: inline-block; }
+  .center-tab.locked .center-tab-close {
+    color: var(--text-muted);
+    cursor: not-allowed;
+  }
+  /* 可编辑标签名（双击重命名时） */
+  .center-tab-label[contenteditable="true"] {
+    background: var(--bg);
+    border: 1px solid var(--brand);
+    border-radius: 3px;
+    padding: 0 4px;
+    outline: none;
+    cursor: text;
+    user-select: text;
+  }
+  .center-tab-new {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 28px;
+    border-radius: 5px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.15s;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .center-tab-new svg {
+    width: 14px;
+    height: 14px;
+  }
+  .center-tab-new:hover {
+    background: var(--surface-hover);
+    color: var(--brand);
+  }
+
+  /* 标签内容容器（非视图标签专用：在中心区域填充显示） */
+  .center-tab-content-wrap {
+    flex: 1;
+    position: relative;
+    display: none;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .center-tab-content-wrap.show { display: block; }
+  .center-tab-page {
+    position: absolute;
+    inset: 0;
+    display: none;
+    overflow: auto;
+    padding: 16px;
+  }
+  .center-tab-page.show { display: block; }
+  .center-tab-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    gap: 10px;
+    font-size: 13px;
+  }
+  .center-tab-empty svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.25;
+    stroke: var(--brand);
+  }
+  /* 非视图标签激活时，四块区域统一隐藏（由 JS 给 center-area 加 class no-view） */
+  .center-area.no-view .center-toolbar,
+  .center-area.no-view .canvas-wrap,
+  .center-area.no-view #resize-cb,
+  .center-area.no-view .bottom-split {
+    display: none !important;
+  }
+
+  /* ========== IMAGE VIEWER TAB（图片标签页：看图编辑器） ========== */
+  .image-viewer-wrap {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background: var(--bg);
+    overflow: hidden;
+    z-index: 5;
+    contain: paint;
+    clip-path: inset(0);
+  }
+  .image-viewer-wrap.show { display: block; }
+  .image-viewer-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+    background: transparent;
+    contain: paint;
+    clip-path: inset(0);
+  }
+  .image-viewer-stage.dragging { cursor: grabbing; }
+  .image-viewer-stage img {
+    max-width: 100%;
+    max-height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    transform-origin: center center;
+    transition: none;
+  }
+  /* 图片查看器浮动工具栏（右上角） */
+  .image-viewer-toolbar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    background: rgba(45, 45, 45, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 4px;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+  }
+
+  /* —— 控制点配准：图件子项「配准」按钮（未配准暗色 / 已配准加深） —— */
+  .lp-sub-item[data-drawing-id] .lp-reg-btn {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex: none;
+    border-radius: 5px;
+    color: #64748b;
+    background: rgba(51, 65, 85, 0.35);
+    border: 1px solid rgba(100, 116, 139, 0.35);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  }
+  .lp-reg-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+  .lp-reg-btn:hover {
+    color: #e2e8f0;
+    background: rgba(100, 116, 139, 0.5);
+  }
+  .lp-reg-btn.registered {
+    color: #16a34a;
+    background: rgba(22, 163, 74, 0.18);
+    border-color: rgba(34, 197, 94, 0.55);
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.35);
+  }
+  .lp-reg-btn.registered:hover {
+    color: #4ade80;
+  }
+  /* —— 控制点配准：图片标签页顶部输入面板 —— */
+  .register-panel-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 12;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(51, 65, 85, 0.85);
+    padding: 9px 14px 11px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  }
+  .register-panel-top.hidden {
+    display: none;
+  }
+  .rp-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e2e8f0;
+  }
+  .rp-title .rp-file {
+    font-weight: 400;
+    color: #94a3b8;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rp-hint {
+    font-size: 12px;
+    color: #93c5fd;
+    margin: 6px 0 4px;
+  }
+  .rp-status {
+    font-size: 12px;
+    color: #34d399;
+    margin: 0 0 2px;
+  }
+  .rp-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .rp-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #cbd5e1;
+  }
+  .rp-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    flex: none;
+  }
+  .rp-dot.c0 { background: #ef4444; }
+  .rp-dot.c1 { background: #22c55e; }
+  .rp-dot.c2 { background: #3b82f6; }
+  .rp-row .rp-no {
+    min-width: 26px;
+    font-weight: 700;
+  }
+  .rp-row .rp-axis {
+    color: #64748b;
+  }
+  .rp-row input {
+    width: 74px;
+    padding: 3px 6px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    color: #f1f5f9;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+  .rp-row input:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  .rp-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+  }
+  .rp-btn {
+    padding: 5px 14px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .rp-btn-primary {
+    background: #2563eb;
+    color: #fff;
+  }
+  .rp-btn-primary:hover {
+    background: #3b82f6;
+  }
+  .rp-btn-primary:disabled {
+    background: #334155;
+    color: #94a3b8;
+    cursor: not-allowed;
+  }
+  .rp-btn-ghost {
+    background: #1e293b;
+    color: #cbd5e1;
+    border-color: #334155;
+  }
+  .rp-btn-ghost:hover {
+    background: #334155;
+  }
+  .rp-btn-link {
+    background: transparent;
+    color: #94a3b8;
+    padding: 5px 8px;
+  }
+  .rp-btn-link:hover {
+    color: #e2e8f0;
+    background: rgba(51, 65, 85, 0.35);
+  }
+  /* —— 控制点配准：图片标记点 —— */
+  .register-marker-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 11;
+    pointer-events: none;
+  }
+  .reg-marker {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow 0.12s, transform 0.12s;
+  }
+  .reg-marker:hover { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.45); }
+  .reg-marker.saved { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85); }
+  .reg-marker.editing { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.9); transform: translate(-50%, -50%) scale(1.25); }
+  .reg-marker.c0 { background: rgba(239, 68, 68, 0.92); }
+  .reg-marker.c1 { background: rgba(34, 197, 94, 0.92); }
+  .reg-marker.c2 { background: rgba(59, 130, 246, 0.92); }
+  /* —— 控制点配准：标记点右侧独立浮层小窗（XYZ 输入 + 确认保存） —— */
+  .reg-pop {
+    position: absolute;
+    z-index: 13;
+    width: 178px;
+    background: rgba(15, 23, 42, 0.97);
+    border: 1px solid rgba(59, 130, 246, 0.6);
+    border-radius: 8px;
+    padding: 9px 10px 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+    pointer-events: auto;
+    font-size: 12px;
+    color: #e2e8f0;
+  }
+  .reg-pop .reg-pop-tip {
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: #93c5fd;
+  }
+  .reg-pop .reg-pop-tip b { color: #fff; }
+  .reg-pop-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .reg-pop-row .rp-axis {
+    color: #64748b;
+    width: 12px;
+    flex: none;
+  }
+  .reg-pop-row input {
+    flex: 1;
+    width: 100%;
+    padding: 3px 6px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 4px;
+    color: #f1f5f9;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+  .reg-pop-row input:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  .reg-pop-btns {
+    display: flex;
+    gap: 7px;
+    margin-top: 8px;
+  }
+  .reg-pop-btns button {
+    flex: 1;
+    padding: 4px 0;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .reg-pop-ok { background: #2563eb; color: #fff; }
+  .reg-pop-ok:hover { background: #3b82f6; }
+  .reg-pop-cancel { background: #1e293b; color: #cbd5e1; border-color: #334155 !important; }
+  .reg-pop-cancel:hover { background: #334155; }
+  .reg-pop-hint-saved {
+    color: #94a3b8;
+    text-align: center;
+    padding: 6px 0 2px;
+  }
+  /* 配准模式：上下两个窗口 —— 上方配准面板窗口化，下方图片显示区与标记层整体下移 */
+  .image-viewer-wrap.reg-active .register-panel-top {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(51, 65, 85, 0.9);
+  }
+  .image-viewer-wrap.reg-active .image-viewer-stage {
+    top: var(--reg-panel-h, 203px);
+  }
+  .image-viewer-wrap.reg-active .register-marker-layer {
+    top: var(--reg-panel-h, 203px);
+  }
+  .image-viewer-wrap.reg-active .image-viewer-toolbar {
+    top: calc(var(--reg-panel-h, 203px) + 10px);
+  }
+  .iv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    color: #ddd;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .iv-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+  .iv-btn svg { width: 16px; height: 16px; }
+  .iv-btn.active { background: var(--brand); color: #fff; }
+  .iv-sep { width: 1px; background: rgba(255, 255, 255, 0.15); margin: 2px 2px; }
+  /* 缩放比例显示 */
+  .iv-zoom-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 30px;
+    padding: 0 8px;
+    color: #ccc;
+    font-size: 12px;
+    font-family: var(--font-sans);
+    user-select: none;
+  }
+
+  /* ========== Table Viewer（表格标签页，同图片标签范围） ========== */
+  .table-viewer-wrap {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background: var(--bg);
+    overflow: hidden;
+    z-index: 5;
+    contain: paint;
+    clip-path: inset(0);
+    flex-direction: column;
+  }
+  .table-viewer-wrap.show { display: flex; }
+  .table-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    padding: 8px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .tv-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .tv-info {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .table-viewer-content {
+    flex: 1;
+    overflow: auto;
+    padding: 12px 16px;
+  }
+  /* 大表分块懒加载：底部进度提示条 */
+  .table-viewer-content .table-lazy-bar {
+    position: sticky;
+    bottom: 8px;
+    margin-top: 8px;
+    padding: 7px 14px;
+    background: #eef3fb;
+    border: 1px solid #c9d7ee;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #3b5b8c;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  }
+  .tv-btn {
+    margin-left: auto;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .tv-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .tv-btn.on { color: var(--accent); border-color: var(--accent); background: rgba(88, 166, 255, .08); }
+  td.formula-cell {
+    color: #9a5bd8;
+    font-style: italic;
+    background: rgba(154, 91, 216, .06);
+  }
+
+  /* ========== PDF Viewer（PDF 阅读标签页，同图片/表格标签范围） ========== */
+  .pdf-viewer-wrap {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    background: var(--bg);
+    overflow: hidden;
+    z-index: 5;
+    contain: paint;
+    clip-path: inset(0);
+    flex-direction: column;
+  }
+  .pdf-viewer-wrap.show { display: flex; }
+  .pdf-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    padding: 8px 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .pv-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pv-info {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .pv-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+    margin: 0 6px;
+    flex-shrink: 0;
+  }
+  .pv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 26px;
+    padding: 0 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .pv-btn:hover { background: var(--bg-hover, rgba(127,127,127,.15)); }
+  .pv-btn:active { transform: scale(.96); }
+  .pv-page {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 48px;
+    text-align: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .pdf-viewer-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    background: #525659; /* 阅读器灰底 */
+  }
+  .pdf-canvas-wrap {
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+  }
+  #pdf-canvas {
+    display: block;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .45);
+  }
+  /* 标注层：与 PDF 画布等尺寸叠加，随 pdf 画布居中；未激活工具时指针穿透 */
+  #pdf-annot-canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    background: transparent;
+    pointer-events: none;
+    touch-action: none;
+    z-index: 20;   /* 必须高于 PDF 文字层(1)，否则绘制时被文字层挡住 */
+  }
+  .pv-btn.active {
+    background: var(--accent, #185fa5);
+    color: #fff;
+  }
+  /* ========== Word 标注层（连续滚动阅读，可见页才挂 canvas，节流内存） ========== */
+  #word-viewer-content {
+    --wv-scale: 1;
+  }
+  /* 缩放：用 transform:scale 视觉放大页面。
+     关键 —— wrapper 用 width:max-content 收缩包裹，使「视觉右边缘」与「布局右边缘」重合，
+     这样 transform-origin:top center 的横向围绕中心缩放才不会向右溢出被裁切。
+     页面布局尺寸不变（仅视觉缩放），各页天然宽度天然一致，标注坐标口径稳定。 */
+  #word-viewer-content .docx-wrapper {
+    width: max-content;
+    max-width: none;
+    margin: 0 auto;
+    transform: scale(var(--wv-scale, 1));
+    transform-origin: top center;
+  }
+  #word-viewer-content section.docx {
+    position: relative;
+  }
+  /* 缩放禁用时按钮置灰 */
+  #word-viewer-wrap .pv-btn:disabled {
+    opacity: .45;
+    cursor: default;
+  }
+  /* ⚠ 标注画布必须完全脱离文档流：section.docx 是列方向 flex 容器，
+     若画布参与布局会被 stretch 撑高页面，而页面变高又触发 scroll → 校准 → 再撑高，
+     形成正反馈死循环（2026-09-10 卡死事故根因）。absolute 定位可彻底切断该回路。 */
+  #word-viewer-content .wv-annot-canvas {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    display: block;
+    background: transparent;
+    pointer-events: none;
+    touch-action: none;
+    z-index: 20;
+    margin: 0;
+    flex: none !important;
+    align-self: auto !important;
+    max-width: none;
+    max-height: none;
+  }
+  #word-viewer-content.wv-drawing {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .pv-hint {
+    font-size: 12px;
+    color: var(--accent, #185fa5);
+    flex-shrink: 0;
+  }
+  .pv-cdot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, .3);
+    cursor: pointer;
+    margin: 0 3px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+  .pv-cdot.active {
+    outline: 2px solid var(--accent, #185fa5);
+    outline-offset: 1px;
+  }
+  .pdf-hint {
+    color: #c8c8c8;
+    font-size: 14px;
+    text-align: center;
+    padding: 40px 20px;
+    line-height: 1.8;
+  }
+  .table-viewer-content table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+    font-family: var(--font-sans);
+  }
+  .table-viewer-content table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .table-viewer-content table tbody td {
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .table-viewer-content table tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+  }
+  .table-viewer-content table tbody tr:hover {
+    background: var(--brand-dim);
+  }
+  .table-viewer-content table tbody td input[type="checkbox"].drillhole-ignore-cb {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    accent-color: #e74c3c;
+    vertical-align: middle;
+  }
+
+  /* ========== 导入加载提示 ========== */
+  .import-loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+  }
+  .import-loading-overlay.show { display: flex; }
+  .import-loading-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  .import-loading-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .import-loading-text {
+    font-size: 14px;
+    color: var(--text);
+    font-family: var(--font-sans);
+  }
+  .import-progress-track {
+    width: 260px;
+    height: 8px;
+    background: #e8ecf0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .import-progress-fill {
+    height: 100%;
+    background: var(--brand);
+    border-radius: 4px;
+    transition: width 0.15s ease;
+  }
+
+  /* ========== CENTER TOOLBAR ========== */
+  .center-toolbar {
+    height: 40px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--sp-12);
+    gap: var(--sp-6);
+    flex-shrink: 0;
+  }
+  .ct-group { display: flex; align-items: center; gap: var(--sp-4); }
+  .ct-btn {
+    display: flex; align-items: center; gap: var(--sp-4);
+    padding: var(--sp-4) var(--sp-10);
+    border-radius: var(--radius);
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ct-btn:hover { background: var(--surface-hover); color: var(--text); }
+  .ct-btn.active { background: var(--brand-dim); color: var(--brand); border-color: rgba(88,166,255,0.3); }
+  .ct-btn svg { width: 14px; height: 14px; }
+  .ct-sep { width: 1px; height: 18px; background: var(--border); margin: 0 var(--sp-4); }
+
+  /* ========== MAIN LAYOUT ========== */
+  .main-wrap { display: flex; height: 100vh; }
+
+  /* ========== LEFT PANEL ========== */
+  .left-panel {
+    width: 15%;
+    min-width: 220px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+  .lp-header {
+    position: relative;
+    padding-right: 40px;
+    padding: var(--sp-10) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+  }
+  .lp-header { padding-right: 40px; }
+  .project-tree-toggle { position:absolute;right:6px;top:12px;width:26px;height:28px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text-muted);cursor:pointer;font-size:23px; }
+  .project-tree-expand { position:fixed;left:0;top:45%;z-index:1000;writing-mode:vertical-rl;padding:10px 5px;border:1px solid var(--border);border-left:0;border-radius:0 6px 6px 0;background:var(--bg2);color:var(--text);cursor:pointer; }
+  .project-tree-expand[hidden] { display:none; }
+  .project-tree-toggle:hover,.project-tree-expand:hover { background:var(--surface-hover);color:var(--brand); }
+  .lp-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+  .lp-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  /* ===== 左上角项目菜单（保存/打开/新建项目 + 关闭前询问） ===== */
+  .project-menu-wrap { position: relative; cursor: pointer; user-select: none; }
+  .project-menu-btn {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .project-menu-btn:hover { background: var(--bg3); border-color: var(--border); }
+  .project-menu-btn .lp-title { padding-right: 18px; }
+  .project-menu-btn .lp-subtitle { padding-right: 18px; }
+  .project-caret {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    width: 13px;
+    height: 13px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: transform 0.15s;
+  }
+  .project-menu-wrap.open .project-caret { transform: rotate(180deg); }
+  .project-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    min-width: 170px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    padding: 5px;
+    display: none;
+    z-index: 2000;
+  }
+  .project-dropdown.show { display: block; }
+  .project-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+    transition: background 0.12s;
+  }
+  .project-menu-item:hover { background: var(--bg3); }
+  .project-menu-item svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--text-muted); }
+  .project-menu-item:hover svg { color: var(--accent); }
+  /* 关闭前询问弹窗 */
+  .project-close-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 4000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-close-box {
+    width: 360px;
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  }
+  .project-close-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .project-close-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+  .project-close-btns { display: flex; flex-direction: column; gap: 8px; }
+  .project-close-btns button {
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .project-close-btns button:hover { background: var(--bg3); }
+  .project-close-btns .pc-primary { background: var(--accent, #d45500); border-color: var(--accent, #d45500); color: #fff; }
+  .project-close-btns .pc-primary:hover { opacity: 0.9; }
+  .lp-search-wrap { position: relative; }
+  .lp-search {
+    width: 100%;
+    height: 32px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0 var(--sp-8) 0 28px;
+    color: var(--text);
+    font-size: 12px;
+    outline: none;
+  }
+  .lp-search::placeholder { color: var(--text-muted); }
+  .lp-search-icon {
+    position: absolute; left: 8px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; color: var(--text-muted);
+  }
+  .lp-tree { flex: 1; overflow-y: auto; padding: var(--sp-8) 0; }
+  .lp-group {
+    margin-bottom: var(--sp-4);
+  }
+  .lp-group-header {
+    display: flex; align-items: center; gap: var(--sp-6);
+    padding: var(--sp-6) var(--sp-12);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .lp-group-header:hover { background: var(--surface-hover); }
+  .lp-group-header .arrow {
+    width: 12px; height: 12px;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+  }
+  .lp-group-header.collapsed .arrow { transform: rotate(-90deg); }
+  .lp-group-header .icon { width: 16px; height: 16px; }
+  .lp-sub-items {
+    padding: var(--sp-4) 0 var(--sp-4) 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .lp-sub-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    padding: var(--sp-4) var(--sp-10);
+    font-size: 11px;
+    color: var(--text-muted);
+    border-radius: var(--radius);
+    cursor: pointer;
+    /* 第 79 节：节点行必须禁掉「文本选中」。
+       这些行是 draggable 的（拖到三维画布恢复显示 / 拖拽调整顺序），
+       而按住行往下拖时，Chromium 会先启动**原生文本选择**，
+       把跨父子的一整串节点行染成蓝色高亮 —— 看起来像「一次错选了多个节点」。
+       分组头 `.lp-group-header` 早就有这条；`.lp-sub-item`（所有节点行）当时漏配。
+       注意：列表内若将来加入输入框 / 内联改名字段，必须用 [contenteditable="true"] 规则把
+       user-select 重新置回 text（见本文件「列表内可编辑字段」规则），否则无法全选改名。 */
+    user-select: none;
+    -webkit-user-select: none;
+    transition: all 0.15s;
+  }
+  .lp-sub-item:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+  }
+  .lp-sub-item .sub-icon {
+    width: 14px; height: 14px;
+    color: var(--text-muted);
+  }
+  .lp-sub-item .sub-arrow {
+    width: 12px; height: 12px;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .lp-sub-item.has-children {
+    font-weight: 500;
+    color: var(--text);
+  }
+  .lp-sub-item.has-children.collapsed .sub-arrow {
+    transform: rotate(-90deg);
+  }
+  /* 第 103 节：隐藏左侧项目树「文字前的装饰图标」。
+     保留展开/折叠箭头（.arrow / .sub-arrow）。
+     用 display:none 统一隐藏 .icon（分组头的分类图标）与 .sub-icon（文件行的类型图标），
+     对静态骨架与 JS 动态生成的节点同样生效（导入文件也不会再出现图标），且可一处还原。 */
+  .lp-group-header > svg.icon,
+  .lp-sub-item > svg.sub-icon { display: none; }
+  .lp-sub-item.dim {
+    color: var(--text-muted);
+    opacity: 0.45;
+  }
+  .lp-nested-items {
+    padding: 2px 0 2px 18px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .lp-nested-items.expanded {
+    display: flex;
+  }
+  /* 线类别下的文件列表：缩进 + 竖向引导线，让层级一眼可辨 */
+  .lp-nested-items[data-line-nested] {
+    margin-left: 14px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(127, 127, 127, 0.28);
+  }
+  .lp-line-file .sub-icon { flex: 0 0 14px; }
+  .lp-line-file .lp-file-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lp-line-file .lp-file-meta {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-size: 10px;
+    opacity: 0.55;
+    padding-left: var(--sp-6);
+  }
+  /* 线类别节点名称与计数 */
+  .lp-sub-item[data-role="line-category"] .lp-label {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lp-sub-item[data-role="line-category"] .lp-count {
+    margin-left: auto;
+    flex: 0 0 auto;
+    opacity: 0.6;
+    font-size: 11px;
+    font-weight: 400;
+    padding-left: var(--sp-6);
+  }
+  /* 线类别节点跟随全局折叠规则：收起时箭头转 -90° */
+  .lp-sub-item[data-role="line-category"].collapsed .sub-arrow {
+    transform: rotate(-90deg);
+  }
+  .lp-group-header.collapsed + .lp-sub-items {
+    display: none;
+  }
+  .lp-ai-badge {
+    margin-left: auto;
+    background: linear-gradient(135deg, var(--accent), var(--danger));
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ========== CENTER AREA ========== */
+  .center-area {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 3D Canvas Area */
+  .canvas-wrap {
+    flex: 1;
+    position: relative;
+    background: #f5f7fa;
+    overflow: hidden;
+  }
+
+  /* ========== 3D Scene Canvas ========== */
+  .scene3d-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+  }
+  .scene3d-canvas:active { cursor: grabbing; }
+  .scene3d-canvas.measuring { cursor: crosshair; }
+  .scene3d-canvas.drag-target {
+    outline: 2px dashed var(--brand);
+    outline-offset: -4px;
+    cursor: copy;
+  }
+
+  /* ========== Clip Control Panel (Top Right of canvas) ========== */
+  .clip-panel {
+    position: absolute;
+    top: var(--sp-12);
+    left: var(--sp-12);
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上 → 每帧模糊画布 = 抖动源） */
+    z-index: 15;
+    width: 280px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+  .clip-panel.visible { display: flex; }
+  .clip-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--sp-8) var(--sp-12);
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; font-weight: 600; color: var(--text);
+  }
+  .clip-panel-close {
+    cursor: pointer; color: var(--text-muted); font-size: 16px; line-height: 1;
+    background: none; border: none; padding: 0 4px;
+  }
+  .clip-panel-close:hover { color: var(--text); }
+
+  /* ========== Lithology Color Panel ========== */
+  .litho-panel {
+    position: absolute;
+    top: var(--sp-12);
+    left: var(--sp-12);
+    background: rgba(255,255,255,0.96);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上 → 每帧模糊画布 = 抖动源） */
+    z-index: 16;
+    width: 300px;
+    max-height: 70vh;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+  .litho-panel.visible { display: flex; }
+  .litho-panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: var(--sp-8) var(--sp-12);
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; font-weight: 600; color: var(--text);
+  }
+  .litho-panel-close {
+    cursor: pointer; color: var(--text-muted); font-size: 16px; line-height: 1;
+    background: none; border: none; padding: 0 4px;
+  }
+  .litho-panel-close:hover { color: var(--text); }
+  .litho-panel-body {
+    padding: var(--sp-6) var(--sp-12);
+    overflow-y: auto;
+    display: flex; flex-direction: column; gap: var(--sp-6);
+  }
+  /* ★ 点绘制状态指示器（三维画布左侧竖排图标栏）
+     一行一个图标，自上而下排列；悬停出文字解释（tooltip 走 body 上的浮层，
+     避免被 .draw-bar 的 overflow 裁掉）。 */
+  .draw-bar {
+    position: absolute;
+    left: var(--sp-12);
+    top: var(--sp-12);
+    background: rgba(255,255,255,0.97);
+    border: 1px solid var(--border);
+    border-left: 3px solid #e85d75;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上 → 每帧模糊画布 = 抖动源） */
+    z-index: 18;
+    padding: 6px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    max-height: calc(100% - var(--sp-12) * 2);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .draw-bar.visible { display: flex; }
+  .draw-bar.visible .draw-bar-status-icon .draw-bar-pulse {
+    animation: drawPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes drawPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  .draw-bar-sep {
+    width: 26px; height: 1px; background: var(--border); margin: 3px 0; flex-shrink: 0;
+  }
+  .draw-bar-item {
+    position: relative;
+    width: 32px; height: 32px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: none; border: 1px solid transparent;
+    border-radius: var(--radius-sm, 4px); color: var(--text);
+    cursor: pointer; padding: 0;
+  }
+  .draw-bar-item svg {
+    width: 17px; height: 17px; display: block;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .draw-bar-item:hover:not(:disabled) {
+    background: var(--bg2); border-color: var(--border); color: #2f6df6;
+  }
+  .draw-bar-item:disabled { opacity: 0.32; cursor: not-allowed; }
+  .draw-bar-status-icon { cursor: default; color: #e85d75; }
+  .draw-bar-status-icon:hover { background: none; border-color: transparent; color: #e85d75; }
+  .draw-bar-item.primary { color: #2f6df6; }
+  .draw-bar-item.primary:hover:not(:disabled) { background: #eaf0fe; border-color: #2f6df6; }
+  .draw-bar-item.stop { color: #a3243b; }
+  .draw-bar-item.stop:hover:not(:disabled) { background: #fdecef; border-color: #f3b8c2; color: #a3243b; }
+  /* 图标角标：当前类别已落点数量 */
+  .draw-bar-badge {
+    position: absolute; top: -3px; right: -4px;
+    min-width: 15px; height: 15px; padding: 0 4px;
+    border-radius: 8px; background: #e85d75; color: #fff;
+    font-size: 10px; line-height: 15px; font-weight: 600; text-align: center;
+    pointer-events: none;
+  }
+  /* 悬停解释浮层（挂在 body 上，fixed 定位，左右自适应） */
+  #draw-bar-tip {
+    position: fixed; z-index: 99998; display: none;
+    max-width: 240px; padding: 6px 10px;
+    background: rgba(32,32,32,0.94); color: #fff;
+    border-radius: 6px; font-size: 12px; line-height: 1.55;
+    pointer-events: none; white-space: normal;
+  }
+  #draw-bar-tip.show { display: block; }
+  #draw-bar-tip .dbt-title { font-weight: 600; }
+  #draw-bar-tip .dbt-desc { opacity: 0.78; font-size: 11px; margin-top: 1px; }
+  #draw-bar-tip .dbt-desc:empty { display: none; }
+  .litho-row {
+    display: flex; align-items: center; gap: var(--sp-8);
+    padding: var(--sp-4) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .litho-row:last-child { border-bottom: none; }
+  .litho-swatch {
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .litho-swatch:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px rgba(0,105,255,0.5);
+  }
+  .litho-name {
+    flex: 1;
+    font-size: 11px; color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .litho-hex {
+    font-size: 10px; color: var(--text-muted);
+    font-family: 'Consolas', 'Microsoft YaHei', monospace;
+    flex-shrink: 0;
+  }
+  /* ===== §81 岩性面板：草稿态 / 底部操作栏 / 三维地层色块区 ===== */
+  .litho-panel-footer {
+    display: none;                     /* 仅岩性面板显示；化探色阶面板复用本 DOM，须保持隐藏 */
+    align-items: center; gap: var(--sp-6);
+    padding: var(--sp-8) var(--sp-12);
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    flex-shrink: 0;
+  }
+  .litho-panel-hint { flex: 1; font-size: 10px; color: var(--text-muted); line-height: 1.4; }
+  .litho-btn {
+    font-size: 11px; padding: 3px 10px; cursor: pointer; font-family: inherit;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); color: var(--text);
+  }
+  .litho-btn:hover { border-color: var(--brand); color: var(--brand); }
+  .litho-btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .litho-btn.primary:hover { color: #fff; opacity: 0.88; }
+  .litho-row.selected { background: rgba(0,105,255,0.10); border-radius: var(--radius); }
+  .litho-row-draft { color: var(--brand); font-size: 9px; flex-shrink: 0; }
+  .litho-geo-sec { margin-top: var(--sp-10); padding-top: var(--sp-8); border-top: 1px solid var(--border); flex-shrink: 0; }
+  .litho-geo-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-6); }
+  .litho-geo-title { font-size: 10px; color: var(--text-muted); }
+  .litho-mini-btn {
+    font-size: 10px; padding: 1px 6px; cursor: pointer; font-family: inherit;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); color: var(--text-muted);
+  }
+  .litho-mini-btn:hover { color: var(--brand); border-color: var(--brand); }
+  .litho-geo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+  .litho-geo-cell {
+    display: flex; align-items: center; gap: var(--sp-6); min-width: 0;
+    padding: 3px 6px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+  }
+  .litho-geo-cell:hover { border-color: var(--brand); }
+  .litho-geo-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.2); }
+  .litho-geo-name { font-size: 10px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .litho-geo-hint { font-size: 10px; color: var(--text-muted); margin-top: var(--sp-6); line-height: 1.5; }
+  .lm-litho-btn {
+    width: 18px; height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; line-height: 1;
+    transition: color 0.15s, transform 0.15s;
+    user-select: none;
+  }
+  .lm-litho-btn:hover { color: var(--brand); transform: scale(1.15); }
+  .lm-setting-btn {
+    width: 18px; height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; line-height: 1;
+    transition: color 0.15s, transform 0.15s;
+    user-select: none;
+  }
+  .lm-setting-btn:hover { color: var(--brand); transform: scale(1.15); }
+
+  /* ========== Drill Setting Panel ========== */
+  .drill-setting-panel {
+    position: absolute;
+    top: var(--sp-12);
+    left: var(--sp-12);
+    background: rgba(255,255,255,0.96);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上 → 每帧模糊画布 = 抖动源） */
+    z-index: 16;
+    width: 300px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+  .drill-setting-panel.visible { display: flex; }
+  .drill-setting-row {
+    display: flex; align-items: center; gap: var(--sp-8);
+    padding: var(--sp-8) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+  }
+  .drill-setting-row:last-child { border-bottom: none; }
+  .drill-setting-label {
+    font-size: 11px; color: var(--text);
+    flex-shrink: 0; min-width: 72px;
+  }
+  .drill-setting-swatch {
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .drill-setting-swatch:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px rgba(0,105,255,0.5);
+  }
+  .drill-setting-hex {
+    font-size: 10px; color: var(--text-muted);
+    font-family: 'Consolas', 'Microsoft YaHei', monospace;
+    flex: 1;
+  }
+  /* 地球化学色阶设置面板的额外样式 */
+  .geochem-preview {
+    padding: var(--sp-8) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+  }
+  .geochem-row {
+    display: flex; align-items: center; gap: var(--sp-8);
+    padding: var(--sp-8) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+  }
+  .geochem-select {
+    flex: 1;
+    padding: 4px 6px;
+    font-size: 11px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .drill-setting-slider {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--bg3);
+    position: relative;
+    cursor: pointer;
+  }
+  .drill-setting-sfill {
+    height: 100%; border-radius: 2px;
+    background: var(--brand);
+  }
+  .drill-setting-sthumb {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: white;
+    top: 50%; transform: translate(-50%, -50%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .drill-setting-val {
+    font-size: 10px; color: var(--text-muted);
+    min-width: 48px; text-align: right;
+    font-family: 'Consolas', 'Microsoft YaHei', monospace;
+  }
+  .clip-section {
+    padding: var(--sp-8) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+  }
+  .clip-section:last-child { border-bottom: none; }
+  .clip-section-title {
+    font-size: 10px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: var(--sp-6);
+    display: flex; align-items: center; gap: var(--sp-6);
+  }
+  .clip-toggle {
+    display: inline-flex; align-items: center; gap: var(--sp-4);
+    font-size: 10px; color: var(--text-muted); font-weight: 400;
+    text-transform: none; letter-spacing: 0;
+    cursor: pointer; user-select: none;
+  }
+  .clip-toggle input { margin: 0; cursor: pointer; }
+  .clip-row {
+    display: flex; align-items: center; gap: var(--sp-8);
+    margin-top: var(--sp-4);
+  }
+  .clip-slider {
+    flex: 1;
+    -webkit-appearance: none; appearance: none;
+    height: 4px; border-radius: 2px;
+    background: var(--border);
+    outline: none; cursor: pointer;
+  }
+  .clip-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--brand); cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .clip-slider::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--brand); cursor: pointer;
+    border: 2px solid #fff;
+  }
+  .clip-value {
+    min-width: 80px; text-align: right;
+    font-size: 11px; font-family: monospace; color: var(--text);
+    white-space: nowrap;
+  }
+  .clip-dir-btns {
+    display: flex; gap: var(--sp-4); margin-top: var(--sp-4);
+  }
+  .clip-dir-btn {
+    flex: 1; padding: 2px 8px; font-size: 10px;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--surface); color: var(--text-muted);
+    cursor: pointer; text-align: center; transition: all 0.12s;
+  }
+  .clip-dir-btn:hover { background: var(--surface-hover); }
+  .clip-dir-btn.active {
+    background: var(--brand-dim); border-color: var(--brand);
+    color: var(--brand); font-weight: 600;
+  }
+
+  /* ========== Compass + View Params + Scale Bar (Bottom Right, 垂直均匀分布) ========== */
+  .compass-params-box {
+    position: absolute;
+    right: var(--sp-12);
+    bottom: var(--sp-12);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--sp-8);
+    z-index: 10;
+    width: auto;
+  }
+  .compass-box {
+    width: 56px; height: 56px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: flex; align-items: center; justify-content: center;
+    /* ★ 第 77 节：移除 backdrop-filter。
+       本元素浮在 WebGL 画布之上且常驻可见；backdrop-filter 会强制合成器
+       每一帧重新采样并模糊其背后的画布区域 → 与 WebGL 渲染抢 GPU，
+       直接表现为「拖动 / 旋转视图时抖动」（模型越重越明显）。
+       而该元素背景已是 rgba(255,255,255,0.92)，模糊在视觉上几乎不可见
+       —— 纯开销、零收益。以下同类覆盖层（视角参数 / 比例尺 / 图例 /
+       剖切 / 岩性 / 绘制 / 钻孔面板）一并移除。 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+  }
+  .compass-box .compass-label {
+    position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
+    font-size: 8px; color: var(--text-muted); font-weight: 600;
+  }
+  .compass-box svg { width: 40px; height: 40px; }
+
+  .view-params {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--sp-6) var(--sp-10);
+    text-align: right;
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上、常驻可见 → 每帧模糊画布 = 抖动源） */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: auto;
+    box-sizing: border-box;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+  }
+  .view-params .vp-row {
+    font-size: 11px; color: var(--text-muted); line-height: 1.6;
+  }
+  .view-params .vp-row .val { color: var(--text); font-weight: 500; transition: all 0.2s ease; }
+  .view-params .vp-row .val.changed { color: var(--brand); }
+
+  /* ========== Scale Bar (flex child of compass-params-box) ========== */
+  .scale-bar {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--sp-6) var(--sp-10);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上、常驻可见 → 每帧模糊画布 = 抖动源） */
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    z-index: 10;
+  }
+  .scale-bar.hidden { display: none; }
+  .scale-line {
+    width: 120px; height: 3px;
+    background: linear-gradient(to right, var(--text-muted) 0%, var(--text-muted) 2px, transparent 2px, transparent 49%, var(--text-muted) 49%, var(--text-muted) 51%, transparent 51%, transparent 98%, var(--text-muted) 98%, var(--text-muted) 100%);
+  }
+  .scale-labels {
+    display: flex; width: 100%; justify-content: space-between;
+    font-size: 9px; color: var(--text-muted);
+  }
+  .scale-labels .sl-val {
+    transition: all 0.25s ease;
+    min-width: 22px;
+    text-align: center;
+  }
+  .scale-title { font-size: 9px; color: var(--text-muted); margin-bottom: 2px; }
+
+  /* ========== Scene Legend (Top Right, auto-fit to content) ========== */
+  .scene-legend {
+    position: absolute;
+    top: var(--sp-12);
+    right: var(--sp-12);
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--sp-6) var(--sp-8);
+    /* ★ 第 77 节：移除 backdrop-filter（浮在画布上 → 每帧模糊画布 = 抖动源） */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 10;
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    width: auto;
+  }
+  .scene-legend.hidden { display: none; }
+  .compass-params-box.hidden { display: none; }
+  .scene-legend-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    font-size: 11px;
+    color: var(--text);
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .legend-empty {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  /* 地球化学色阶渐变条图例 */
+  .legend-geobar {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 180px;
+    padding-top: 2px;
+  }
+  .geobar-track {
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .geobar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ========== Empty Model Placeholder ==========
+     第 72 节：占位图标与提示文字已按用户要求删除（视图中央的灰色立方体图案）。
+     DOM 与样式均已移除；此处仅保留注释标记，避免后续误以为样式丢失。
+     如需恢复：见 backups/index8_20260923_145000_before_del_placeholder.html。 */
+
+  /* ========== Context Menu ========== */
+  .ctx-menu {
+    position: fixed;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 4px 0;
+    z-index: 1000;
+    min-width: 160px;
+    display: none;
+  }
+  .ctx-menu.show { display: block; }
+  .ctx-menu-item {
+    padding: 8px 16px;
+    font-size: 12px;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.12s;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+  }
+  .ctx-menu-item:hover { background: var(--brand-dim); color: var(--brand); }
+  .ctx-menu-item svg { width: 14px; height: 14px; }
+  .ctx-menu-divider { height: 1px; background: var(--border); margin: 4px 0; }
+  .ctx-menu-item.danger:hover { background: #fde5e5; color: #cf222e; }
+  /* 菜单头（当前操作对象名），用于单点菜单标明点号 */
+  .ctx-menu-title {
+    padding: 6px 16px 5px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ========== Modal Dialog ========== */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    /* 合成层隔离：弹窗覆盖在全屏 3D 画布之上时，避免输入文字引发大面积重排重绘 */
+    contain: layout style paint;
+    will-change: opacity;
+    transform: translateZ(0);
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-dialog {
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    min-width: 340px;
+    max-width: 90vw;
+    overflow: hidden;
+    /* 独立层：输入框编辑不触发父层阴影重算 */
+    contain: content;
+    transform: translateZ(0);
+  }
+  .modal-header {
+    padding: var(--sp-12) var(--sp-16);
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .modal-body {
+    padding: var(--sp-16);
+  }
+  .modal-body label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: var(--sp-6);
+  }
+  .modal-body input[type="text"] {
+    width: 100%;
+    height: 34px;
+    padding: 0 var(--sp-10);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+    font-family: var(--font-sans);
+  }
+  .modal-body input[type="text"]:focus { border-color: var(--brand); }
+  /* 复选框行：模型名称输入框下方 */
+  .modal-checkbox-row {
+    margin-top: var(--sp-12);
+    padding-top: var(--sp-10);
+    border-top: 1px dashed var(--border);
+  }
+  .modal-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: var(--sp-4);
+  }
+  .modal-checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--brand);
+  }
+  .modal-checkbox-label span {
+    user-select: none;
+  }
+  .modal-checkbox-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    padding-left: 24px;
+    line-height: 1.4;
+  }
+  .modal-footer {
+    padding: var(--sp-10) var(--sp-16);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--sp-8);
+  }
+  .modal-btn {
+    padding: 6px 16px;
+    border-radius: var(--radius);
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.15s;
+  }
+  .modal-btn:hover { background: var(--surface-hover); }
+  .modal-btn.primary {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+  }
+  .modal-btn.primary:hover { background: #0860c4; }
+
+  /* ========== RESIZE HANDLES ========== */
+  .resize-handle-v {
+    width: 6px;
+    background: var(--bg3);
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    cursor: col-resize;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    transition: background 0.15s;
+  }
+  .resize-handle-v:hover,
+  .resize-handle-v.dragging {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+  .resize-handle-v::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 24px;
+    background: var(--border);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+  .resize-handle-v:hover::after,
+  .resize-handle-v.dragging::after { background: white; }
+
+  .resize-handle-h {
+    height: 6px;
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    cursor: row-resize;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    transition: background 0.15s;
+  }
+  .resize-handle-h:hover,
+  .resize-handle-h.dragging {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+  .resize-handle-h::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+  .resize-handle-h:hover::after,
+  .resize-handle-h.dragging::after { background: white; }
+
+  /* ========== LAYER MANAGER ========== */
+  .bottom-split {
+    display: flex;
+    flex-direction: row;
+    background: var(--border);
+    gap: 1px;
+    height: 180px;
+    min-height: 120px;
+    max-height: 50vh;
+    flex-shrink: 0;
+    border-top: 1px solid var(--border);
+  }
+  .bottom-split.collapsed { height: 36px !important; overflow: hidden; }
+  .layer-manager {
+    background: var(--bg2);
+    padding: var(--sp-8) var(--sp-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    flex: 0 0 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+  .layer-manager.collapsed { height: 36px !important; overflow: hidden; }
+  /* ========== BOTTOM PROPS (图层管理右侧30%模型属性窗口) ========== */
+  .bottom-props {
+    background: var(--bg2);
+    padding: var(--sp-8) var(--sp-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    flex: 0 0 30%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+  .bp-header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+    flex-shrink: 0;
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .bp-content { flex: 1; overflow-y: auto; }
+  .bp-empty {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--sp-6); padding: var(--sp-16); text-align: center;
+    color: var(--text-muted); font-size: 11px; opacity: 0.7;
+  }
+  .bp-empty svg { width: 32px; height: 32px; opacity: 0.4; }
+  .bp-section { margin-bottom: var(--sp-10); }
+  .bp-section-title {
+    font-size: 10px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: var(--sp-4); padding-bottom: var(--sp-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .lm-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-8);
+    flex-shrink: 0;
+  }
+  .lm-title {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .lm-subtitle {
+    font-size: 10px; color: var(--text-muted); opacity: 0.7;
+  }
+  .lm-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    flex: 1;
+  }
+  .lm-empty {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: var(--sp-12);
+    text-align: center;
+    opacity: 0.7;
+  }
+  .lm-item {
+    display: flex; align-items: center; gap: var(--sp-8);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--sp-6) var(--sp-10);
+    font-size: 11px;
+    color: var(--text);
+    cursor: pointer;
+    /* 第 79 节：图层管理条目同样是 draggable（拖拽调整顺序）→ 必须禁文本选中，
+       否则向下拖过若干条目时会把多行整片染蓝，误以为是「批量选中」。 */
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background 0.12s, border-color 0.12s, opacity 0.15s;
+  }
+  .lm-item:hover { background: var(--surface-hover); }
+  .lm-item.selected {
+    background: var(--brand-dim);
+    border-color: rgba(88,166,255,0.5);
+  }
+  .lm-item.dragging { opacity: 0.5; }
+  .lm-item.drag-over { border-top: 2px solid var(--brand); }
+  /* 第 79 节配套：列表内若出现输入框 / 内联改名字段，必须把「可选中」还回来 ——
+     contenteditable 一旦继承到 user-select:none，会出现「鼠标没法选词、没法全选」的怪毛病。 */
+  .lp-sub-item input, .lp-sub-item textarea, .lp-sub-item [contenteditable="true"],
+  .lm-item input, .lm-item textarea, .lm-item [contenteditable="true"] {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  /* ===== 第 71 节：图层可见性「眼睛」按钮 =====
+     语义与右侧 ❌ 明确区分：
+       👁 眼睛 = 只切换「在三维视图中是否显示」，图层条目保留在图层管理列表中（可反复开关）；
+       ❌ 删除 = 从三维视图彻底移除，并删除图层条目（需从项目树拖拽恢复）。
+     可见态用 --brand 蓝色（表示"开着"），隐藏态用 --text-muted 灰色（表示"关掉"）。
+     隐藏态再加斜杠提示，避免与"低饱和度但仍在显示"混淆。 */
+  .lm-eye {
+    width: 18px; height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--brand);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    transition: color 0.15s, transform 0.15s, opacity 0.15s;
+    user-select: none;
+  }
+  .lm-eye:hover { transform: scale(1.15); }
+  /* 隐藏态：变灰 + 半透明，并给条目名称加删除线以示"当前不可见" */
+  .lm-eye.off { color: var(--text-muted); opacity: 0.55; }
+  .lm-eye.off:hover { color: var(--brand); opacity: 1; }
+  .lm-eye.off .lm-eye-on { display: none; }
+  .lm-eye:not(.off) .lm-eye-off { display: none; }
+  .lm-item.lm-hidden .lm-name { opacity: 0.5; text-decoration: line-through; }
+
+  .lm-delete {
+    width: 18px; height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    transition: color 0.15s, transform 0.15s;
+    user-select: none;
+  }
+  .lm-delete:hover { color: var(--danger); transform: scale(1.15); }
+  .lm-delete.deleted { color: var(--danger); font-weight: bold; }
+  .lm-name {
+    white-space: nowrap; font-weight: 500;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lm-slider-wrap {
+    display: flex; align-items: center; gap: var(--sp-4);
+    flex-shrink: 0;
+  }
+  .lm-slider {
+    width: 80px; height: 4px;
+    border-radius: 2px;
+    background: var(--bg3);
+    position: relative;
+    cursor: default;
+  }
+  .lm-sfill {
+    height: 100%; border-radius: 2px;
+    background: var(--brand);
+  }
+  .lm-sthumb {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: white;
+    top: 50%; transform: translate(-50%, -50%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    cursor: default;
+  }
+  .lm-opacity-val { font-size: 9px; color: var(--text-muted); min-width: 26px; text-align: right; }
+
+  /* ===== 钻孔/模型图层条目：单行 [名称(最左) | 控件 | ❌(最右)] =====
+       lm-drill-item  = 钻孔类（文件名 | 🎨 | 粗细 | 透明度 | ❌）
+       lm-model-item  = 导入三维模型类（文件名 | 色块 | 透明度 | ❌） */
+  .lm-drill-item,
+  .lm-model-item { gap: 4px; }
+  .lm-drill-item .lm-name,
+  .lm-model-item .lm-name { min-width: 15px; }
+  .lm-drill-item .lm-slider,
+  .lm-model-item .lm-slider { width: 52px; }
+  .lm-drill-item .lm-ctl-wrap,
+  .lm-model-item .lm-ctl-wrap { gap: 2px; }
+  .lm-drill-item .lm-radius-val,
+  .lm-drill-item .lm-opacity-val,
+  .lm-model-item .lm-opacity-val { min-width: 22px; }
+  .lm-ctl-wrap {
+    display: flex; align-items: center; gap: 3px;
+    flex-shrink: 0;
+    cursor: default;
+  }
+  .lm-ctl-label {
+    font-size: 9px; color: var(--text-muted);
+    white-space: nowrap; user-select: none;
+  }
+  .lm-radius-val {
+    font-size: 9px; color: var(--text-muted);
+    min-width: 26px; text-align: right;
+    font-family: 'Consolas', 'Microsoft YaHei', monospace;
+  }
+  .lm-color {
+    width: 16px; height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  .lm-color:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 2px rgba(0,105,255,0.4);
+  }
+  .lm-item.deleted { opacity: 0.45; }
+  .lm-item.deleted .lm-name { text-decoration: line-through; }
+  .lm-item.is-register-plane .lm-color { width: 18px; height: 18px; box-shadow: 0 0 0 2px rgba(26,115,232,0.35); }
+  .lm-item.is-register-plane .lm-name { font-weight: 700; color: #1A73E8; }
+
+  /* ========== Right Panel Toggle Button (Inside Tab Bar) ========== */
+  .right-panel-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 5px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    align-self: center;
+    margin-left: auto;
+  }
+  .right-panel-toggle:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+  }
+  .right-panel-toggle.active {
+    background: var(--brand-dim);
+    color: var(--brand);
+  }
+  .right-panel-toggle svg { width: 14px; height: 14px; }
+
+  /* ========== RIGHT PANEL ========== */
+  .right-panel {
+    width: 25%;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+  .rp-header {
+    padding: var(--sp-10) var(--sp-12);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; color: var(--text);
+    display: flex; align-items: center; gap: var(--sp-6);
+  }
+  .rp-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    min-height: 0;
+  }
+  /* 两套页签组互斥：钻孔组（二维联动） / 文档组（大纲·书签·笔记） */
+  .rp-tab-group { display: none; flex: 1; min-width: 0; }
+  .rp-tab-group.active { display: flex; }
+  .rp-tab {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: var(--sp-8) var(--sp-6);
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .rp-tab:hover { color: var(--text); }
+  .rp-tab.active { color: var(--brand); border-bottom-color: var(--brand); }
+  .rp-content { flex: 1; overflow-y: auto; padding: var(--sp-12); position: relative; }
+  .rp-tab-panel { display: none; }
+  .rp-tab-panel.active { display: block; }
+  .rp-hole-empty { color: var(--color-text-tertiary); font-size: 12px; padding: 16px 8px; text-align: center; }
+  /* ===== 文档组：大纲 / 书签 / 笔记（后续阶段填充内容，此处先备容器样式） ===== */
+  .rp-outline-tree { font-size: 12px; line-height: 1.5; }
+  .rp-outline-item {
+    display: flex; align-items: flex-start; gap: 4px;
+    padding: 3px 4px; border-radius: 4px; cursor: pointer; user-select: none;
+  }
+  .rp-outline-item:hover { background: var(--bg3); }
+  .rp-outline-item.current { background: var(--brand-dim); color: var(--brand); font-weight: 600; }
+  .rp-outline-title { flex: 1; min-width: 0; word-break: break-all; }
+  .rp-outline-page { color: var(--text-muted); font-size: 11px; flex: none; }
+  .rp-bm-list { font-size: 12px; line-height: 1.5; }
+  .rp-bm-item { padding: 6px 6px; border-bottom: 1px solid var(--border); cursor: pointer; border-radius: 4px; }
+  .rp-bm-item:hover { background: var(--bg3); }
+  .rp-bm-name { font-weight: 600; word-break: break-all; }
+  .rp-bm-quote { color: var(--text-muted); font-size: 11px; margin-top: 2px; word-break: break-all; }
+  .rp-bm-meta { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+  .rp-note-editor {
+    display: none; width: 100%; box-sizing: border-box; resize: vertical;
+    min-height: 220px; margin-top: 8px;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; font-size: 12px; line-height: 1.6; font-family: inherit;
+  }
+  .rp-note-editor.show { display: block; }
+  .rp-note-editor:focus { outline: none; border-color: var(--brand); }
+  .rp-ol-caret {
+    flex: none; width: 12px; text-align: center; color: var(--text-muted);
+    font-size: 10px; line-height: 1.6; cursor: pointer; user-select: none;
+  }
+  .rp-ol-note { color: var(--text-muted); font-size: 11px; padding: 8px 4px 2px; border-top: 1px solid var(--border); margin-top: 6px; }
+  .rp-bm-head { display: flex; gap: 4px; align-items: flex-start; }
+  .rp-bm-idx { color: var(--text-muted); flex: none; }
+  .rp-bm-act { color: var(--brand); cursor: pointer; }
+  .rp-bm-act:hover { text-decoration: underline; }
+  .rp-bm-name[contenteditable="true"] {
+    outline: 1px solid var(--brand); border-radius: 3px; background: var(--bg); padding: 0 2px;
+  }
+  /* 大纲跳转后短暂高亮目标标题 */
+  .wv-flash { animation: wvFlash 1.4s ease-out 1; }
+  @keyframes wvFlash {
+    0%   { background: rgba(9,105,218,0.42); }
+    100% { background: transparent; }
+  }
+
+  /* ===== PDF 文字层（可选中 / 可复制，为「选中文字打标签」提供基础） =====
+     ★ 定位要点：文字层必须与 #pdf-canvas「同原点、同尺寸」。
+     画布在 flex 容器里居中，所以文字层也用 flex 同流居中——
+     绝不能再叠加 translate(-50%,-50%)，否则等于平移两次，
+     配合 overflow:hidden 会把所有文字 span 裁剪到画面外（表现为「完全选不中」）。
+     pdf.js renderTextLayer 会自行写入 width/height（基于 --scale-factor），此处不写死。 */
+  #pdf-text-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    opacity: 1;
+    line-height: 1;
+    text-size-adjust: none;
+    forced-color-adjust: none;
+    z-index: 1;
+    pointer-events: auto;
+  }
+  #pdf-text-layer span,
+  #pdf-text-layer br {
+    color: transparent;
+    position: absolute;
+    white-space: pre;
+    cursor: text;
+    transform-origin: 0% 0%;
+  }
+  #pdf-text-layer ::selection { background: rgba(0, 102, 255, 0.32); }
+  #pdf-text-layer br::selection { background: transparent; }
+  #pdf-text-layer .endOfContent {
+    display: block;
+    position: absolute;
+    inset: 100% 0 0;
+    z-index: 0;
+    cursor: default;
+    user-select: none;
+  }
+  /* 标注工具激活时，文字层让位给画笔 */
+  #pdf-viewer-content.pv-drawing #pdf-text-layer { pointer-events: none; }
+
+  /* 文档加载进度条 */
+  .doc-progress {
+    position: absolute; left: 0; right: 0; top: 0; height: 3px;
+    background: rgba(9,105,218,0.15); overflow: hidden; z-index: 40; display: none;
+  }
+  .doc-progress.show { display: block; }
+  .doc-progress-bar {
+    height: 100%; width: 0%; background: var(--brand);
+    transition: width 0.18s ease-out;
+  }
+
+  /* 阅读页右键菜单（选中文字打标签） */
+  .doc-ctx-menu {
+    position: fixed; z-index: 9999; min-width: 170px; max-width: 320px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; box-shadow: 0 6px 22px rgba(0,0,0,.24);
+    padding: 4px 0; font-size: 12px; display: none; color: var(--text);
+  }
+  .doc-ctx-menu.show { display: block; }
+  .doc-ctx-item { padding: 7px 12px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .doc-ctx-item:hover { background: var(--bg3); }
+  .rp-hole-title { font-size: 13px; font-weight: 500; margin: 4px 0 10px; }
+  .rp-hole-img { width: 100%; height: auto; display: block; border-radius: 6px; }
+  .rp-core-item { margin-bottom: 14px; }
+  .rp-core-depth { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .rp-assay-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .rp-assay-table th, .rp-assay-table td { border: 1px solid var(--color-border-tertiary); padding: 4px 6px; text-align: left; }
+  .rp-assay-table th { font-weight: 500; }
+  .rp-section { margin-bottom: var(--sp-16); }
+  .rp-section-title {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: var(--sp-8);
+  }
+  .prop-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--sp-6) 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .prop-label { color: var(--text-muted); }
+  .prop-value { color: var(--text); font-weight: 500; }
+  .prop-value.highlight { color: var(--accent); }
+  .rp-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-16);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 12px;
+    gap: var(--sp-8);
+    height: 100%;
+  }
+  .rp-empty svg { width: 40px; height: 40px; opacity: 0.4; }
+
+  /* ========== SCROLLBAR ========== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* ========== AI ASSISTANT FAB ========== */
+  .ai-fab {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-8);
+    background: linear-gradient(135deg, #ffffff, #f6f8fa);
+    border: 1px solid rgba(212,85,0,0.25);
+    border-radius: 28px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(212,85,0,0.08);
+  }
+  .ai-fab:hover {
+    border-color: #d45500;
+    box-shadow: 0 4px 32px rgba(212,85,0,0.15), 0 0 0 1px rgba(212,85,0,0.2);
+    transform: translateY(-2px);
+  }
+  /* 拖拽中：禁用过渡动画与 hover 上浮，避免"黏滞跟不上手"；禁止选中文本 */
+  .ai-fab.dragging, .ai-fab.dragging:hover {
+    transition: none;
+    transform: none;
+    cursor: grabbing;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+  .ai-fab-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d45500, #f5a623);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    animation: aiPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes aiPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,85,0,0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(212,85,0,0); }
+  }
+  .ai-fab-icon svg { width: 20px; height: 20px; color: white; }
+  .ai-fab-text { display: flex; flex-direction: column; }
+  .ai-fab-title { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .ai-fab-sub { font-size: 10px; color: var(--text-muted); line-height: 1.3; }
+  .ai-fab-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent2);
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    animation: aiPulse 2.5s ease-in-out infinite;
+  }
+</style>
+<body data-page-node-id="7aGPUcAB9bNNx2r5FRZHuX">
+
+<!-- ========== MAIN WRAP ========== -->
+<div class="main-wrap" data-page-node-id="Cv3mVohCVAE6zTJ7uYwqlK">
+
+  <!-- ========== LEFT PANEL ========== -->
+  <div class="left-panel"  data-page-node-id="LC5kVNZEePYpw62eNmnwKh">
+    <div class="lp-header" data-page-node-id="a3RTLt5R6PFPmWGPoc96hI">
+      <div class="project-menu-wrap" id="project-menu-wrap" title="Open project menu" data-page-node-id="aENwOywFBZqGG7vv76On8C">
+        <div class="project-menu-btn" id="project-menu-btn" data-page-node-id="LY2wCBDCATphjprtDngs1l">
+          <div class="lp-title" data-page-node-id="uA4d8N60kThlSVT3vxxgh4">ShanweiGeo 3D Geoscience Platform</div>
+          <div class="lp-subtitle" id="project-subtitle" data-page-node-id="XGt7el1YUP0iSUjkFAx5Bs">Project name</div>
+          <svg class="project-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="KFK1g4L4HMNqD1rNrvLII8"><polyline points="6 9 12 15 18 9" data-page-node-id="jb99F106UpGLB08W4oAiWN"></polyline></svg>
+        </div>
+        <div class="project-dropdown" id="project-dropdown" data-page-node-id="ID61P75X1oatZ6XsNEYwl4">
+          <div class="project-menu-item" id="project-save-btn" data-page-node-id="9Iad7a55YlGHzrHMgte1k0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="5GMKeGRrVfK1AQONivkFCX"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" data-page-node-id="zNasD2d3EP9CZhzP8WEKsL"></path><polyline points="17 21 17 13 7 13 7 21" data-page-node-id="HmiW2DUpHGncYpGt2oXzej"></polyline><polyline points="7 3 7 8 15 8" data-page-node-id="DXfUSkpGjTcFAHPAoGn3XC"></polyline></svg>
+            <span data-page-node-id="R1tkVnx9byNDYoOgX92RgC">Save project</span>
+          </div>
+          <div class="project-menu-item" id="project-open-btn" data-page-node-id="cVX5HSYvIuJBKqeWO0ZGxe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="QASsivOAFMUWWDgaPOdMGW"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" data-page-node-id="KV6g3h99xHYWf62XKQO4ww"></path></svg>
+            <span data-page-node-id="Uy5YXXRpqFPiPVzXgQOo2R">Open project</span>
+          </div>
+          <div class="project-menu-item" id="project-new-btn" data-page-node-id="nGtKBFxDMQ09Xk9JlngE6t">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="1558iMOOHBNN6xw72Xk9Qr"><path d="M12 5v14M5 12h14" data-page-node-id="irHxk0yQX9t12NZcqJrd3z"></path></svg>
+            <span data-page-node-id="pNiGZ167SAz72uZw7KjvBA">New project</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lp-tree" data-page-node-id="Q83xplgtY4ExBgd9WxyACR">
+      <!-- 地表（第 102 节：遥感影像 / 地形图 由「图件管理」迁出，独立成一级大类） -->
+      <div class="lp-group" id="group-surface" data-page-node-id="surgrp001">
+        <div class="lp-group-header" id="header-surface" style="cursor:pointer;" title="Right-click“Surface”→ New category; Right-click category → Import image / DXF / GeoJSON, Rename, Delete" data-page-node-id="surhd001">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="surhd002"><polyline points="6 9 12 15 18 9" data-page-node-id="surhd003"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" data-page-node-id="surhd004"><circle cx="12" cy="12" r="9" data-page-node-id="surhd005"></circle><path d="M3 12h18" data-page-node-id="surhd006"></path><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z" data-page-node-id="surhd007"></path></svg>
+          <span data-page-node-id="surhd008">Surface</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-surface" data-page-node-id="sursub001">
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="surcat001">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="surcat002"><polyline points="6 9 12 15 18 9" data-page-node-id="surcat003"></polyline></svg>
+            <span data-page-node-id="surcat004">Remote Sensing Imagery</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="surcat005"></div>
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="surcat006">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="surcat007"><polyline points="6 9 12 15 18 9" data-page-node-id="surcat008"></polyline></svg>
+            <span data-page-node-id="surcat009">Geological Maps</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="MI4q1cBcCMqg7jvDQmEELD"></div>
+        </div>
+      </div>
+
+      <!-- 钻孔 -->
+      <div class="lp-group" data-page-node-id="kBhzajaPnxkNb2bgJx1fVa">
+        <div class="lp-group-header" id="header-drillhole" data-page-node-id="EEVuaanEC5mSOVcubJ9HQt">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Alx6pmtfjHG0ktJuWa3cjg"><polyline points="6 9 12 15 18 9" data-page-node-id="GIDo0nP8imBjpv8e661uOD"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" data-page-node-id="YF5PjTyoaHTWISNqQCTl8Z"><path d="M12 2v20M5 6l7-4 7 4M5 18l7 4 7-4M5 6v12M19 6v12" data-page-node-id="8gaENHEcFdNhpFzLBd1Qy0"></path></svg>
+          <span data-page-node-id="KFBEGSSntCGusAZxD4dCWh">Drillholes</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-drillhole" data-page-node-id="z1p37InVKru3SUOwj2iQ9C">
+          <!-- 矿区钻孔节点（可右键「钻孔」分组头新增） -->
+          <div class="lp-sub-item has-children" data-role="drillhole-area-node" onclick="toggleNode(this)" data-page-node-id="jZjrCONlL5hwvDGvskzCuP">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="DI7fJXCuHIS5Vmt5ic7ABR"><polyline points="6 9 12 15 18 9" data-page-node-id="xKgOTaydzG8QbBXXjaz02f"></polyline></svg>
+            <svg class="sub-icon" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" data-page-node-id="rGjPB1UACiBBFn2srUFG68"><path d="M12 2v20M5 6l7-4 7 4M5 18l7 4 7-4M5 6v12M19 6v12" data-page-node-id="9RajDfwbBqlPhFmZ7tV2Z8"></path></svg>
+            <span data-page-node-id="PXctVwpdk60qgeOUMh3AXi">xx Drillholes</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="go7HVxZ6GPFeTuYqvYNjEh">
+            <div class="lp-sub-item has-children" data-role="table-category" onclick="toggleNode(this)" draggable="true" data-page-node-id="JOlfgpIHZit19h3BQRAmHt">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="wgG99S9fYseKJ82C78vrbp"><polyline points="6 9 12 15 18 9" data-page-node-id="Gc6ovcpbXbGzfDlSaxTLtD"></polyline></svg>
+              <span data-page-node-id="9z9TH5gn9AfTNtqSYNId6M">Collar Table</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="bnAfcBxVTCWn90CdlsewXW"></div>
+            <div class="lp-sub-item has-children" data-role="table-category" onclick="toggleNode(this)" draggable="true" data-page-node-id="ASdubgfMNSJ0p8S32DicYo">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="fwWWouFNlJgb2Ws0PGNWPn"><polyline points="6 9 12 15 18 9" data-page-node-id="8ozO5TAU8Yv4Otyc8utMXc"></polyline></svg>
+              <span data-page-node-id="vCN5raVnp3KgYcmvGrWuk4">Downhole Survey</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="D5wZLwVaVJ97gE86IgNUB7"></div>
+            <div class="lp-sub-item has-children" data-role="table-category" onclick="toggleNode(this)" draggable="true" data-page-node-id="8fNLPoJeUloegtG5pmlkjO">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="he059xAISDPrJZQHjt5KQt"><polyline points="6 9 12 15 18 9" data-page-node-id="QCHHarw4pOeRCReVOJaf8a"></polyline></svg>
+              <span data-page-node-id="pjzpQ5V9xRV1e1Yfd3nDKg">Geological Data</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="xBQAAQuCy9gQ3p2ReKFGYE"></div>
+            <div class="lp-sub-item has-children" data-role="table-category" onclick="toggleNode(this)" draggable="true" data-page-node-id="BZZtAFrmkhaqu5VhKTF45e">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="m0PflHtWS4wK3KZMRjzJeG"><polyline points="6 9 12 15 18 9" data-page-node-id="CPLmTOlpfoHoEcZQrInV43"></polyline></svg>
+              <span data-page-node-id="F5w7TDnnz2HBCiRIBy8Ola">Geochemical Data</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="bmzXb7fV6i0ttEHEZ5ewIE"></div>
+            <div class="lp-sub-item has-children" data-role="table-category" onclick="toggleNode(this)" draggable="true" data-page-node-id="yjeGF3PjabZcrT6lg4Kp77">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="a4kic5NDfa6s66ffEI6i3M"><polyline points="6 9 12 15 18 9" data-page-node-id="TkrCZdSJ6bORobeY1NwSTi"></polyline></svg>
+              <span data-page-node-id="uXmM7zacLarKygWE7IkCoC">Alteration Data</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="QWKtEKB7Ye1EZYft7dDt1q"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 三维地质模型 -->
+      <div class="lp-group" id="group-3d-model" data-page-node-id="qmsI95eUaH0x6rSbJilBwz">
+        <div class="lp-group-header collapsed" id="header-3d-model" data-page-node-id="yYASpGEk1eC3LOUxWFCPjF">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Yh0ZDFRdj1pNdMtqZmTGW1"><polyline points="6 9 12 15 18 9" data-page-node-id="zsRuDoGfI3azjofWGNZOdX"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" data-page-node-id="WJAzH5rA7A2PreEeBYAExH"><path d="M2 22h20M2 6h20M2 10h20M2 14h20M2 18h20" data-page-node-id="aBGCUWjddRbeyoXqC3yQGK"></path></svg>
+          <span data-page-node-id="hQDSfXts1OkJavS6qYSH7r">3D Geological Models</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-3d-model" data-page-node-id="88PsCOEcNC4nrSqoJTVjkS">
+          <div class="lp-sub-item has-children" onclick="toggleNode(this)" data-role="model-node" draggable="true" data-page-node-id="pM3uWO4tMp9xdOGBvPph5A">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="lpRI5JyvFVXQ1CeneX85uA"><polyline points="6 9 12 15 18 9" data-page-node-id="7KoHYJ3JOnQMAWiyoMfUkR"></polyline></svg>
+            <span data-page-node-id="VX1fcpHFGQY9pCPE42LIA7">xx Area-A Section</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="HMmVp2DoElCbBx2CO4LUFw">
+            <div class="lp-sub-item has-children" data-category="Orebody" onclick="toggleNode(this)" draggable="true" data-page-node-id="QuhlmJjhrXpEQySkcMe2BE">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="jDm1tVNUo1rk5XksnA9tjP"><polyline points="6 9 12 15 18 9" data-page-node-id="Cv5maYSY4k0FVAB5BBaFCC"></polyline></svg>
+              <span data-page-node-id="PnGA8LKWLn6YPBmgMRnKph">Orebody</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="7vreM95se7GSKNu25duWHi"></div>
+            <div class="lp-sub-item has-children" data-category="Formation" onclick="toggleNode(this)" draggable="true" data-page-node-id="ZwbtutAmY7WAcOkXHtYAuC">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Aw0pAQh2d3D1EuqzPvIt77"><polyline points="6 9 12 15 18 9" data-page-node-id="1bwWfTcNcAjVxFVkuyYHYj"></polyline></svg>
+              <span data-page-node-id="X6VCXceZA6ckJLuSECmY3M">Formation</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="uZpv7OLdLoF2qw4EvwsBD7"></div>
+            <div class="lp-sub-item has-children" data-category="Structure" onclick="toggleNode(this)" draggable="true" data-page-node-id="qeVhF65iKBGexitpSGtmZg">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="550kBG3vftXok0ZesSPIWL"><polyline points="6 9 12 15 18 9" data-page-node-id="T2LVEcWb67awHVHNULgM0E"></polyline></svg>
+              <span data-page-node-id="8tKEShd75bKIaGP1psNmzz">Structure</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="rBVtufhGUm6uvpgRa7cXFA"></div>
+            <div class="lp-sub-item has-children" data-category="Alteration" onclick="toggleNode(this)" draggable="true" data-page-node-id="r3MAzGH7hohKJkGkNCRGHd">
+              <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="v5s3z9URWHR3iH7IiQA0KO"><polyline points="6 9 12 15 18 9" data-page-node-id="vNnljlncs769HCPVEyxgL0"></polyline></svg>
+              <span data-page-node-id="g9xmL9xP1rrbbwOxEWsluJ">Alteration</span>
+            </div>
+            <div class="lp-nested-items expanded" data-page-node-id="W15jqfbsfmtHIODG9NivEX"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 地球化学模型 -->
+      <div class="lp-group" data-page-node-id="zGR099m8OmEKrZJEQPjWUE">
+        <div class="lp-group-header" id="header-geochem-model" data-page-node-id="xcIv0SWRTf1AEjTBXOHU74">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="OBYZKUV8feAo3tTKyn9iCX"><polyline points="6 9 12 15 18 9" data-page-node-id="O01IBzWLu2OQ0WvkkzpNiI"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" data-page-node-id="6JAM7XQpQp88zvDlI1Vchn"><circle cx="6" cy="6" r="3" data-page-node-id="fRdG3ztnaQm5ELDZPjg5HM"></circle><circle cx="18" cy="6" r="3" data-page-node-id="Hb6845M71QvkUJvNQvUY9L"></circle><circle cx="12" cy="18" r="3" data-page-node-id="pA3Dftfur7VGenyZTvTpTA"></circle><path d="M6 9v3l6 3M18 9v3l-6 3" data-page-node-id="dfXSkYSDj9hau5gPO6LFzX"></path></svg>
+          <span data-page-node-id="T4PzdPTGLKC3nTLZIKCwu8">Geochemical Models</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-geochem-model" data-page-node-id="KR07wNp5YlglPRSL4Z3QSg"></div>
+      </div>
+
+      <!-- 三维坑道模型 -->
+      <div class="lp-group" data-page-node-id="nRVBVsLcxo40Ic60q9SwAO">
+        <div class="lp-group-header" id="header-tunnel-model" data-page-node-id="GgUNzvDvehKCSSpn4yy0kq">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="OFudFoUPnGvhLyclWj3lzp"><polyline points="6 9 12 15 18 9" data-page-node-id="RS4n1pWfE6dIt67BMkIJPX"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" data-page-node-id="PTd1gCI8D1fh7lu4dJATUy"><path d="M4 20V10l8-6 8 6v10" data-page-node-id="GwLje8ZIrPJLnjF1iy9Apd"></path><path d="M4 20h16" data-page-node-id="ZSI4HMdKdYjqKMVijOlqTc"></path></svg>
+          <span data-page-node-id="hJL286nVSwSTtwgyqAto34">3D Tunnel Models</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-tunnel-model" data-page-node-id="hwvMjWoWqvj0wJ5T2uq2Js"></div>
+      </div>
+
+      <!-- 块体模型（Leapfrog 块体模型 CSV） -->
+      <div class="lp-group" id="group-block-model" data-page-node-id="blkgrp001">
+        <div class="lp-group-header" id="header-block-model" data-page-node-id="blkph001" style="cursor:pointer;" title="Right-click“3D Block Models”Group → New 3D block model (Subfolder) ; Right-click a subfolder → Import block model CSV">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="blkph002"><polyline points="6 9 12 15 18 9" data-page-node-id="blkph003"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f0883e" stroke-width="2" data-page-node-id="blkph004"><path d="M12 2l9 4.5v9L12 20l-9-4.5v-9L12 2z" data-page-node-id="blkph005"></path><path d="M12 2v9l9-4.5M12 11l-9-4.5M12 11v9" data-page-node-id="blkph006"></path></svg>
+          <span data-page-node-id="blkph007">3D Block Models</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-block-model" data-page-node-id="blksub001"></div>
+      </div>
+
+      <!-- 点 -->
+      <div class="lp-group" data-page-node-id="UmRVsxZbCFThVHQ406eEMo">
+        <div class="lp-group-header" id="header-point" data-page-node-id="KrGcBSJ4a8SjShX6OEwn2o" style="cursor:pointer;" title="Right-click“Point”groups support point-file import">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="zGAceR9DcVwFu9ECBxanDp"><polyline points="6 9 12 15 18 9" data-page-node-id="L5puikcozDv6XFkB69wTdj"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e85d75" stroke-width="2" data-page-node-id="SsIRGukx0WDfPPpJlbBWn2"><circle cx="12" cy="12" r="4" data-page-node-id="gbLdC1djWSbssQdFqF15nf"></circle></svg>
+          <span data-page-node-id="D0c1Nq72XGBcYGoBFt7CTW">Point</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-point" data-page-node-id="ptsub001"></div>
+      </div>
+
+      <!-- 图件管理 -->
+      <div class="lp-group" id="group-drawing-mgmt" data-page-node-id="I5ROR85nBJ20HMgUULOBwA">
+        <div class="lp-group-header collapsed" id="header-drawing-mgmt" style="position: relative;" data-page-node-id="EOEamsRF0zsxnJVJBvU2mH">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="xHOfJNNIlYPEhIk3f1p5vx"><polyline points="6 9 12 15 18 9" data-page-node-id="zaLt33EiZcEXph60FjVHx3"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" data-page-node-id="uUEmmDLyZNTz3yTzpzfLBH"><rect x="3" y="3" width="18" height="18" rx="2" data-page-node-id="prZyFscIILBzl1rYop9kJp"></rect><circle cx="8.5" cy="8.5" r="1.5" data-page-node-id="vjLGFcL4dKQBIVMBhP6URn"></circle><path d="M21 15l-5-5L5 21" data-page-node-id="cmwgrpcOEjdHc0cuVHHKpb"></path></svg>
+          <span data-page-node-id="iCtCsrl59agU2g3XPyuryh">Maps and Figures</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-drawing-mgmt" data-page-node-id="pykoHb6dDvq16SzCCiLECT">
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="aKl7eyLev248oORVFgnLxZ">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="0YvwtWwGmGzJJjx1VaGAIt"><polyline points="6 9 12 15 18 9" data-page-node-id="wp8UjWJOQWmDMcpuJdOyKZ"></polyline></svg>
+            <span data-page-node-id="hNTosvlrnfCfedSQIce5Df">Cross Sections</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="qJMij4BRDgs9GKGURERiJi"></div>
+          <div class="lp-sub-item has-children collapsed" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="sQRgU8i3RHOjxFKl4eBf0o">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Jo5goj0YVfnW1F6MWi7lCi"><polyline points="6 9 12 15 18 9" data-page-node-id="owYDgebvFfEshY8hc7MKwb"></polyline></svg>
+            <span data-page-node-id="PTGPiJuJJGLw8lB8cG1whO">Level Plans</span>
+          </div>
+          <div class="lp-nested-items" data-page-node-id="rc5dxQLE5U6oVwTkQgKQmH"></div>
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="Z2RfhoowrHBS2WYMcPVGpc">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="wEhqnsdaClAQOFWN1j5BCN"><polyline points="6 9 12 15 18 9" data-page-node-id="FjmsDHTufGKI0hqA6ZBnmP"></polyline></svg>
+            <span data-page-node-id="SGaLQCNCDLIPYdxtMICUzo">Mining Rights Maps</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="eyglxjewhn44Y7gbamkvGH"></div>
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="1of03mLhPZBDKWoDQh67Q9">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="YHKbXHN4Lmh72oHRjkRO0T"><polyline points="6 9 12 15 18 9" data-page-node-id="vHs3rwxgFelC6pVkPZU7Te"></polyline></svg>
+            <span data-page-node-id="iga0igbmKlGuZJRitNKgou">Drillhole Log</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="DBXfdAPOXf3cTJlcdLSptj"></div>
+          <div class="lp-sub-item has-children" data-role="drawing-category" onclick="toggleNode(this)" data-page-node-id="e4zE7gT64Xi5FYclrkxuIk">
+            <svg class="sub-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="iutjOmbynNBYwjnIq48Nfr"><polyline points="6 9 12 15 18 9" data-page-node-id="zEFwWWVWjENgfrOCMH6P35"></polyline></svg>
+            <span data-page-node-id="yUJZmUhriCDnYekGTLtReK">Core Data</span>
+          </div>
+          <div class="lp-nested-items expanded" data-page-node-id="nQZMUshChArQdqZ0DO81R0"></div>
+        </div>
+      </div>
+
+      <!-- 测试数据管理 -->
+      <div class="lp-group" id="group-testdata" data-page-node-id="v6Sa6M505zXLAYoXtaEjfW">
+        <div class="lp-group-header" id="header-testdata" data-page-node-id="uvHEMfOc4koZD8UCnL5yOZ">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="XZNDkys99Vbytw1rwbI8DL"><polyline points="6 9 12 15 18 9" data-page-node-id="Wl6FAGxDX4nkP2s6VDJd3s"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#a371f7" stroke-width="2" data-page-node-id="mouItof7Qt1zCzuIXNLkf4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" data-page-node-id="95YlBmKR8DOdfCHL2JepzU"></path><polyline points="14 2 14 8 20 8" data-page-node-id="j1mWxii8W371jEgFYELw7V"></polyline><line x1="16" y1="13" x2="8" y2="13" data-page-node-id="yHNLDF0MvmFIvdFiJeGxc5"></line><line x1="16" y1="17" x2="8" y2="17" data-page-node-id="2IMj9gmfCfgcZE76JxkVfQ"></line></svg>
+          <span data-page-node-id="1cPjIfvxPPRv8znkIzUM8O">Test Data</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-testdata" data-page-node-id="E4Rf2nBf7AWBTCuB683ewA"></div>
+      </div>
+
+      <!-- 报告管理 -->
+      <div class="lp-group" id="group-report" data-page-node-id="IBydvsg7idMZJIvqEDch2u">
+        <div class="lp-group-header" id="header-report" data-page-node-id="6pAgL65V46mDxcihdTo09y">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="VzrylK5UXVFJrTsMT4MV0c"><polyline points="6 9 12 15 18 9" data-page-node-id="yFrYTiAoDELWpM1zUMq6z0"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e85d75" stroke-width="2" data-page-node-id="z92ow1KFcwCGe4nmvGUC8U"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" data-page-node-id="B9p1fwANNRlThHZnYEgFrT"></path><polyline points="14 2 14 8 20 8" data-page-node-id="phVCHhN8gZYJZRMhvxJwPS"></polyline><line x1="16" y1="13" x2="8" y2="13" data-page-node-id="7lXeiMcswB6yiqyOqa2A5w"></line><line x1="16" y1="17" x2="8" y2="17" data-page-node-id="Y6f5gwB3jonPboQS3elCfp"></line><polyline points="10 9 9 9 8 9" data-page-node-id="A8LYS2E6g7tEh8vU99HhnE"></polyline></svg>
+          <span data-page-node-id="zFNLFH4Vxhgm5ucxsIKUWM">Reports</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-report" data-page-node-id="Z0NrnWcaspYaBhCuf1wf3r"></div>
+      </div>
+
+      <!-- 专题AI模型 -->
+      <div class="lp-group" data-page-node-id="AOO0NR5o2h97OqKXmBCE99">
+        <div class="lp-group-header" data-page-node-id="JZIQSvbeQuTStheNYg9NAD">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="vLnZ5aB4iyWxUk6loNDLxV"><polyline points="6 9 12 15 18 9" data-page-node-id="KQlLaDxeqG1UmooCgcNh2R"></polyline></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f0883e" stroke-width="2" data-page-node-id="HPZwSjbkz2jzAAxVySJeSz"><path d="M12 2a10 10 0 1 0 10 10H12V2z" data-page-node-id="5uNvoGTQZJRnG9NEN3PAbd"></path><path d="M12 2a10 10 0 0 1 10 10" data-page-node-id="MvdLmM6qqEURq4y1OhsUDP"></path><path d="M22 12h-2" data-page-node-id="wYlHMB786WDWFb3S0ATBVW"></path></svg>
+          <span data-page-node-id="TAXo3g0ZuoZYev7EB54m4I">Themes AI Model</span>
+          <span class="lp-ai-badge" data-page-node-id="oaMz5Ssy6C7Acm93LjeX7D">AI</span>
+        </div>
+      </div>
+      <!-- 实用工具：固定工具入口，不参与业务数据存档 -->
+      <div class="lp-group" id="group-utilities">
+        <div class="lp-group-header" id="header-utilities">
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          <span>Utilities</span>
+        </div>
+        <div class="lp-sub-items" id="subitems-utilities">
+          <div class="lp-sub-item" id="utility-coordinates" role="button" tabindex="0" title="Open web interface, Computed by original COORD Run"><span>Coordinate Conversion</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== RESIZE HANDLE: LEFT-CENTER ========== -->
+  <div class="resize-handle-v" id="resize-lc" data-page-node-id="BlZbvgmUI42xOIYPchDMA0"></div>
+
+  <!-- ========== CENTER AREA ========== -->
+  <div class="center-area" id="center-area" data-page-node-id="vlRp4OXSvOCUqChYZZ05bC">
+    <!-- Center Tab Bar (Fixed) : 标签栏 -->
+    <div class="center-tab-bar" id="center-tab-bar" data-page-node-id="D0YvLlfEmg6fWEZH7ieERx">
+      <!-- 「视图」：固定标签，不可删除 -->
+      <div class="center-tab active pinned" data-tab-id="view" title="View (3D canvas / Toolbar / Layers / Model Properties) " data-page-node-id="U83WGEdiwZyjgs47Uz5B74">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="6OaFyaUIlEPi3WcLshrKXM"><rect x="2" y="3" width="20" height="14" rx="2" data-page-node-id="BF72RHDUkF5TGTutdpACaM"></rect><path d="M8 21h8M12 17v4" data-page-node-id="mcCDL70j67ZTiEbvvuL09f"></path></svg>
+        <span class="center-tab-label" data-page-node-id="WFOTWj1LKj6KYlba3ZoRY9">3D View</span>
+        <span class="center-tab-close" title="Close" data-page-node-id="bTYW2lJkmh8DDD29sZFNBE">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="j4xlo4utjQqEVJSbVGKbtV"><line x1="18" y1="6" x2="6" y2="18" data-page-node-id="hRClyYdFa7349ReOSejNDM"></line><line x1="6" y1="6" x2="18" y2="18" data-page-node-id="BCWNYuSiYrpZkHMlKCkAPD"></line></svg>
+        </span>
+      </div>
+      <!-- 「+」新建标签 -->
+      <span class="center-tab-new" id="center-tab-new" title="New tab" data-page-node-id="t1JMBbbHyN4zWm5ESIcIcs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="fNGBymgWy22Vob64FKCLwd"><line x1="12" y1="5" x2="12" y2="19" data-page-node-id="yvByXj2SWgG8AFALwpvLVQ"></line><line x1="5" y1="12" x2="19" y2="12" data-page-node-id="6Sm5dNroPXBnjqsULe9s2F"></line></svg>
+      </span>
+      <!-- 「联动」：显示/隐藏右侧二维联动面板 -->
+      <button class="right-panel-toggle" id="btn-toggle-right-panel" title="Show/Hide the linked 2D panel on the right" data-page-node-id="fz5bEy908LsEoNKJmE7pIs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="NjoloDAY5d2KDdBLTEBgUA">
+          <rect x="3" y="3" width="18" height="18" rx="2" data-page-node-id="g84qWnDk59fODOeqKlF82o"></rect>
+          <line x1="15" y1="3" x2="15" y2="21" data-page-node-id="sYKU46lswxOhHxLsHOrM2a"></line>
+        </svg>
+        Link
+      </button>
+    </div>
+
+    <!-- Center Tab Content Container (for non-view tabs) -->
+    <div class="center-tab-content-wrap" id="center-tab-content-wrap" data-page-node-id="IqKcbLK0BPeXrAsNfb35VS"></div>
+
+    <!-- Image Viewer Container（图片标签页：看图编辑器，共享 DOM） -->
+    <div class="image-viewer-wrap" id="image-viewer-wrap" data-page-node-id="JVHmOw8RFGtzatUgEBmP8Y">
+      <div class="image-viewer-stage" id="image-viewer-stage" data-page-node-id="aGOYVmQOlpFakNOPHSUsNq">
+        <img id="image-viewer-img" alt="" data-page-node-id="LzBQe5exnvwA7HbQF8j0Ez">
+      </div>
+
+      <!-- 控制点配准：顶部输入面板（进入配准模式时显示） -->
+      <div class="register-panel-top hidden" id="register-panel-top" data-page-node-id="7B4q5FPUa9JHVBjaPL3z3O"></div>
+      <!-- 控制点配准：标记点层 -->
+      <div class="register-marker-layer" id="register-marker-layer" data-page-node-id="cDDaiE262UUyqYVkA1dLs1"></div>
+      <div class="image-viewer-toolbar" data-page-node-id="1FhXM68O8CBrWwP7UDO0vI">
+        <button class="iv-btn" id="iv-zoom-in" title="Zoom in" data-page-node-id="cMMvnxdPQTMFEMXOiUWCE5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="8CIjElSNC6y7AWMAEkpUPf"><circle cx="11" cy="11" r="8" data-page-node-id="y9VpzHtFofIoEVNC4blX7X"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" data-page-node-id="a04ejA49XJtOvTfnTKce3O"></line><line x1="11" y1="8" x2="11" y2="14" data-page-node-id="ZN70Y0y0nhx3L3W39aJO0L"></line><line x1="8" y1="11" x2="14" y2="11" data-page-node-id="9d67l6cjd9mwvqT9YE1tDl"></line></svg>
+        </button>
+        <button class="iv-btn" id="iv-zoom-out" title="Zoom out" data-page-node-id="9Cysz9cJBBHtPp6D9VYDiH">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="g9llp6yMaF2L6kcFHtiRR3"><circle cx="11" cy="11" r="8" data-page-node-id="DtW3PDhu3ck4mEi1U7ZEoi"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" data-page-node-id="8ERlJHJfzhFOjX9nHBJ09A"></line><line x1="8" y1="11" x2="14" y2="11" data-page-node-id="DX1IcmajsQV8Ra3hqk0yOc"></line></svg>
+        </button>
+        <span class="iv-zoom-label" id="iv-zoom-label" data-page-node-id="wnLVaQj4yi4rE1FKNuBxGu">100%</span>
+        <div class="iv-sep" data-page-node-id="Mb2i1fBDTqxW6QnEtNsbjB"></div>
+        <button class="iv-btn" id="iv-fit" title="Fit to window" data-page-node-id="YSYGXrkajkoFQ8iepoTdKc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="lAhnuJ8D8BQhB34PGgnD5g"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4" data-page-node-id="5xkC0P06lCCeSl8lPRMuez"></path></svg>
+        </button>
+        <button class="iv-btn" id="iv-actual" title="Actual size (100%)" data-page-node-id="iQMRIUox38QsxrFxFcq4gM">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="5MoFMdMknvYKCzUFcm0HKV"><circle cx="12" cy="12" r="3" data-page-node-id="rdBhXkmPx4fyC6iwANghxj"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3" data-page-node-id="ucJi5Qt3xzXKb2iTiqykRO"></path></svg>
+        </button>
+        <button class="iv-btn" id="iv-reset" title="Reset (Fit to window) " data-page-node-id="4XVXSnpq1gjLGAX38y6ebQ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="E5YHhh2hewEZiMYzcubZRt"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" data-page-node-id="zBiwoXvmspLcJ00I7IF5uF"></path><path d="M3 3v5h5" data-page-node-id="fB6AhgBdxEkYlIFuDPCrrt"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Table Viewer Container（表格标签页：共享 DOM，同图片标签范围） -->
+    <div class="table-viewer-wrap" id="table-viewer-wrap" data-page-node-id="OOobY5CWRDDtEqGQYuxX36">
+      <div class="table-viewer-toolbar" data-page-node-id="MNU7m8pvXbVbylnOuSewSK">
+        <span class="tv-title" id="tv-title" data-page-node-id="PvPUuH0ZUfp62kaBCNHaJH">Table preview</span>
+        <span class="tv-info" id="tv-info" data-page-node-id="HWOnQmPDbyKB47IqDjzJFw"></span>
+        <button class="tv-btn" id="tv-formula-btn" title="Switch between calculated values and formula text (Only applies to tables containing formulas) " style="display:none;" data-page-node-id="TSpwkRkMbulfyRTr7EOWEN">Show formulas</button>
+      </div>
+      <div class="table-viewer-content" id="table-viewer-content" data-page-node-id="m7pes0Y4SYZHWdkyZw9E39"></div>
+    </div>
+
+    <!-- PDF Viewer Container（PDF 阅读标签页：共享 DOM，同图片/表格标签范围） -->
+    <div class="pdf-viewer-wrap" id="pdf-viewer-wrap" data-page-node-id="hFdwX2Pj5ZnSULPbgqr9OY">
+      <div class="pdf-viewer-toolbar" data-page-node-id="Sgal63MfxRDLerTxEoH1dG">
+        <span class="pv-title" id="pv-title" data-page-node-id="czkPwRI1G2y9ceMMAviMy8">PDF Read</span>
+        <span class="pv-info" id="pv-info" data-page-node-id="GsrZXRHtA4QW16sz3hAGY9"></span>
+        <span class="pv-sep" data-page-node-id="sEYzDsiIIoHF5fo8yMlF7n"></span>
+        <button class="pv-btn" id="pdf-prev-btn" title="Previous page" data-page-node-id="61ouahGwlYAAPnNblKRkkC">◀</button>
+        <span class="pv-page" id="pdf-page-info" data-page-node-id="WWFSH8Cs8bCVCzvbr88Fcc">- / -</span>
+        <button class="pv-btn" id="pdf-next-btn" title="Next page" data-page-node-id="KHswyR4Hm2QIhGSKbWgioq">▶</button>
+        <span class="pv-sep" data-page-node-id="5m2qMTsH3hUTEdtcDH1yOE"></span>
+        <button class="pv-btn" id="pdf-zoom-out-btn" title="Zoom out" data-page-node-id="YHdpNJ3mh9Rxmx7oHocuk5">−</button>
+        <span class="pv-page" id="pdf-zoom-info" data-page-node-id="iEJujm1hmQXlK1onBavLPY">100%</span>
+        <button class="pv-btn" id="pdf-zoom-in-btn" title="Zoom in" data-page-node-id="iRUryvoukSj6ebXBxhijzQ">＋</button>
+        <span class="pv-sep" data-page-node-id="2m7SJDE1K9GWybDRss280F"></span>
+        <button class="pv-btn" id="pdf-pen-btn" title="Pen: Drag on the page to draw freely" data-page-node-id="3Hqw10FKU9FBIZc8p7RJko">Pen</button>
+        <button class="pv-btn" id="pdf-hl-btn" title="Highlight: Highlight important content" data-page-node-id="zUbhKE8TEtt0wxxPzfcJsu">Highlight</button>
+        <button class="pv-btn" id="pdf-eraser-btn" title="Eraser: Erase ink/Highlighter" data-page-node-id="NGdlNddUiSjp7mJgu4pNMR">Eraser</button>
+        <span class="pv-cdot active" data-c="#e24b4a" style="background:#e24b4a" title="Pen color: Red" data-page-node-id="nCap307qEnf2tTBf0Bu09C"></span>
+        <span class="pv-cdot" data-c="#185fa5" style="background:#185fa5" title="Pen color: Blue" data-page-node-id="IeG683ogvX17FtSTYFULZC"></span>
+        <span class="pv-cdot" data-c="#2c2c2a" style="background:#2c2c2a" title="Pen color: Black" data-page-node-id="Dmf4cIH2J82e7jbheishXF"></span>
+        <span class="pv-cdot" data-c="#0f6e56" style="background:#0f6e56" title="Pen color: Green" data-page-node-id="BrrExxngDJTJYYxBHlbtqG"></span>
+        <button class="pv-btn" id="pdf-clear-annot-btn" title="Clear current PDF all annotations" data-page-node-id="IVpZSbbRd3ms7mviqCfd7Q">Clear annotations</button>
+        <span class="pv-hint" id="pdf-tool-hint" data-page-node-id="qtxc14HekBcnd2ZgXQU4Rm"></span>
+      </div>
+      <div class="pdf-viewer-content" id="pdf-viewer-content" data-page-node-id="l7sK0wzOuv2VpS08jBHW5C">
+        <div class="pdf-canvas-wrap" id="pdf-canvas-wrap" data-page-node-id="1zfapH6Xgb9adbwvCJJ3kB">
+          <canvas id="pdf-canvas" data-page-node-id="i7OxBQPMsNJUCFvJUaBXA2"></canvas>
+          <!-- PDF 文字层：可选中/可复制，并为「选中文字打标签」提供命中基础 -->
+          <div id="pdf-text-layer" data-page-node-id="Zo2UBjZc9BOPAkhSKP929d"></div>
+          <canvas id="pdf-annot-canvas" data-page-node-id="mJrOkM6TTSkTZYZIEkzp8f"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Viewer Container（Word 只读阅读标签页：共享 DOM，docx-preview 渲染分页 HTML；复用 pdf-viewer 样式类 + 同 PDF 标注工具链） -->
+    <div class="pdf-viewer-wrap" id="word-viewer-wrap" data-page-node-id="NlTkCVZ2Cu3cSVkDFMqOYy">
+      <div class="pdf-viewer-toolbar" data-page-node-id="TzR9q6tVo8JiEDfzpX4VuW">
+        <span class="pv-title" id="wv-title" data-page-node-id="bJqzkUImFsqIEa57XQ9ZXQ">Word Read</span>
+        <span class="pv-info" id="wv-info" data-page-node-id="phIss4yfx3DcLLtYZuTo1F"></span>
+        <span class="pv-sep" data-page-node-id="MYMq2rN1piIhx43YHDWJOQ"></span>
+        <button class="pv-btn" id="word-print-btn" title="Print current Word Documents" data-page-node-id="AebZNMh6q8x7eS9kKGNqI0">Print</button>
+        <span class="pv-sep" data-page-node-id="GnjFecAkrOs5ZuMfLttHij"></span>
+        <button class="pv-btn" id="word-zoom-out-btn" title="Zoom out (Ctrl+The mouse wheel also works) " data-page-node-id="ioqdJmFAiaZI4EEvmI1dAz">−</button>
+        <span class="pv-page" id="word-zoom-info" data-page-node-id="SdzM2cGBk0NE9RkdCkhsb3">100%</span>
+        <button class="pv-btn" id="word-zoom-in-btn" title="Zoom in (Ctrl+The mouse wheel also works) " data-page-node-id="tMt97idQ0bjyPDsjmQhcLn">＋</button>
+        <span class="pv-sep" data-page-node-id="tVDjgtMl0BETd8K7MFtSaB"></span>
+        <button class="pv-btn" id="word-pen-btn" title="Pen: Drag on the page to draw freely" data-page-node-id="5XKMbWM8ZKUiY88J452HxJ">Pen</button>
+        <button class="pv-btn" id="word-hl-btn" title="Highlight: Highlight important content" data-page-node-id="e70GprYrpwk4CDaRlDFb8V">Highlight</button>
+        <button class="pv-btn" id="word-eraser-btn" title="Eraser: Erase ink/Highlighter" data-page-node-id="P3nuCdIBkPzccdTvbpDFQe">Eraser</button>
+        <span class="pv-cdot active" data-c="#e24b4a" style="background:#e24b4a" title="Pen color: Red" data-page-node-id="DkHPPsCBiderS0GhNBZgJa"></span>
+        <span class="pv-cdot" data-c="#185fa5" style="background:#185fa5" title="Pen color: Blue" data-page-node-id="HlZ5S4AeTHDQAmAbQWhypV"></span>
+        <span class="pv-cdot" data-c="#2c2c2a" style="background:#2c2c2a" title="Pen color: Black" data-page-node-id="VYeNVdtpc1zKfWmhISIOLq"></span>
+        <span class="pv-cdot" data-c="#0f6e56" style="background:#0f6e56" title="Pen color: Green" data-page-node-id="yDcwEy5Eu3tLAF6Zoex7mw"></span>
+        <button class="pv-btn" id="word-clear-annot-btn" title="Clear current Word all annotations" data-page-node-id="aoDCCilcSqVkcbnx4oaBLH">Clear annotations</button>
+        <span class="pv-hint" id="word-tool-hint" data-page-node-id="vJXvw1l1zkOIWNh775xhjD"></span>
+      </div>
+      <div class="pdf-viewer-content" id="word-viewer-content" data-page-node-id="hlv5CeHIwhe1mwUDjEsxTC"></div>
+    </div>
+
+    <!-- Center Toolbar : 清空 / 复位 / 测距 / 剖切 / 截图 / 坐标 / 比例尺 -->
+    <div class="center-toolbar" data-page-node-id="yELH3WQ1tXgY4f1emVV5TS">
+      <div class="ct-group" data-page-node-id="Q9uSowUuSKWoj0s3RMHdxs">
+        <button class="ct-btn" id="btn-clear-all" title="Clear (Delete all measurement lines/Clip/Highlight) " data-page-node-id="qvEs893cbcr0wQOwY4NDbg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="aaufu0GVa6t7P8Nz0LnpeG"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" data-page-node-id="vHKleBN3RelJg4SbBR3Hlw"></path><path d="M10 11v6M14 11v6" data-page-node-id="c1KR4OZKpGf1XzVSeQKju4"></path></svg>
+          Clear
+        </button>
+        <button class="ct-btn" id="btn-reset-view" title="Reset (Reset view) " data-page-node-id="zo6luQskPjfWjye170vTM7">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="IdrbFREeVKYHKbYbkUKBVE"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" data-page-node-id="NLtDrloWaQUl2QvrfA1A6T"></path><path d="M3 3v5h5" data-page-node-id="74GJlo0VEOWsTEO8s2AnCi"></path></svg>
+          Reset
+        </button>
+        <div class="ct-sep" data-page-node-id="LyQPvuPZcABRHf0pohPxPf"></div>
+        <button class="ct-btn" id="btn-measure" title="Measure" data-page-node-id="iyXOBPkfmPJ935ZuTnnhYq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="K4hqNqyWHuD3ClIyFQRWT1"><path d="M2 12h20M12 2v20" data-page-node-id="t5aSmcFneCL4EBZnmRKU3E"></path></svg>
+          Measure
+        </button>
+        <div class="ct-sep" data-page-node-id="SD8EkrvBBcP938acHskH0o"></div>
+        <button class="ct-btn" id="btn-clip" title="Clip" data-page-node-id="fb6QBjjbXKhxpiBykKgmyK">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="TUl03knwPVDb2QqJcGsD05"><circle cx="6" cy="6" r="3" data-page-node-id="ALiBcxvtp3Ow9lBbqSYcgD"></circle><circle cx="6" cy="18" r="3" data-page-node-id="FIv566tvQxA8AHCLeS98aT"></circle><line x1="20" y1="4" x2="8.12" y2="15.88" data-page-node-id="0zTg76rMpvAO7E8D1MaABJ"></line><line x1="14.47" y1="14.48" x2="20" y2="20" data-page-node-id="LgtujBFLmrvRdonaXBiuyD"></line><line x1="8.12" y1="8.12" x2="12" y2="12" data-page-node-id="tY31C4XdemQzCf1viTSIhI"></line></svg>
+          Clip
+        </button>
+        <div class="ct-sep" data-page-node-id="x58xz4QysGFFlZ47ljGpr9"></div>
+        <button class="ct-btn" id="btn-snapshot" title="Screenshot" data-page-node-id="PiAZScbOu3L27fhCKdbI2M">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="g8iB0GXmjzavhU80VrXdMz"><rect x="3" y="3" width="18" height="18" rx="2" data-page-node-id="fsuLkfiXIKpjfQ8hkpAXit"></rect><circle cx="8.5" cy="8.5" r="1.5" data-page-node-id="ennEZjuCDk8cFLpZQtC2IZ"></circle><path d="M21 15l-5-5L5 21" data-page-node-id="O2QdnhpfF7EheQPsbDfJym"></path></svg>
+          Screenshot
+        </button>
+        <div class="ct-sep" data-page-node-id="BQEJVPcC8Fds1hqveFGqGx"></div>
+        <button class="ct-btn" id="btn-toggle-compass" title="Toggle coordinates (North arrow+Dip and azimuth) " data-page-node-id="jfQ9S6n9fiQlRLX5WLSRZG">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="gpmpNN1CNEPPCLyDdvUokm"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" data-page-node-id="drBfUgP6ZCErGdDIN8yL1k"></polygon></svg>Direction</button>
+        <button class="ct-btn" id="btn-toggle-axis-labels" title="Toggle ticks (Axis tick labels+XYZ Axis) " data-page-node-id="VLSdVcg1x2BffaXCwJpn9E">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="iC4PHrZ6ImswAbKvfEV5Wf"><line x1="4" y1="20" x2="20" y2="20" data-page-node-id="Yah6secfbh5bFIjzggPa82"></line><line x1="4" y1="20" x2="4" y2="4" data-page-node-id="FdSymdmFvdyzNGtfHCmESL"></line><line x1="4" y1="20" x2="10" y2="10" data-page-node-id="sFcsMeBg7KhmvtP6tiXR5Z"></line><path d="M2 12h4M8 20v-4" data-page-node-id="CL44yphjZVEtKpG6uumjTs"></path></svg>Coordinates</button>
+        <button class="ct-btn active" id="btn-toggle-legend" title="Toggle legend" style="position: relative;" data-page-node-id="o8h47Md4Z3VW4lW1qECy3j">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="EdHgWN363CMPgQ17dld3Io"><rect x="3" y="3" width="7" height="7" rx="1" data-page-node-id="m67LxFf1gcc8cxewpdLkoe"></rect><rect x="14" y="3" width="7" height="7" rx="1" data-page-node-id="CNrZU4VneLQYqGWbFEHs1w"></rect><rect x="3" y="14" width="7" height="7" rx="1" data-page-node-id="fxEd3l5eojlvqv4TcbYOmn"></rect><rect x="14" y="14" width="7" height="7" rx="1" data-page-node-id="Jxqdim2xZK9x8OV2wlg5qU"></rect><line x1="11" y1="5" x2="11" y2="8" data-page-node-id="EAXyAEVs2KJFr5KlMmv7C7"></line><line x1="11" y1="16" x2="11" y2="19" data-page-node-id="RQNoNnc21Ya3XSgqKHqWza"></line><line x1="5" y1="11" x2="8" y2="11" data-page-node-id="1Os8eu2OJT6xSQ1D9QlKZq"></line><line x1="16" y1="11" x2="19" y2="11" data-page-node-id="EtCfIxZ0Cf0lvEkgUFUhQU"></line></svg>
+          Legend
+        </button>
+      </div>
+    </div>
+
+    <div class="canvas-wrap" id="canvas-wrap" data-page-node-id="iMhJpbVBp0FBDUIyl9GObh">
+      <!-- 3D Model Canvas -->
+      <canvas id="three-canvas" class="scene3d-canvas" width="1048" height="549" data-page-node-id="nHhc2rxYX1B9hwxAAwkS4Y"></canvas>
+
+      <!-- Clip Control Panel (Top Right) -->
+      <div class="clip-panel" id="clip-panel" data-page-node-id="QAafEQ8h1aHeGBiPH7XGrf">
+        <div class="clip-panel-header" data-page-node-id="qCPgJCCllrakGhNcqDi1Rg">
+          Clipping controls
+          <button class="clip-panel-close" id="clip-panel-close" title="Disable clipping" data-page-node-id="HWiSrSXOpyWTyAOI0ci5Af">×</button>
+        </div>
+        <div class="clip-section" data-page-node-id="rYOuyNChPwuEOzWWrRUTxl">
+          <div class="clip-section-title" data-page-node-id="j5SvrjoVbKbgrOSp334quj">
+            Horizontal clipping (Z Axis/Elevation) 
+            <label class="clip-toggle" data-page-node-id="lJtIqZGDgH6If7IS8zCe35"><input type="checkbox" id="clip-h-enabled" data-page-node-id="wsULUViLIvzFtocJb7fAVf"> Enable</label>
+          </div>
+          <div class="clip-row" data-page-node-id="dDuCoKDDhuhqFBHBHDeLxR">
+            <input type="range" class="clip-slider" id="clip-h-slider" min="0" max="100" value="50" data-page-node-id="Q1tFXq1oba4fb8ySEhjHHQ">
+            <span class="clip-value" id="clip-h-value" data-page-node-id="HaQknD693zOCWKhMsOfDd0">—</span>
+          </div>
+          <div class="clip-dir-btns" data-page-node-id="jmxOhSIqvKKI49xvgcPUdC">
+            <div class="clip-dir-btn active" id="clip-h-dir-above" data-dir="above" data-page-node-id="sBS6KeaeCf1lqbu9TakcgE">Keep above</div>
+            <div class="clip-dir-btn" id="clip-h-dir-below" data-dir="below" data-page-node-id="7Ge4TLxDDFS6A1zS4PY4ii">Keep below</div>
+          </div>
+        </div>
+        <div class="clip-section" data-page-node-id="TdNU8GeklzDAGU4wpGAPQL">
+          <div class="clip-section-title" data-page-node-id="WutTJWHKTgAbi8XQsldpyb">
+            Vertical clipping (X Axis) 
+            <label class="clip-toggle" data-page-node-id="Zy690v1uaq2nDgsMrZtDfB"><input type="checkbox" id="clip-x-enabled" data-page-node-id="2B3mOLaRbRR6D555PPwyu2"> Enable</label>
+          </div>
+          <div class="clip-row" data-page-node-id="utZK96wKoquebTA5AarxoX">
+            <input type="range" class="clip-slider" id="clip-x-slider" min="0" max="100" value="50" data-page-node-id="UEdTLpKTxsDe28UtGrMaGh">
+            <span class="clip-value" id="clip-x-value" data-page-node-id="0BPpTC3chwIfTp7Ms4f1Zk">—</span>
+          </div>
+          <div class="clip-dir-btns" data-page-node-id="YXk0IMmwU8ogSAqHUciGQw">
+            <div class="clip-dir-btn active" id="clip-x-dir-pos" data-dir="pos" data-page-node-id="VDCqnrQOkZyHs6FMwyCB0X">Keep positive side</div>
+            <div class="clip-dir-btn" id="clip-x-dir-neg" data-dir="neg" data-page-node-id="yRDBq4cbp3F62hEeEdpbl0">Keep negative side</div>
+          </div>
+        </div>
+        <div class="clip-section" data-page-node-id="G1nEoA3EfZHJPvJ5ULOCMK">
+          <div class="clip-section-title" data-page-node-id="Lw6krblBx1CPhDy1FhiYvt">
+            Vertical clipping (Y Axis) 
+            <label class="clip-toggle" data-page-node-id="XcBXxG7j7WfUSI6wcz4XTR"><input type="checkbox" id="clip-y-enabled" data-page-node-id="SZr5FCmkheWW0kMzpprw5O"> Enable</label>
+          </div>
+          <div class="clip-row" data-page-node-id="B6Krz0nQFJO7aFtOgqx7PW">
+            <input type="range" class="clip-slider" id="clip-y-slider" min="0" max="100" value="50" data-page-node-id="Hqdckg9SKDFFApvPhFPb30">
+            <span class="clip-value" id="clip-y-value" data-page-node-id="J4kZugALq6eta17fSHFAkq">—</span>
+          </div>
+          <div class="clip-dir-btns" data-page-node-id="tDCitFYJCrGY94gPQaPszo">
+            <div class="clip-dir-btn active" id="clip-y-dir-pos" data-dir="pos" data-page-node-id="QQthoWM1eZYaMljF1gE6LW">Keep positive side</div>
+            <div class="clip-dir-btn" id="clip-y-dir-neg" data-dir="neg" data-page-node-id="LaaByQ0zfy9HKkdGFh4FUh">Keep negative side</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ★ 点绘制状态指示器（画布左侧竖排图标栏，自上而下） -->
+      <div class="draw-bar" id="draw-bar" data-page-node-id="drawBarIcons01">
+        <!-- 状态图标（恒可用，红点脉冲表示绘制中） -->
+        <div class="draw-bar-item draw-bar-status-icon" id="draw-bar-cat"
+             data-menu-type="always" data-tip-title="Drawing points"
+             data-tip-desc="Writing to“—”Place point in category; Save automatically when drawing finishes">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3v18"></path><path d="M3 12h18"></path>
+            <circle class="draw-bar-pulse" cx="12" cy="12" r="3.4"></circle>
+          </svg>
+          <span class="draw-bar-badge" id="draw-bar-count">0</span>
+        </div>
+
+        <div class="draw-bar-sep"></div>
+
+        <!-- 前一步：撤销上一个落点 -->
+        <button type="button" class="draw-bar-item" id="draw-bar-undo"
+                data-menu-type="always" data-tip-title="Previous step"
+                data-tip-desc="Undo last point; Left-drag rotates the view without placing a point">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 14L4 9l5-5"></path>
+            <path d="M4 9h11a5 5 0 0 1 0 10h-4"></path>
+          </svg>
+        </button>
+
+        <!-- 后一步：重做被撤销的点 -->
+        <button type="button" class="draw-bar-item" id="draw-bar-redo"
+                data-menu-type="always" data-tip-title="Next step"
+                data-tip-desc="Redo“Previous step”Undone points">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 14l5-5-5-5"></path>
+            <path d="M20 9H9a5 5 0 0 0 0 10h4"></path>
+          </svg>
+        </button>
+
+        <div class="draw-bar-sep"></div>
+
+        <!-- 保存：把当前类别写入项目 -->
+        <button type="button" class="draw-bar-item primary" id="draw-bar-save"
+                data-menu-type="always" data-tip-title="Save"
+                data-tip-desc="Apply“—”all points in the category to the project">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+            <path d="M17 21v-8H7v8"></path>
+            <path d="M7 3v5h8"></path>
+          </svg>
+        </button>
+
+        <!-- 结束绘制：退出绘制状态并保存 -->
+        <button type="button" class="draw-bar-item stop" id="draw-bar-stop"
+                data-menu-type="always" data-tip-title="Finish drawing"
+                data-tip-desc="Exit drawing mode and save automatically; Right-click the category to export →“Export points CSV”">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Lithology Color Panel (Left Top, 浮于画布左侧) -->
+      <div class="litho-panel" id="litho-panel" data-page-node-id="rVfqvblpQbbKRHxBsvyB9m">
+        <div class="litho-panel-header" data-page-node-id="F3q1OO0hF6aUGCtDpjjFsU">
+          <span data-page-node-id="DAsxpGwAPYMQpaTE2aoPYV">Drillhole lithology colors</span>
+          <button class="litho-panel-close" id="litho-panel-close" title="Close" data-page-node-id="Nq4WEtztfPHVRO52rF0x4G">×</button>
+        </div>
+        <div class="litho-panel-body" id="litho-panel-body" data-page-node-id="Et6SS5rtwsJdw3eXkpoJkp"></div>
+        <!-- ★ 第 81 节：底部操作栏（改色先记草稿 → 确认才应用 / 取消全部还原）
+             化探色阶面板复用同一个 .litho-panel DOM，故本栏默认隐藏，仅岩性面板打开时显示 -->
+        <div class="litho-panel-footer" id="litho-panel-footer">
+          <span class="litho-panel-hint" id="litho-panel-hint">Changes are held as a draft, Applied after confirmation</span>
+          <button class="litho-btn" id="litho-panel-cancel">Cancel</button>
+          <button class="litho-btn primary" id="litho-panel-confirm">Confirm</button>
+        </div>
+      </div>
+
+      <!-- Drill Setting Panel (Left Top, 浮于画布左侧) -->
+      <div class="litho-panel" id="drill-setting-panel" data-page-node-id="rBAZegHZr2ei8KjmbRmQmL">
+        <div class="litho-panel-header" data-page-node-id="Fw1fQkPcs70xrGRSdHw6ye">
+          <span id="drill-setting-title" data-page-node-id="61tVDcwz6LD1EoI4Y76dxQ">Drillhole settings</span>
+          <button class="litho-panel-close" id="drill-setting-close" title="Close" data-page-node-id="lu8xAtkzUcAWfSqw8CRrOm">×</button>
+        </div>
+        <div id="drill-setting-body" data-page-node-id="bbrvUuIrFrZ06ndSYOEppv"></div>
+      </div>
+
+      <!-- Scene Legend (Right Bottom TOP : 最上方 ) -->
+      <div class="scene-legend" id="scene-legend" data-page-node-id="J7uPmlanEWuht4987dk734">
+        <div class="scene-legend-title" data-page-node-id="biPZlOKC9b2cxMLjRAzCYI">Legend</div>
+        <div class="legend-empty" id="legend-empty" style="display: block;" data-page-node-id="FPqNtJoNK080gwFsu4mi7V">No layers, Shown after a model is imported</div>
+      </div>
+
+<!-- Compass + View Params + Scale Bar (Right Bottom, 垂直均匀分布) -->
+      <div class="compass-params-box hidden" id="compass-params-box" data-page-node-id="KhfhfRmPN0viH2LMHutpYe">
+        <div class="compass-box" data-page-node-id="6yIAxRSpebTRbRBY2BgkiX">
+          <svg viewBox="0 0 40 40" data-page-node-id="AXCxynq63Uy4bhou2kBya9">
+            <circle cx="20" cy="22" r="14" fill="none" stroke="#656d76" stroke-width="1.2" data-page-node-id="tDcWaZ823nUxrj1CNwHgjf"></circle>
+            <ellipse cx="20" cy="22" rx="14" ry="4" fill="none" stroke="#656d76" stroke-width="0.8" data-page-node-id="GaHVuIDYDBBAlBI7n0bUHm"></ellipse>
+            <ellipse cx="20" cy="22" rx="4" ry="14" fill="none" stroke="#656d76" stroke-width="0.8" data-page-node-id="zwNOYbC9j87TNrYpHkCuX3"></ellipse>
+            <ellipse cx="20" cy="22" rx="10" ry="14" fill="none" stroke="#656d76" stroke-width="0.8" data-page-node-id="PyHdCpUFeLaynPM3Rz8bYy"></ellipse>
+            <path d="M7,16 Q20,12 33,16" fill="none" stroke="#656d76" stroke-width="0.8" data-page-node-id="o6zMKOlKAGY128POCWEBsc"></path>
+            <path d="M7,28 Q20,32 33,28" fill="none" stroke="#656d76" stroke-width="0.8" data-page-node-id="dGFHZgvRvUl2MFvHUqtZQB"></path>
+            <!-- ★ 第 77 节：此处原带 transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1)，
+                 而 updateViewInfo() 在旋转时【每帧】都会写本元素的 style.transform
+                 → CSS transition 每帧被重新触发（永远走不到终点），且该曲线的
+                 cubic-bezier y 控制点 1.56 > 1 带【回弹】→ 指针持续晃动 / 抖动。
+                 每秒 60 次写值本身已是平滑动画，无需 transition，故移除。 -->
+            <g id="compass-needle" style="transform-origin: 20px 22px; transform: rotate(-236deg);" data-page-node-id="UU0G7zRXwxMrE3n0pWB2TT">
+              <circle cx="20" cy="8" r="2" fill="#cf222e" data-page-node-id="Enn2mARIdBLsOJIdzRqTL7"></circle>
+              <text x="20" y="6" text-anchor="middle" font-size="7" font-weight="bold" fill="#cf222e" data-page-node-id="1Yd4I6mYhv6arBtGVT7P9L">N</text>
+              <line x1="20" y1="8" x2="20" y2="22" stroke="#cf222e" stroke-width="0.8" stroke-dasharray="2,1" data-page-node-id="CB8EJRrzNQYLts4ct1sJGD"></line>
+            </g>
+          </svg>
+        </div>
+        <div class="view-params" data-page-node-id="0WkDtTkfQ8Ja2pnQP0sohV">
+          <div class="vp-row" data-page-node-id="iOtRc73NYdI15l2A4idgNx">Dip <span class="val" data-page-node-id="I3uqHN5hP3aHtgQRCBhwXI">+27</span></div>
+          <div class="vp-row" data-page-node-id="FmGAkA4XGGdeCU8eERi22J">Azimuth <span class="val" data-page-node-id="NPyZbk9XGxNTkp2jurxJTF">236</span></div>
+        </div>
+        <div class="scale-bar" id="scale-bar" data-page-node-id="8Gf3EVS4seHkdK4EZpO9Q7">
+          <div class="scale-title" data-page-node-id="QGC1B8b1De82EhF7lxv5AB">Scale bar</div>
+          <div class="scale-line" data-page-node-id="gDQ0VRkrwm5AHYQYjRQFj8"></div>
+          <div class="scale-labels" data-page-node-id="8oQSiy8SyoNWae4lGnblh4">
+            <span class="sl-val" data-idx="0" data-page-node-id="oKo9xnNxU21LifOLtFCkPC">0</span>
+            <span class="sl-val" data-idx="1" data-page-node-id="vmAyra7vA2dULlObCJfzgD">500m</span>
+            <span class="sl-val" data-idx="2" data-page-node-id="xvvhw0Wz2dt2sGimFFpd98">1.0km</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty Model Placeholder：第 72 节已按用户要求删除（原为视图中央的
+           "示例模型，导入后将替换" 图标 + 两行提示文字）。
+           三维场景里的占位立方体同期一并删除，见 createPlaceholder()。
+           如需恢复：从 backups/index8_20260923_145000_before_del_placeholder.html 取回本块。 -->
+    </div>
+
+    <!-- Horizontal Resize Handle for Layer Manager Height -->
+    <div class="resize-handle-h" id="resize-cb" data-page-node-id="GREbAZ8F31eTtHaM7JC1yO"></div>
+
+    <!-- Bottom Split: Layer Manager (70%) + Model Properties (30%) -->
+    <div class="bottom-split" id="bottom-split" style="height: 180px;" data-page-node-id="Pm9AifYQGjrcGxKIyWou2P">
+    <!-- Layer Manager (left 70%) -->
+    <div class="layer-manager" id="layer-manager" data-page-node-id="ywF6Hc2Z5bBZwF9uGRdrmE">
+      <div class="lm-header" data-page-node-id="HBAFQlG8s9U1CF93rA3QJ2">
+        <div class="lm-title" data-page-node-id="WG8to3EtmKXwoz6Aad3W0t">Layers</div>
+        <div class="lm-subtitle" data-page-node-id="WBpBXUAmTx0tGSUb0flhwE">Drag to reorder</div>
+      </div>
+      <div class="lm-list" id="lm-list" data-page-node-id="KXVj69D8e5PQR9nu543rKs"><div class="lm-empty" id="lm-empty" style="display: block;" data-page-node-id="rJy81X2tgml5Np9fLIincn">No layers, Import a model</div></div>
+    </div>
+    <!-- Bottom Props: Model Properties (right 30%) -->
+    <div class="bottom-props" id="bottom-props" data-page-node-id="pZ1S7FH92BuMWZe42bCZT1">
+      <div class="bp-header" data-page-node-id="P2ht1B4EBCMBeCes7sm7Uy">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="dMd6lBc1wZn8DyU5EHvKHm"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" data-page-node-id="NJu2vegESdZ0fCDjeM4PG3"></path><polyline points="9 22 9 12 15 12 15 22" data-page-node-id="1kWqi2FX3HucxEfcJrChdl"></polyline></svg>
+        Model Properties
+      </div>
+      <div class="bp-content" data-page-node-id="Y9DGPRUqvnsws6iitVWqR0">
+        <div class="bp-empty" id="bp-empty" style="display: block;" data-page-node-id="dBm3a85ISM3UV27VANXG2B">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-page-node-id="LTz9UBEunviWcfVYMy3xri"><circle cx="11" cy="11" r="8" data-page-node-id="j8Rnn58xAknHvmJS3ecP4M"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" data-page-node-id="uMrZ0HGNE4rXfWHKJIShpJ"></line></svg>
+          <div data-page-node-id="tLe3pyizPoyEX5Jkjgk9VU">Click a 3D model to view its properties</div>
+        </div>
+        <div id="bp-model-props" style="display: none;" data-page-node-id="hb3vHBq5nWnmHs5o0xReGM"><div class="rp-section" data-page-node-id="2XdqMky4Rj3Ybr2ZEHTm7z"><div class="rp-section-title" data-page-node-id="tICP0A2QMNjsGcQmMntQUG">General information</div><div class="prop-row" data-page-node-id="lSRZ4m4SDcgi56pUQHIZ5Z"><span class="prop-label" data-page-node-id="nUzuWmoVR3u2fbzS2Wdess">Name</span><span class="prop-value" data-page-node-id="xwtqL2h27wf2yMHi1NMSXK">GM - Mineralized Alteration Zone</span></div><div class="prop-row" data-page-node-id="DQPuqjhHJLyX1pvjJKMNca"><span class="prop-label" data-page-node-id="2D5A2k4C6WVYu4k4LVyXtV">Category</span><span class="prop-value highlight" data-page-node-id="oh3vmrZe2PlE0lCevzEpMr">Alteration</span></div><div class="prop-row" data-page-node-id="PrzA6CE0h1rIdserU6Xab9"><span class="prop-label" data-page-node-id="uzmbNfF8VZn5SU3yo8DnM4">Filename</span><span class="prop-value" data-page-node-id="RJEUSezd0V4EGEfyj7UjHb">GM - Mineralized Alteration Zone.ts</span></div></div><div class="rp-section" data-page-node-id="JwuIKSENvQSM6CsPsABQpT"><div class="rp-section-title" data-page-node-id="vrq6gX3T4FF9HCtKvXCmVY">Geometry</div><div class="prop-row" data-page-node-id="QEGyre8e2abEzbOsOBmEMg"><span class="prop-label" data-page-node-id="3q8JY7mLGaTrcs6YqojvLt">Vertices</span><span class="prop-value" data-page-node-id="S6wr4asewNRO3t92Wrf0Gj">862</span></div><div class="prop-row" data-page-node-id="a4VihI89iDiu4hBuJhFNxp"><span class="prop-label" data-page-node-id="0NjegPXGTofOHmG4fH7Ykl">Triangles</span><span class="prop-value" data-page-node-id="k6uOSe44UK2D2BnHYv0iSH">1720</span></div><div class="prop-row" data-page-node-id="FJDCQm2MO1Eiby2ywEepPB"><span class="prop-label" data-page-node-id="5L2kqOGsEtQi6a2lP728mX">X Extent</span><span class="prop-value" data-page-node-id="zYRFU0WlA5jToPd5FpP2ZX">-142.70 ~ 1178.43 (1321.13)</span></div><div class="prop-row" data-page-node-id="7511MyMHnReRFaEbN1Hvqx"><span class="prop-label" data-page-node-id="EGgtk9FJCEyQmmZ7Sh5FoC">Y Extent</span><span class="prop-value" data-page-node-id="xAyVdmyOTJBLNZb6DpHK4y">56.20 ~ 758.80 (702.60)</span></div><div class="prop-row" data-page-node-id="SYOP4JpI9PipnzlphZOWRj"><span class="prop-label" data-page-node-id="T9os7APVSymsGyytGGufPa">Z Extent</span><span class="prop-value" data-page-node-id="SS1LFllMcSPDSdHZvnIkCA">-438.80 ~ 217.30 (656.10)</span></div></div><div class="rp-section" data-page-node-id="1Wl7XGgF20KLHxISD6nIB4"><div class="rp-section-title" data-page-node-id="Gnu4tWorT9mQ7te2iHJgfz">Display properties</div><div class="prop-row" data-page-node-id="n3i4f300iH0sDJtNZfUDtI"><span class="prop-label" data-page-node-id="ndcoBbBTlrHbMs0hYzFF72">Opacity</span><span class="prop-value" data-page-node-id="EdDMEXBiY9FefVBjIiRp6p">92%</span></div><div class="prop-row" data-page-node-id="qS6lZiJsKzhqAerJqWYr27"><span class="prop-label" data-page-node-id="EOTTB0dxlY0ntjEuOAcj0C">Color</span><span class="prop-value" data-page-node-id="NZep9GcvT9ZlrzAGMfr1Mx"><span style="display:inline-block;width:12px;height:12px;background:#f0883e;border:1px solid #ccc;border-radius:2px;vertical-align:middle;margin-right:4px;" data-page-node-id="WTkb7ofdSYw8IOIzblG8px"></span>#f0883e</span></div><div class="prop-row" data-page-node-id="NYmfYmDNCjytvWmffjW2x0"><span class="prop-label" data-page-node-id="nBtXfLm7htrI7ePlyg1nt7">Visibility</span><span class="prop-value" data-page-node-id="kKGE7PGvMbFNbW1m47PZfY">Visible</span></div></div></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ========== RESIZE HANDLE: CENTER-RIGHT ========== -->
+  <div class="resize-handle-v" id="resize-cr" style="" data-page-node-id="DJeP61dvPyKS1O1BQoiC0D"></div>
+
+  <!-- ========== RIGHT PANEL ========== -->
+  <div class="right-panel" style="display:none" data-page-node-id="24T2HswadRvyJsPwCvVg7N">
+    <div class="rp-header" data-page-node-id="Kkai9KARqKfoov5kCMpFDw">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="QIT5dJWvqn0K8FohuVsPj5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" data-page-node-id="ExLTb6n94alLyCUrXQuVHS"></path><polyline points="9 22 9 12 15 12 15 22" data-page-node-id="GaQAHYWhJqkLb56fw4zMic"></polyline></svg>
+      <span id="rp-header-text" data-page-node-id="m1f3nGFuGHAM9tssIGpeJX">Linked 2D View</span>
+    </div>
+    <div class="rp-tabs" id="rp-tabs-bar" data-page-node-id="kHAk4hhcX2Ba4mW9DvPNTf">
+      <!-- 页签组 A：钻孔场景（二维联动） -->
+      <div class="rp-tab-group active" data-group="drill" data-page-node-id="TennAvfxftvYYaWpQ1A7S4">
+        <div class="rp-tab active" data-tab="Drillhole Log" data-page-node-id="oRm1Qvsk339CsSr1rOBFl6">Drillhole Log</div>
+        <div class="rp-tab" data-tab="Core Data" data-page-node-id="sHTednscXFdoHsAeTCCt7g">Core Data</div>
+        <div class="rp-tab" data-tab="Assay Data" data-page-node-id="SwnqbtfDRfCTyxBapQBLhM">Assay Data</div>
+      </div>
+      <!-- 页签组 B：文档场景（PDF / Word 阅读） -->
+      <div class="rp-tab-group" data-group="doc" data-page-node-id="pZ44Q0L4vF5C0ULi8nfTO8">
+        <div class="rp-tab active" data-tab="Outline" data-page-node-id="TPH6zg6LI6NlH9jfwadjqS">Outline</div>
+        <div class="rp-tab" data-tab="Bookmarks" data-page-node-id="9NMOq04W8O9bHCgQ80Ok7S">Bookmarks</div>
+        <div class="rp-tab" data-tab="Notes" data-page-node-id="x9RBM34i9KE2GFyiIpv5BK">Notes</div>
+      </div>
+    </div>
+    <div class="rp-content" data-page-node-id="sGSt4Sw5pWHR9c2yvYmU06">
+      <!-- ===== 钻孔组面板 ===== -->
+      <div class="rp-tab-panel active" data-tab="Drillhole Log" data-group="drill" data-page-node-id="VYlLtqw40hhJ8kAJbFk3iv">
+        <div class="rp-hole-empty" id="rp-column-img" data-page-node-id="ZlzuIuS5p5S3LBgtdqQ6Y7">Right-click a drillhole in 3D to view its log</div>
+      </div>
+      <div class="rp-tab-panel" data-tab="Core Data" data-group="drill" data-page-node-id="9s5NH1q9yiHbKCrn2lL4OE">
+        <div class="rp-hole-empty" id="rp-core-img" data-page-node-id="AqPkeSnPYIz6QqpYwu69uZ">Right-click a drillhole in 3D to view core images</div>
+      </div>
+      <div class="rp-tab-panel" data-tab="Assay Data" data-group="drill" data-page-node-id="u7MN09udrbflwLaj8iBmBj">
+        <div class="rp-hole-empty" id="rp-assay-data" data-page-node-id="eLY1fF6pEQEBgoiFhmnaYw">Right-click a drillhole in 3D to view assay data</div>
+      </div>
+      <!-- ===== 文档组面板 ===== -->
+      <div class="rp-tab-panel" data-tab="Outline" data-group="doc" data-page-node-id="f7X7TCfDjDn0JwKU2GhbWn">
+        <div class="rp-hole-empty" id="rp-doc-outline" data-page-node-id="jBq2OnGerhZEdZ6x8bBZws">Open PDF / Word documents to extract the outline automatically</div>
+        <div id="rp-doc-outline-tree" class="rp-outline-tree" data-page-node-id="q02x9bf1w3CQXDJHj6c0i7"></div>
+      </div>
+      <div class="rp-tab-panel" data-tab="Bookmarks" data-group="doc" data-page-node-id="uq197qVIiQc8VtSYptCz95">
+        <div class="rp-hole-empty" id="rp-doc-bookmark" data-page-node-id="OxQPw2wHCukps1fq2HLfz8">Select text on a document page → Right-click → Add bookmark</div>
+        <div id="rp-doc-bookmark-list" class="rp-bm-list" data-page-node-id="noPgD6XhAzfzw51nJACwSz"></div>
+      </div>
+      <div class="rp-tab-panel" data-tab="Notes" data-group="doc" data-page-node-id="v9PJuQakur3BjSnQL5rsTh">
+        <div class="rp-hole-empty" id="rp-doc-note-empty" data-page-node-id="KH6MqRZD1ztNWhGpgGJCD2">Open PDF / Word documents to take notes here</div>
+        <textarea id="rp-doc-note-editor" class="rp-note-editor" rows="14" spellcheck="false" placeholder="Enter notes here… (Autosave will be connected in a later stage) "></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== AI ASSISTANT FAB ========== -->
+<div class="ai-fab" title="AI Geo Assistant" data-page-node-id="uFWVzNXWFzuBTgdiMMzBhb">
+  <div class="ai-fab-icon" data-page-node-id="obO3Begjjp9CVY06G9YmFs">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" data-page-node-id="NXHI428hAvwV6G5c6jaU1Y"><circle cx="12" cy="12" r="10" data-page-node-id="WYwMEc4VTMIFqIfCVFU8q3"></circle><circle cx="12" cy="12" r="3.5" fill="currentColor" fill-opacity="0.25" data-page-node-id="HWq4YhseDMEJxDtis9a31O"></circle><path d="M12 5v4M12 15v4M5 12h4M15 12h4" data-page-node-id="FxVtK7zFtuL8ik99IXUYkO"></path></svg>
+    <div class="ai-fab-dot" data-page-node-id="TcS6spLzHViPKClXqrt6on"></div>
+  </div>
+  <div class="ai-fab-text" data-page-node-id="Dm0ruE8u5KT9J7qIwmBCfZ">
+    <span class="ai-fab-title" data-page-node-id="y83kxSzSAtc8P1CYzXCz8s">AI Geo Assistant</span>
+    <span class="ai-fab-sub" data-page-node-id="LTEbS5cphxc6zdNdCrMqie">Online · Click to ask</span>
+  </div>
+</div>
+
+<!-- ========== Context Menu ========== -->
+<div class="ctx-menu" id="ctx-menu" style="left: 83px; top: 108px;" data-page-node-id="rtCroKl5APbgkUHfiQzG9N">
+  <div class="ctx-menu-item" id="ctx-import-ts" data-menu-type="category,geochem,tunnel" style="display: none;" data-page-node-id="DopQ1kdyOAZ57534PGVkNh">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="dL9Ozldi8SI50TRQeVTZyn"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="ZBOmoJzLBUizmJCD0G33TO"></path><polyline points="17 8 12 3 7 8" data-page-node-id="UyeOXFG2KHNYuIY0p8XLuZ"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="jxmjsOgBzq19c6wq2WWxw7"></line></svg>
+    <span id="ctx-import-ts-label" data-page-node-id="aVG3p1QEiVZEARpb4HPijF">Import TS Model</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-obj" data-menu-type="category" style="display: none;" data-page-node-id="QrNaBQRtIKBdJEaJ4STA2r">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="XYZU4ORUzGptmxwj3Hb3jn"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="lhxyeUssxQgrHjCZwTouzk"></path><polyline points="17 8 12 3 7 8" data-page-node-id="TMDVcx6sySUpaZI2rO8zLl"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="Xz5lq4CvqTlYor5Bahtaic"></line></svg>
+    Import OBJ Model
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-block-model" data-menu-type="blockmodel" style="display: none;" data-page-node-id="blkctx010">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="blkctx011"><path d="M12 5v14M5 12h14" data-page-node-id="blkctx012"></path></svg>
+    <span data-page-node-id="blkctx013">New 3D block model</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-block" data-menu-type="blockmodel-node" style="display: none;" data-page-node-id="blkctx001">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="blkctx002"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="blkctx003"></path><polyline points="17 8 12 3 7 8" data-page-node-id="blkctx004"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="blkctx005"></line></svg>
+    <span data-page-node-id="blkctx006">Import block model CSV</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-drawing" data-menu-type="drawing" style="display: none;" data-page-node-id="zesxSrrxkZJMq0Ifdi6HzW">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="TUFxBYOJ90WqIAAE3MBSgQ"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="Cq7ZHKJMsXDUULabajQqaE"></path><polyline points="17 8 12 3 7 8" data-page-node-id="ogDIjEfv0ZwOUhziWA6gPC"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="HFLNMhCIeF8WKDIUT6Ye1o"></line></svg>
+    Import map or figure
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-dxf" data-menu-type="drawing" style="display: none;" data-page-node-id="Aj5k64pxGPVppm1yfCt6xo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="lGVp3vSsgb2miPCGZDFNNA"><path d="M4 7v10M4 7a3 3 0 0 1 6 0M4 7a3 3 0 0 0 6 0M10 7v10M10 7a3 3 0 0 1 6 0M10 7a3 3 0 0 0 6 0M16 7v10M16 7a3 3 0 0 1 6 0M16 7a3 3 0 0 0 6 0" data-page-node-id="d6A0PHFJaXkgiHZ492bf3a"></path><path d="M1 17h22" data-page-node-id="AUOfk4HPUroNqMF076U8fv"></path></svg>
+    Import DXF
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-geojson" data-menu-type="drawing" style="display: none;" data-page-node-id="a7XjlC20RBV3KIuCKV7Wke">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="WODKA2dsCj35qNwofS3UQt"><path d="M12 21C7.6 21 4 17.4 4 13c0-5 8-11 8-11s8 6 8 11c0 4.4-3.6 8-8 8z" data-page-node-id="bDfXmkIsiQlWA12z5MxAlg"></path><circle cx="12" cy="13" r="3" data-page-node-id="19LanUMTw7eWkx0qBKSoNl"></circle></svg>
+    Import GeoJSON
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-drawing-category" data-menu-type="drawing-group,drawing" style="display: none;" data-page-node-id="nM4qALRBT3nPSS0KDRtbrM">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Pi5NjFVqHObzACNDCTSW3X"><path d="M12 5v14M5 12h14" data-page-node-id="xDk6VLAKPrf8EFOwEW5a5A"></path></svg>
+    New subcategory
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-register-drawing" data-menu-type="drawing-file" style="display: none;" data-page-node-id="76fCkIGjCiy2TvoRwE42FZ">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="59MyxH3Hw20GOsC8Z2LiYe"><circle cx="12" cy="12" r="7" data-page-node-id="vgfAw6JvrMum707BFs2dax"></circle><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none" data-page-node-id="HDcLu1NBbUZ8Z083eMV6MW"></circle><line x1="12" y1="1" x2="12" y2="5" data-page-node-id="NaVYWhssBHul5A8qX86fHe"></line><line x1="12" y1="19" x2="12" y2="23" data-page-node-id="cJwPX0DVORgB0cRewMQpCD"></line><line x1="1" y1="12" x2="5" y2="12" data-page-node-id="amRlufg62lXpnrrq6CflHG"></line><line x1="19" y1="12" x2="23" y2="12" data-page-node-id="DtzgLG849Dmgv0OEtfMNRg"></line></svg>
+    Register
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-table" data-menu-type="table" data-page-node-id="Pk4nSGHM1EQK30ZC7IyI0F">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="ZED3e9nFQxqADheeiHTklU"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="phmBe9tEZQdofM1oPt1YyV"></path><polyline points="17 8 12 3 7 8" data-page-node-id="HS6orvixS3p4pN67WZ2OaX"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="ZSrJymnY8M6dSFKPOkn2H5"></line></svg>
+    Import table
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-point-category" data-menu-type="point" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+    <span>New category</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-point" data-menu-type="point" data-page-node-id="ptimp001">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="ptimp002"><circle cx="12" cy="12" r="4"></circle></svg>
+    Import point file
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-add-point" data-menu-type="point-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l7.07 17 2.51-7.39L20 10.07 3 3z"></path></svg>
+    <span>Draw points</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-edit-point-data" data-menu-type="point-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+    <span>Edit point data</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-export-point" data-menu-type="point-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    <span>Export points CSV</span>
+  </div>
+
+  <!-- ★ 单点右键菜单（右键三维画布上的点小球）：data-menu-type="point-sphere" -->
+  <div class="ctx-menu-title" id="ctx-point-name" data-menu-type="point-sphere" style="display: none;"></div>
+
+  <div class="ctx-menu-item" id="ctx-point-edit" data-menu-type="point-sphere" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
+    <span>Edit point</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-point-copy" data-menu-type="point-sphere" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+    <span>Duplicate point</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-point-delete" data-menu-type="point-sphere" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+    <span>Delete point</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-point-focus" data-menu-type="point-sphere" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg>
+    <span>Center on this point</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-point-detail" data-menu-type="point-sphere" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+    <span>View point properties</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-line-category" data-menu-type="line" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+    <span>New line category</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-line-dxf" data-menu-type="line-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6l2 3h8v13H4z"></path><path d="M8 12h8M8 16h5"></path></svg>
+    <span>Import DXF</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-line-geojson" data-menu-type="line-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path><path d="M2 12h20M12 2c3 3.5 3 16.5 0 20M12 2c-3 3.5-3 16.5 0 20"></path></svg>
+    <span>Import GeoJSON</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-line-csv" data-menu-type="line-category" style="display: none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M8 13h8M8 17h5"></path></svg>
+    <span>Import CSV/TXT Line</span>
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-pdf" data-menu-type="report,report-folder" data-page-node-id="YAAwCaOhUu97tZe63FkJvg">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="15AZA0nvWVQqFKb7mGNGnA"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" data-page-node-id="xQcvDg19LKnqmC6UAIeKuQ"></path><polyline points="14 2 14 8 20 8" data-page-node-id="b8iXMJHhq88dB3sMMu8Thr"></polyline><path d="M9 15h6M9 18h4" data-page-node-id="a6sYvDlXBvYuktEVKWA14G"></path></svg>
+    Import PDF
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-word" data-menu-type="report,report-folder" data-page-node-id="cByEmyHRsE4r0xlK8xSagC">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="L1QhT3PRpFXwCUqcaEk7PL"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" data-page-node-id="kGo4ORk2tI6UWvlO9qx4Cc"></path><polyline points="14 2 14 8 20 8" data-page-node-id="dPCOGdwIHMYnOSqamYezGS"></polyline><path d="M16 13H8M16 17H8M10 9H8" data-page-node-id="EactvBdxYiHldDfXjb8Hms"></path></svg>
+    Import Word Documents
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-report-folder" data-menu-type="report" data-page-node-id="cvsFDShXJzXBDatwT0FSMQ">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="BuIYtXKrlKlPxVcREp5HeJ"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" data-page-node-id="zO4de0MJ0V9IvaXTv6mChv"></path><line x1="12" y1="11" x2="12" y2="17" data-page-node-id="BBuZb3Mxz5rc7Z9ZAeLP6w"></line><line x1="9" y1="14" x2="15" y2="14" data-page-node-id="vfrWfsioroxCXWXePltKSL"></line></svg>
+    New folder
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-excel" data-menu-type="testdata,testdata-folder" data-page-node-id="SWkpB0DeZTgcJj3oAnYckl">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="vO1bN7eFkEXTWIbd7YLHyg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="Sl5orcVI1eYUfMyWxAq8jA"></path><polyline points="17 8 12 3 7 8" data-page-node-id="XB0Af5anfwvzSpvdv40oUx"></polyline><line x1="12" y1="3" x2="12" y2="15" data-page-node-id="LnFbziKweKp5tmU74Rcn4M"></line></svg>
+    Import Excel
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-new-testdata-folder" data-menu-type="testdata,testdata-folder" data-page-node-id="EQ4AoG0SrBrHjrgTtG4BBH">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Fmqkw1cvhPQnqlNXu9SoY8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" data-page-node-id="xZ8q9YXLW0iEeJLxNVAaUf"></path><line x1="12" y1="11" x2="12" y2="17" data-page-node-id="nEjnW5UGE31OUGltURlVf9"></line><line x1="9" y1="14" x2="15" y2="14" data-page-node-id="MEi8LeEX30HHEljIdbtdv9"></line></svg>
+    New folder
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-open-excel" data-menu-type="testdata-file" data-page-node-id="4TBmdBm1FlQ71Vvw6FUia2">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="8acy1Gh0RjKfJTKYxtTdNV"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" data-page-node-id="NQqw7EtqzngYKXeXLNC3mf"></path><polyline points="15 3 21 9 15 9" data-page-node-id="EPd86S5NVM2wkkxgDf2ppi"></polyline><line x1="10" y1="14" x2="21" y2="14" data-page-node-id="SBeW56pqdqk2gU9REyUA7U"></line><line x1="10" y1="18" x2="18" y2="18" data-page-node-id="yLPB5AYYX6oemtNx5ioPYy"></line></svg>
+    Open Excel
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-open-pdf" data-menu-type="pdf-file" data-page-node-id="4aY2TA4LfOfdtd4pGiExDm">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="N5P8pSPRg7t1cbOKY4EWi6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" data-page-node-id="mkqc2kn9wwSl1crbtHj8Jj"></path><polyline points="15 3 21 9 15 9" data-page-node-id="JVKgfAMevPYj5RZuNbQlX1"></polyline><line x1="10" y1="14" x2="21" y2="14" data-page-node-id="ItAdjgIeQR0pFP71xwJmzQ"></line><line x1="10" y1="18" x2="18" y2="18" data-page-node-id="57ij4x2Smr9uQ6ixte8LgW"></line></svg>
+    Open PDF
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-open-word" data-menu-type="word-file" data-page-node-id="1CBnu0nAwi3PcCyks99CdL">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="Me1VnJtCILPJE3Q8MgG0cw"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" data-page-node-id="SbaGwyVudp79zcVwjlayCB"></path><polyline points="15 3 21 9 15 9" data-page-node-id="RmAKPNg2YliSljwz8PDbY0"></polyline><line x1="10" y1="14" x2="21" y2="14" data-page-node-id="3zBITRKplhPbFbB5dwcouf"></line><line x1="10" y1="18" x2="18" y2="18" data-page-node-id="DxSL3yAenpjip9qdF6IjQ0"></line></svg>
+    Open Word
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-rename" data-menu-type="model,file,geochem,tunnel,blockmodel-node,blockmodel-file,drawing,drawing-group,drawing-file,table,table-file,drillhole-area,pdf-file,report-folder,testdata-folder,testdata-file,point-file,point-category,line-file,line-category" data-page-node-id="3HC6W54S75cP5H9JuXQn3z">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="zSoabCz7FuizwD3pwsswdT"><path d="M4 7V4h16v3" data-page-node-id="7DNNWWzlUSwnCUM08YRJ9Y"></path><path d="M9 20h6" data-page-node-id="B4VyKJMx6C2uVtSEE1QwXu"></path><path d="M12 4v16" data-page-node-id="LO4hOLcdLxfzyl2Mngk6A4"></path><path d="M5 14l3 3 8-8" data-page-node-id="AgUVFBpEUjUg74mnmenbGf"></path></svg>
+    Rename
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-import-attrs" data-menu-type="file,blockmodel-file" style="display: none;" data-page-node-id="uMsZGZFmv1Xl27P0A9HrBD">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="xUg59agB2ZnqrwaZuD6eQb"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" data-page-node-id="GZTeU0Tn5f3AFhHSNwEfoM"></path><polyline points="14 2 14 8 20 8" data-page-node-id="KRbqF7BQKSAFqFgopuuVA8"></polyline><line x1="16" y1="13" x2="8" y2="13" data-page-node-id="v6iOFBCjC1jsT3QtrZu2g8"></line><line x1="16" y1="17" x2="8" y2="17" data-page-node-id="vqyC53c5rLqGXABEbbVESg"></line></svg>
+    Import attribute table
+  </div>
+
+  <div class="ctx-menu-item" id="ctx-export" data-menu-type="model,file,geochem,tunnel,drawing,drawing-file,table,table-file,pdf-file,word-file,testdata-file" data-page-node-id="kgqdPFKeQHfIT2Ahvbwxvq">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="W86WRhGZ3zcblOdBFkRVlu"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="48Nfy6vNz26l1dnEgjd7cD"></path><polyline points="7 10 12 15 17 10" data-page-node-id="35biXsFS5bPQoApghX0ssJ"></polyline><line x1="12" y1="15" x2="12" y2="3" data-page-node-id="D0V9Mr3X5TZyV51FeUDB2a"></line></svg>
+    Export
+  </div>
+
+  <!-- 第 99 节：块体模型专用输出（通用「输出」走 OBJ，对 InstancedMesh 只会导出共享单位立方体，故单独一项） -->
+  <div class="ctx-menu-item" id="ctx-export-block" data-menu-type="blockmodel-node,blockmodel-file" style="display: none;" data-page-node-id="blkexp001">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="blkexp002"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" data-page-node-id="blkexp003"></path><polyline points="7 10 12 15 17 10" data-page-node-id="blkexp004"></polyline><line x1="12" y1="15" x2="12" y2="3" data-page-node-id="blkexp005"></line></svg>
+    <span data-page-node-id="blkexp006">Export blocks CSV</span>
+  </div>
+
+  <div class="ctx-menu-divider" data-menu-type="model,file,geochem,tunnel,blockmodel-node,blockmodel-file,drawing,drawing-file,table,table-file,drillhole-area,pdf-file,report-folder,testdata-folder,testdata-file,point-category,line-file,line-category" data-page-node-id="h0htEoEYCFsGbXYReVo1lv"></div>
+
+  <div class="ctx-menu-item danger" id="ctx-delete" data-menu-type="model,file,geochem,tunnel,blockmodel-node,blockmodel-file,drawing,drawing-group,drawing-file,table,table-file,drillhole-area,pdf-file,report-folder,testdata-folder,testdata-file,point-file,point-category,line-file,line-category" data-page-node-id="EtoktpwZPTooVkeso9JnrH">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-page-node-id="9n0h82Issui0hH9ZhBiZjT"><polyline points="3 6 5 6 21 6" data-page-node-id="MSWZoB71kLuskOb0lBGpZ5"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-page-node-id="4pE7oWmFVmlGnY76DpS3hr"></path></svg>
+    Delete
+  </div>
+</div>
+
+<!-- ========== Modal Dialog ========== -->
+<div class="modal-overlay" id="modal-overlay" data-page-node-id="neZMD85oZgPxjCNCtczT53">
+  <div class="modal-dialog" data-page-node-id="alhHmXstkRabX3qM3fjmsL">
+    <div class="modal-header" id="modal-title" data-page-node-id="5Su4RRvuvYiAOPhSGGMBX5">Import.ts Data</div>
+    <div class="modal-body" data-page-node-id="Mt1kEtdOFRQgl4AqEBu1wF">
+      <label id="modal-label" data-page-node-id="ROklzhcxrfGZFIXpj3UXQj">Enter a new model name</label>
+      <input type="text" id="modal-input" value="New area" data-page-node-id="AWU1RIs1CDN1Ek4IrYdzJK">
+      <!-- 复选框：仅「新增矿区模型」对话框显示（地球化学对话框隐藏） -->
+      <div class="modal-checkbox-row" id="modal-coordsys-row" style="display:none;" data-page-node-id="a6BlvEXEvco52VUaR0RW8B">
+        <label class="modal-checkbox-label" data-page-node-id="IcI6aYV1yDr3gxnXW9CvqE">
+          <input type="checkbox" id="modal-same-coordsys" data-page-node-id="7jiSWCXJp79Jol5X4DTSzF">
+          <span data-page-node-id="UKFpqCcRTSg0YRmkYNXItN">The new model uses the same coordinate system as the current view</span>
+        </label>
+        <div class="modal-checkbox-hint" data-page-node-id="3nGE5Wxe89YnANGD6wPkLj">If unchecked, a new view tab is created automatically</div>
+      </div>
+    </div>
+    <div class="modal-footer" data-page-node-id="glYoXyPTWpQOcFAddNbusQ">
+      <button class="modal-btn" id="modal-cancel" data-page-node-id="IEohdDBTXuDvFtyw0gCWhI">Cancel</button>
+      <button class="modal-btn primary" id="modal-confirm" data-page-node-id="TztERIBJahU07s96Zx9mUv">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Tab Modal Dialog（标签锁定删除提示） ========== -->
+<div class="modal-overlay" id="tab-modal-overlay" data-page-node-id="Ongu3WHPC23BgJGj2obgJA">
+  <div class="modal-dialog" data-page-node-id="ryF9lRqcJOsBGxcnIWTPmS">
+    <div class="modal-header" id="tab-modal-title" data-page-node-id="FgDVLkoDDBngjKqkUo0TX0">Tab is locked</div>
+    <div class="modal-body" id="tab-modal-body" data-page-node-id="DkMPK4Rgz4PqgiFPyvFu3l">
+      <label id="tab-modal-label" data-page-node-id="Vw4gePrOPFMi1bQw0LsHY6"></label>
+    </div>
+    <div class="modal-footer" data-page-node-id="BevIDs7Hz89quwUF5VRewU">
+      <button class="modal-btn" id="tab-modal-cancel" style="display:none;" data-page-node-id="9bKdDsBfWLaxuDjS7s2Zm9">Cancel</button>
+      <button class="modal-btn primary" id="tab-modal-confirm" data-page-node-id="35Q3AkIFtjqGAniU3DDM2w">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 关闭程序前询问（是否保存当前项目） ========== -->
+<div class="project-close-overlay" id="project-close-overlay" style="display:none;" data-page-node-id="jZ4YgMCvdJUxG5sTEltdR9">
+  <div class="project-close-box" data-page-node-id="lFXKfv6H2d1kHPJg5ZGhhR">
+    <div class="project-close-title" data-page-node-id="s9KZe6NCIexYfsHCX5B5ok">Save the current project??</div>
+    <div class="project-close-sub" id="project-close-sub" data-page-node-id="F086zWFjGKuVERlUtvDtwY">Current project“<span id="project-close-name" data-page-node-id="pwAYcRfB3PjDi4Hj8l6Kuk"></span>”Not saved, Choose an action before closing: </div>
+    <div class="project-close-btns" data-page-node-id="8YKETHW8cAIguhT5ERu51L">
+      <button class="pc-primary" id="project-close-save" data-page-node-id="ED3ZQdhiqVrCIsJHxAFrxE">Save and exit</button>
+      <button id="project-close-nosave" data-page-node-id="2yZI4Hq2RRm6gZ9Pqfydi2">Exit without saving</button>
+      <button id="project-close-cancel" data-page-node-id="mZl4KIiCUIw08MNwyknBNV">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- 导入加载提示 -->
+<div class="import-loading-overlay" id="import-loading-overlay" data-page-node-id="sdcdf4VaRypNna4zcJXUVk">
+  <div class="import-loading-box" data-page-node-id="Lt9ou5SzPg8iz895cI9XB5">
+    <div class="import-loading-spinner" data-page-node-id="Qd4LgBG7YtB22cknqhRv1n"></div>
+    <div class="import-loading-text" id="import-loading-text" data-page-node-id="o4fjonyqZ0hapFssh9Qi30">Importing, Please wait...</div>
+    <div class="import-progress-track" id="import-progress-track" style="display:none;" data-page-node-id="64HBya4NxeBBmXBijBjU6C">
+      <div class="import-progress-fill" id="import-progress-fill" style="width:0%" data-page-node-id="5DdBizI7KfZctD2SqKZOJe"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden file input -->
+<input type="file" id="file-input" accept=".ts,.str,.dtm,.obj" multiple="" style="display:none;" data-page-node-id="J9p4jFgOzU6esv0y86sDej">
+<input type="file" id="attrs-file-input" accept=".csv,.json,.txt,.tsv,.xlsx,.xls" style="display:none;" data-page-node-id="ObS3y02Dlct0Z68f6yOnE7">
+<input type="file" id="drawing-file-input" accept=".png,.jpg,.jpeg,.bmp,.gif,.tif,.tiff,.webp,.svg,.dwg,.dxf" multiple="" style="display:none;" data-page-node-id="cP05lbdXT9JyLILU6cU4l7">
+<input type="file" id="dxf-file-input" accept=".dxf" multiple="" style="display:none;" data-page-node-id="amE61mmBTUbTd3mv2ejK54">
+<input type="file" id="geojson-file-input" accept=".geojson,.json" multiple="" style="display:none;" data-page-node-id="MYvAZrsgk2UKzjJH5oSbIe">
+<input type="file" id="table-file-input" accept=".csv,.txt,.tsv,.xlsx,.xls,.xlsm,.xlsb,.ods,.dbf" multiple="" style="display:none;" data-page-node-id="g3QCYbEGiAn49nLtHCqdHl">
+<input type="file" id="pdf-file-input" accept=".pdf" multiple="" style="display:none;" data-page-node-id="tiBHaOtHW82IPOnaMHPGkn">
+<input type="file" id="word-file-input" accept=".docx" multiple="" style="display:none;" data-page-node-id="no3xUguKDB0HL9jtRDMDAU">
+<input type="file" id="excel-file-input" accept=".xlsx,.xls,.xlsm,.xlsb,.csv,.txt,.tsv" multiple="" style="display:none;" data-page-node-id="lFrojGAc0tcuAlcOGD0eXL">
+<input type="file" id="point-file-input" accept=".csv,.txt,.tsv,.xlsx,.xls,.xlsm,.xlsb,.ods,.dbf" multiple="" style="display:none;" data-page-node-id="ptfile001">
+<input type="file" id="line-dxf-input" accept=".dxf" multiple="" style="display:none;" data-page-node-id="lndxf001">
+<input type="file" id="line-geojson-input" accept=".geojson,.json" multiple="" style="display:none;" data-page-node-id="lngeo001">
+<input type="file" id="line-csv-input" accept=".csv,.txt,.tsv" multiple="" style="display:none;" data-page-node-id="lncsv001">
+<input type="file" id="block-csv-input" accept=".csv" multiple="" style="display:none;" data-page-node-id="blkin001">
+
+<!-- 点图层着色弹窗 -->
+<div class="modal-overlay" id="point-color-modal" data-page-node-id="ptclr0001">
+  <div class="modal-dialog" style="width:360px" data-page-node-id="ptclr0002">
+    <div class="modal-header" data-page-node-id="ptclr0003">Point layer coloring</div>
+    <div class="modal-body" data-page-node-id="ptclr0004">
+      <label style="display:block;margin:8px 0 4px;font-size:13px;">Color by (Attribute column) </label>
+      <select id="point-color-attr" style="width:100%;padding:6px;box-sizing:border-box;"></select>
+      <label style="display:block;margin:12px 0 4px;font-size:13px;">Color scheme</label>
+      <select id="point-color-scheme" style="width:100%;padding:6px;box-sizing:border-box;">
+        <option value="blue-red">Blue → Red (Low → High) </option>
+        <option value="red-blue">Red → Blue (Low → High) </option>
+        <option value="green-orange">Green → Orange (Low → High) </option>
+        <option value="viridis">Viridis (Purple → Yellow, Suitable for grades) </option>
+      </select>
+    </div>
+    <div style="padding:10px 14px;display:flex;justify-content:flex-end;gap:10px;">
+      <button id="point-color-cancel" style="padding:6px 14px;cursor:pointer;">Cancel</button>
+      <button id="point-color-ok" style="padding:6px 14px;cursor:pointer;background:#2f6df6;color:#fff;border:none;">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="point-add-modal">
+  <div class="modal-dialog" style="width:360px">
+    <div class="modal-header">Add points manually</div>
+    <div class="modal-body">
+      <div id="pa-echo" style="font-size:12px;color:#d32f2f;min-height:16px;margin-bottom:6px;"></div>
+      <label style="display:block;margin:6px 0 2px;font-size:13px;">Hole ID</label>
+      <input id="pa-holeid" type="text" style="width:100%;padding:6px;box-sizing:border-box;font-size:13px;">
+      <label style="display:block;margin:8px 0 2px;font-size:13px;">Easting X (Calculated automatically, Editable) </label>
+      <input id="pa-x" type="number" step="any" style="width:100%;padding:6px;box-sizing:border-box;font-size:13px;">
+      <label style="display:block;margin:8px 0 2px;font-size:13px;">Northing Y (Calculated automatically, Editable) </label>
+      <input id="pa-y" type="number" step="any" style="width:100%;padding:6px;box-sizing:border-box;font-size:13px;">
+      <label style="display:block;margin:8px 0 2px;font-size:13px;">Elevation Z (Calculated automatically, Editable) </label>
+      <input id="pa-z" type="number" step="any" style="width:100%;padding:6px;box-sizing:border-box;font-size:13px;">
+      <div style="border-top:1px solid #e3e3e3;margin:12px 0 8px;"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:13px;color:#555;">Attribute column (Column names are customizable) </span>
+        <button type="button" id="pa-add-col" style="padding:3px 10px;cursor:pointer;font-size:12px;">＋ Add attribute column</button>
+      </div>
+      <div id="pa-attrs"></div>
+      <div id="pa-lock-tip" style="display:none;font-size:12px;color:#888;margin-top:2px;">The first point has defined this category's attribute columns, Right-click the category to adjust →“Edit attribute columns”</div>
+    </div>
+    <div style="padding:10px 14px;display:flex;justify-content:flex-end;gap:10px;">
+      <button id="point-add-skip" style="padding:6px 14px;cursor:pointer;">Cancel</button>
+      <button id="point-add-ok" style="padding:6px 14px;cursor:pointer;background:#2f6df6;color:#fff;border:none;">Confirm addition</button>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 点数据编辑器（表格视图）：改坐标 / 增删点 / 编辑属性值 / 增删属性列 -->
+<div class="modal-overlay" id="point-data-modal">
+  <div class="modal-dialog" style="width:min(1080px,94vw);max-height:88vh;display:flex;flex-direction:column;">
+    <div class="modal-header" id="point-data-title">Point data</div>
+    <div class="modal-body" style="flex:1 1 auto;overflow:hidden;display:flex;flex-direction:column;padding-top:8px;">
+      <div id="pd-bar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+        <span id="pd-tip" style="font-size:12px;color:#888;"></span>
+        <span style="flex:1 1 auto;"></span>
+        <input id="pd-search" type="text" placeholder="Filter (Hole ID/Any value) " style="padding:4px 8px;font-size:12px;width:160px;box-sizing:border-box;">
+        <button type="button" id="pd-add-row" style="padding:4px 10px;cursor:pointer;font-size:12px;">＋ Add point</button>
+        <button type="button" id="pd-del-selected" style="padding:4px 10px;cursor:pointer;font-size:12px;">Delete selected</button>
+        <button type="button" id="pd-add-col" style="padding:4px 10px;cursor:pointer;font-size:12px;">＋ Add attribute column</button>
+        <button type="button" id="pd-col-mgr" style="padding:4px 10px;cursor:pointer;font-size:12px;">Manage columns</button>
+        <button type="button" id="pd-export" style="padding:4px 10px;cursor:pointer;font-size:12px;">Export CSV</button>
+      </div>
+      <div id="pd-table-wrap" style="flex:1 1 auto;overflow:auto;border:1px solid #e3e3e3;border-radius:6px;min-height:160px;">
+        <table id="pd-table" style="border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap;">
+          <thead id="pd-thead"></thead>
+          <tbody id="pd-tbody"></tbody>
+        </table>
+      </div>
+      <div id="pd-lock-note" style="display:none;font-size:12px;color:#888;margin-top:6px;">First 4 Columns (Hole ID / Easting X / Northing Y / Elevation Z) are fixed geometry columns, Cannot be added or removed; Custom attribute columns can be added, removed, and edited. </div>
+    </div>
+    <div style="padding:10px 14px;display:flex;justify-content:flex-end;gap:10px;border-top:1px solid #e3e3e3;">
+      <button id="point-data-cancel" style="padding:6px 14px;cursor:pointer;">Close</button>
+      <button id="point-data-ok" style="padding:6px 14px;cursor:pointer;background:#2f6df6;color:#fff;border:none;">Save and refresh</button>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 单点属性编辑（画布双击小球打开） -->
+<div class="modal-overlay" id="point-attr-modal">
+  <div class="modal-dialog" style="width:380px">
+    <div class="modal-header" id="point-attr-title">Edit point</div>
+    <div class="modal-body">
+      <div id="pattr-echo" style="font-size:12px;color:#d32f2f;min-height:16px;margin-bottom:6px;"></div>
+      <div id="pattr-fields"></div>
+    </div>
+    <div style="padding:10px 14px;display:flex;justify-content:flex-end;gap:10px;">
+      <button id="point-attr-cancel" style="padding:6px 14px;cursor:pointer;">Cancel</button>
+      <button id="point-attr-ok" style="padding:6px 14px;cursor:pointer;background:#2f6df6;color:#fff;border:none;">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 多工作表选择（第 61 节）：Excel 含多个工作表时让用户挑一个，单表不弹 -->
+<div class="modal-overlay" id="sheet-pick-modal">
+  <div class="modal-dialog" style="width:400px">
+    <div class="modal-header">Select worksheet</div>
+    <div class="modal-body">
+      <div id="sheet-pick-hint" style="font-size:13px;color:#555;margin-bottom:8px;"></div>
+      <label style="display:block;margin:6px 0 2px;font-size:13px;">Worksheet</label>
+      <select id="sheet-pick-select" style="width:100%;padding:6px;box-sizing:border-box;font-size:13px;"></select>
+      <div id="sheet-pick-preview" style="margin-top:10px;font-size:12px;color:#888;line-height:1.6;"></div>
+    </div>
+    <div style="padding:10px 14px;display:flex;justify-content:flex-end;gap:10px;">
+      <button id="sheet-pick-cancel" style="padding:6px 14px;cursor:pointer;">Skip this file</button>
+      <button id="sheet-pick-ok" style="padding:6px 14px;cursor:pointer;background:#2f6df6;color:#fff;border:none;">Use this worksheet</button>
+    </div>
+  </div>
+</div>
+
+<script src="app/lazy-libraries.js"></script>
+<div id="subitems-line" hidden aria-hidden="true" style="display:none"></div>
+<script src="three.min.js"></script>
+<!-- PDF 阅读引擎：pdf.js v3.11.174（本地离线文件，需放置于 lib/pdfjs/ 目录；缺失时 PDF 标签会给出提示，不影响其他功能） -->
+
+<script src="app/app_1.js"></script>
+<!-- Word 只读阅读引擎：docx-preview v0.3.7 + JSZip v3.10.1（本地离线文件，需放置于 lib/docx-preview/ 目录；
+     加载顺序不可颠倒：先 jszip 后 docx-preview；缺失时 Word 标签会给出提示，不影响其他功能） -->
+
+
+<script src="app/app_2.js"></script>
+
+<script src="app/backend-client.js"></script>
+<script src="app/document-notes-runtime.js"></script>
+<script src="app/project-settings.js"></script>
+<script src="app/block-model-runtime.js"></script>
+<script src="app/app_3.js"></script>
+<script src="app/surface-menus.js"></script>
+<script src="app/asc-terrain.js"></script>
+<script src="app/terrain-image.js"></script>
+
+<link rel="stylesheet" href="app/research-regions.css">
+<script src="app/research-regions.js"></script>
+<script src="app/english-project-compat.js"></script>
+<script src="app/app_4.js"></script>
+<script>researchRegions.installRestoreHooks();</script>
+<script src="app/research-scope-trees.js"></script>
+<script src="app/research-region-views.js"></script>
+<link rel="stylesheet" href="app/main-function-rail.css">
+<script src="app/main-function-rail.js"></script>
+<link rel="stylesheet" href="app/presentation-mode.css">
+<script src="app/presentation-mode.js"></script>
+<script src="app/rock-texture.js"></script>
+<link rel="stylesheet" href="app/rock-texture.css">
+<link rel="stylesheet" href="app/region-compare.css">
+<script src="app/region-compare.js"></script>
+
+<link rel="stylesheet" href="app/coord-shell.css">
+<script src="app/coord-shell.js"></script>
+
+
+<script src="app/startup-layout.js"></script>
+</body></html>
