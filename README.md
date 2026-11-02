@@ -7,6 +7,10 @@ ShanweiGeo 3D Geoscience Platform is a local desktop workspace for 3D geoscience
 - **ShanweiGeo 3D Geoscience Platform/**: English application source code, local processing backend and runtime assets.
 - **Test data/**: exploration datasets and example models for importing into the application. All folder and file names are in English; original numeric data and document contents are retained.
 
+## Getting started
+
+See **[DOWNLOAD-AND-RUN.md](DOWNLOAD-AND-RUN.md)** for the full guide: how to download the repository, restore the large exploration datasets with checksum verification, install dependencies and launch the application.
+
 ## Run from source
 
 ```sh
