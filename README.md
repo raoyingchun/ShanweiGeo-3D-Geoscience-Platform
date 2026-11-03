@@ -5,7 +5,35 @@ ShanweiGeo 3D Geoscience Platform is a local desktop workspace for 3D geoscience
 ## Repository layout
 
 - **ShanweiGeo 3D Geoscience Platform/**: English application source code, local processing backend and runtime assets.
+- **Web Version/**: browser build of the same application, including the
+  browser bridge, launch scripts and automated tests.
 - **Test data/**: exploration datasets and example models for importing into the application. All folder and file names are in English; original numeric data and document contents are retained.
+
+## Web version
+
+A browser build is included in **[Web Version/](Web%20Version/)**. It runs the
+same application in any modern browser, with no Node.js or Electron install.
+
+Download the `Web Version` folder, then double-click **`Start-WebApp.bat`**.
+It starts a local server and opens the application in your browser. On macOS
+and Linux run `start-web-app.sh` instead. Python 3 is the only requirement.
+
+Every model format is parsed in the browser: GOCAD `.ts`, OBJ, tunnel models
+(`.str` with `.dtm`), block models and ASC terrain, plus DXF and GeoJSON
+vectors. The only desktop-only feature is the COORD coordinate conversion
+tool, which launches a separate Windows program; its entry point explains this
+when clicked.
+
+The web build shares the application source with the desktop build. Two
+additional files do the work:
+
+| File | Role |
+|---|---|
+| `Web Version/app/web-bridge.js` | Implements `window.electronAPI` with the File API, `localStorage` and `IndexedDB` |
+| `Web Version/app/web-only.js` | Disables the COORD launcher for the browser |
+
+See **[Web Version/README.md](Web%20Version/README.md)** for details and for
+the automated test scripts.
 
 ## Getting started
 
