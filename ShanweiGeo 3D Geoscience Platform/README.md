@@ -114,6 +114,11 @@ ShanweiGeo 3D Geoscience Platform/
 └── 素材库/                   # Reference mineral imagery (not in git)
 ```
 
+> **Note on directory names.** `src/图件/` (figure library) and `素材库/`
+> (reference library) keep their original Chinese names because they are real
+> paths on disk that the application resolves at runtime. Renaming them would
+> break the figure manager and the material library.
+
 ### Data files
 
 `src/图件/` (~440 MB of scanned geological maps) is tracked through **Git LFS**

@@ -1,4 +1,11 @@
-模型坐标：X=北坐标，Y=东坐标+37000000，Z高程不变。
-完整范围保留，无裁剪、无重采样。原件未修改，零值和NoData均保留。
-高程导入dem_xy37_full.asc；遥感影像导入image_xy37_full.tif，与同名tfw保持同目录。
-坐标为模型轴序，不能直接赋予标准东/北轴序EPSG投影。
+Model coordinates: X = northing, Y = easting + 37000000, Z = elevation unchanged.
+
+The full extent is preserved, with no clipping and no resampling. The source
+file is not modified, and both zero values and NoData are retained.
+
+Elevation is imported from `dem_xy37_full.asc`; the remote sensing imagery is
+imported from `image_xy37_full.tif`, which must stay in the same folder as the
+matching `.tfw` world file.
+
+These coordinates follow the model axis order and cannot be assigned directly
+to a standard east/north axis order EPSG projection.

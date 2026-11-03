@@ -1,33 +1,33 @@
 # Release v1.0.0 — ShanweiGeo 3D Geoscience Platform
 
-Windows x64 桌面版三维地学数据管理与可视化平台。
+Windows x64 desktop workspace for 3D geoscience data management and visualisation.
 
-- **Release 页面**：https://github.com/raoyingchun/ShanweiGeo-3D-Geoscience-Platform/releases/tag/v1.0.0
-- **源码仓库**：https://github.com/raoyingchun/ShanweiGeo-3D-Geoscience-Platform
-- **发布日期**：2026-11-02
+- **Release page**: https://github.com/raoyingchun/ShanweiGeo-3D-Geoscience-Platform/releases/tag/v1.0.0
+- **Source repository**: https://github.com/raoyingchun/ShanweiGeo-3D-Geoscience-Platform
+- **Release date**: 2 November 2026
 
 ---
 
-## 一、两种获取方式
+## 1. Two ways to get it
 
-### 方式 A：直接下载可执行版（推荐给只想看效果的人）
+### Option A — download the executable (recommended for a first look)
 
-从 Release 页面下载 `ShanweiGeo-3D-Geoscience-Platform-Windows-x64.zip`（264.6 MB）：
+Fetch `ShanweiGeo-3D-Geoscience-Platform-Windows-x64.zip` (264.6 MB) from the release page:
 
-1. 解压整个 ZIP 到一个**可写目录**（不要在 ZIP 内直接运行）
-2. 运行 `ShanweiGeo 3D Geoscience Platform.exe`
-3. **无需安装 Node.js 或 Python** —— 包内已内置 Python 运行时
-4. 建议先用 `Sample Data` 里的示例文件熟悉操作，再打开自己的数据
+1. Extract the entire ZIP into a **writable folder** — do not run the program from inside the ZIP.
+2. Run `ShanweiGeo 3D Geoscience Platform.exe`.
+3. **Neither Node.js nor Python needs to be installed** — a local Python runtime ships with the package.
+4. Try the sample files in `Sample Data` before opening your own data.
 
-附带的 `SHA256.txt` 是校验文件，可用以下命令验证下载完整性：
+The accompanying `SHA256.txt` lets you verify the download:
 
 ```powershell
 Get-FileHash "ShanweiGeo-3D-Geoscience-Platform-Windows-x64.zip" -Algorithm SHA256
 ```
 
-期望值：`4bce36234cb83cc23d430c50e7e4733e4884d453701c04dc9a4a67bbeee8c6cf`
+Expected value: `4bce36234cb83cc23d430c50e7e4733e4884d453701c04dc9a4a67bbeee8c6cf`
 
-### 方式 B：拉源码运行（推荐给要改代码的人）
+### Option B — run from source (recommended if you plan to modify it)
 
 ```sh
 git clone https://github.com/raoyingchun/ShanweiGeo-3D-Geoscience-Platform.git
@@ -38,77 +38,79 @@ npm install
 npm start
 ```
 
-完整的分步说明见仓库中的 **`DOWNLOAD-AND-RUN.md`**。
+The full step-by-step guide is in **`DOWNLOAD-AND-RUN.md`** in the repository.
 
 ---
 
-## 二、两种版本的差异
+## 2. How the two differ
 
-| | Release 可执行版 | 源码运行 |
+| | Release build | From source |
 |---|---|---|
-| 需要 Node.js | 否 | 是（20 或更高） |
-| 需要 Python | 否 | 是（3.11） |
-| 需要联网 | 否 | 仅 `npm install` 阶段 |
-| 打包体积 | 264.6 MB | 依赖约 470 MB |
-| 适合 | 快速试用、演示、交付 | 开发、二次修改 |
+| Requires Node.js | No | Yes (20 or newer) |
+| Requires Python | No | Yes (3.11) |
+| Requires network access | No | Only during `npm install` |
+| Download size | 264.6 MB | Dependencies are about 470 MB |
+| Best for | Quick evaluation, demonstrations, handover | Development and extension |
 
-**两者的功能完全一致**，可执行版只是预先打包好了运行时。
-
----
-
-## 三、功能范围
-
-**已实现**：
-- 研究区域（矿区）组织与管理
-- 多三维视图、图层控制
-- 多屏对比查看
-- 数据配准（不同数据集坐标对齐）
-- 影像贴地显示
-- 文档查看（PDF / JPG / DOCX）
-- 项目持久化
-- 本地处理（坐标转换等）
-
-**未实现（属于后续研究目标）**：
-- 自动地质建模
-- 矿产预测
-
-> ⚠️ 这一点在 README、Release 说明和随包 README 中都明确标注了。审阅者不应把当前版本误读为已具备自动成矿预测能力。
+**Both provide exactly the same functionality.** The release build simply packages the runtime in advance.
 
 ---
 
-## 四、测试数据说明
+## 3. Scope
 
-`Test data/` 下的三份大数据集以压缩形式分发，恢复脚本会按 SHA-256 校验：
+**Implemented**:
 
-| 数据集 | 分发方式 | 恢复后大小 |
+- Research-region (deposit) organisation and management
+- Multiple 3D views and layer controls
+- Side-by-side comparison
+- Registration of datasets against one another
+- Imagery drapping over terrain
+- Document viewing (PDF, JPG, DOCX)
+- Project persistence
+- Local processing (coordinate conversion and related operations)
+
+**Not implemented — these are future research objectives**:
+
+- Automated geological modelling
+- Mineral prospectivity prediction
+
+> ⚠️ This limitation is stated in the repository README, in these release notes and in the README shipped inside the package. Reviewers should not read the current release as evidence that automatic mineral prospectivity prediction is available.
+
+---
+
+## 4. Test data
+
+The three large datasets under `Test data/` are distributed in compressed form. The restore script verifies each one against its SHA-256 checksum:
+
+| Dataset | Distribution | Size after restore |
 |---|---|---|
-| `Block Model 2.csv` | 单个 ZIP | 43.75 MB |
-| `ljx_2.csv` | 单个 ZIP | 44.91 MB |
-| `image_xy37_full.tif` | 9 个分卷 | 72.41 MB |
+| `Block Model 2.csv` | single ZIP | 43.75 MB |
+| `ljx_2.csv` | single ZIP | 44.91 MB |
+| `image_xy37_full.tif` | nine parts | 72.41 MB |
 
-恢复方式：
+Restore them from the repository root:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File "Test data/Restore-Large-Data.ps1"
 ```
 
-脚本会输出 `Verified: <path>` 表示校验通过。
+The script prints `Verified: <path>` for every file whose checksum matches.
 
-**注意**：`Test data/Tunnel Models/Simulated_Tunnels_Around_Orebody_1-1/` 中的坑道示例**明确标注为模拟数据**，仅用于演示导入与渲染流程，不是经过验证的工程设计。
-
----
-
-## 五、许可
-
-软件以 MIT 协议发布（见 `ShanweiGeo 3D Geoscience Platform/LICENSE`）。
-
-第三方资源保留各自的声明。仓库中包含的测试数据与文档**不因随软件分发而改变其原有权利归属**。
+**Please note**: the tunnel example in `Test data/Tunnel Models/Simulated_Tunnels_Around_Orebody_1-1/` is **explicitly labelled as simulated**. It demonstrates the import and rendering workflow and is not a validated engineering design.
 
 ---
 
-## 六、已知限制
+## 5. Licence
 
-- 桌面构建仅针对 Windows x64
-- 软件渲染模式（`npm start -- --sw`）下三维场景帧率明显偏低，建议使用默认的硬件加速
-- 嵌入式 Python 运行时与离线 wheel 未纳入 Git，需要打包时自行准备
-- 遗留的独立 COORD 应用不包含在本发布中，其原生界面保持原语言
+The software is released under the MIT licence — see `ShanweiGeo 3D Geoscience Platform/LICENSE`.
+
+Third-party assets retain their own notices. Inclusion of the test data and documents in this repository does not extend the software licence to material owned by others.
+
+---
+
+## 6. Known limitations
+
+- The desktop build targets Windows x64 only.
+- Software rendering (`npm start -- --sw`) is noticeably slower for 3D scenes. Use the default hardware-accelerated mode unless you have a reason not to.
+- The embedded Python runtime and the offline wheels are not stored in Git and must be prepared separately when packaging.
+- The standalone legacy COORD application is not included in this release; its original interface remains in its own language.

@@ -70,7 +70,7 @@ def parse_geometry(path,str_path=None):
  if not vertices or not indices:raise ValueError('The model contains no valid vertices or triangles')
  if min(indices)<0 or max(indices)>=len(vertices)//3:raise ValueError('A model triangle index is out of bounds')
  verts=array('f',vertices);inds=array('I',indices)
- # 保持原解析器的Float32坐标和包围盒约定，不改变现有显示精度。
+ # Keep the original Float32 coordinates and the bounding box as they are, so that the existing display precision is unchanged.
  bounds_source=verts if kind=='.obj' else vertices
  bounds=[min(bounds_source[i::3]) for i in range(3)]+[max(bounds_source[i::3]) for i in range(3)]
  if kind=='.obj':origin=dict(zip(('x','y','z'),(math.floor(bounds[i]/100)*100 for i in range(3))))
@@ -92,7 +92,7 @@ def run(params,send):
  else:
   send({'type':'progress','percent':10,'message':'Local parsing:'+p.name})
   meta,v,i=parse_geometry(p,sp);hit=False
-  # metadata最后提交；异常中断不会把半成品视作缓存命中。
+  # The metadata is committed last, so that a half-finished result left behind by an interruption cannot hit the cache.
   for f,data in [(vb,v),(ib,i)]:
    temp=f.with_suffix(f.suffix+'.tmp');temp.write_bytes(data);os.replace(temp,f)
   temp=target.with_suffix('.json.tmp');temp.write_text(json.dumps(meta,ensure_ascii=False),encoding='utf-8');os.replace(temp,target)

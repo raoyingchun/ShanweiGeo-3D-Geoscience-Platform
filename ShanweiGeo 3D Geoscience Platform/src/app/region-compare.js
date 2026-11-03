@@ -78,7 +78,7 @@
       for(const type of ['pointerdown','mousedown','click','dblclick','dragstart','drop','input','change'])p.layers.addEventListener(type,event=>{
         if(activeTabId===p.id)return;
         activate(p.index);
-        // switchTab在常规场景同步切换；若正在等待绘点保存确认，先阻止本次操作。
+        // switchTab switches synchronously in the ordinary case, but when it is waiting for the point drawing save confirmation it blocks the operation first.
         if(activeTabId!==p.id){event.preventDefault();event.stopImmediatePropagation();}
       },true);
       p.layers.addEventListener('dblclick',()=>{

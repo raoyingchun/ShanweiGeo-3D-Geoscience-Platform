@@ -1,11 +1,11 @@
 
 // ============================================================
-// 项目系统：保存 / 打开 / 新建项目 + 关闭前询问
-// 项目文件为 JSON：源文件引用、各视图状态、点线数据及无源文件模型快照。
-// v1 文件继续沿用原恢复流程；v2 增加独立三维视图存档。
+// create a project
+// .
+// .
 // ============================================================
 
-// —— 工具：获取 File 的本地路径（Electron 30 File.path 仍可用；浏览器环境返回 null） ——
+// -- utility: obtain the local path of a File (Electron 30 still exposes File.path; a browser environment returns null) --
 function getFilePath(file) {
   try {
     if (file && typeof file.path === 'string' && file.path) return file.path;
@@ -19,11 +19,11 @@ function base64ToBytes(b64) {
   return bytes;
 }
 
-// —— 项目状态 ——
+// -- project state --
 let currentProjectPath = null;      // 当前项目文件路径（null = 尚未保存过）
 let currentProjectName = 'Project name'; // 按钮下方副标题显示
 
-// —— 初始树结构快照（新建/打开项目清空时恢复为初始状态） ——
+// -- snapshot of the initial tree structure (restored to the initial state when a project is created or opened) --
 let initialTreeHTML = null;
 function captureInitialTree() {
   initialTreeHTML = {
@@ -33,7 +33,7 @@ function captureInitialTree() {
     tunnel: subitemsTunnelModel.innerHTML,
     block: subitemsBlockModel ? subitemsBlockModel.innerHTML : '',
     drawing: subitemsDrawingMgmt.innerHTML,
-    // ★ 第 102 节：「地表」一级大类（遥感影像 / 地形图）也纳入初始树快照
+    // Section 102: the Surface top-level category (remote sensing imagery and topographic maps) is part of the initial tree snapshot as well
     surface: subitemsSurface ? subitemsSurface.innerHTML : '',
     testdata: subitemsTestData.innerHTML,
     report: subitemsReport.innerHTML,
@@ -43,13 +43,13 @@ function captureInitialTree() {
 }
 captureInitialTree();
 
-// 更新副标题（当前项目名）
+// update the subtitle with the current project name
 function updateProjectSubtitle() {
   const el = document.getElementById('project-subtitle');
   if (el) el.textContent = currentProjectName;
 }
 
-// —— 下拉菜单交互 ——
+// -- the dropdown menu interactions --
 (function () {
   const wrap = document.getElementById('project-menu-wrap');
   const dd = document.getElementById('project-dropdown');
@@ -73,7 +73,7 @@ function updateProjectSubtitle() {
 })();
 
 // ============================================================
-// 序列化（保存项目）
+// serialise, when saving the project
 // ============================================================
 var projectRestoreInProgress = false;
 
@@ -85,8 +85,8 @@ function getProjectModels() {
   return Array.from(models);
 }
 
-// v2：文件模型仍引用源文件；无源文件的生成模型保存 Three.js 快照。
-// 避免把 DOM、材质引用或循环引用写入项目文件。
+// v2: a file based model still references the source file, while a generated model with no source file stores a Three.js snapshot.
+// This keeps the DOM, the material references and any circular references out of the project file.
 function serializeViewerModel(model) {
   if(model._deferredEntry)return {...model._deferredEntry,metadata:{...model._deferredEntry.metadata,regionId:model.regionId,displayName:model.displayName}};
   if (model.mesh) model.mesh.traverse(obj => { if (obj.matrixAutoUpdate) obj.updateMatrix(); });
@@ -114,7 +114,7 @@ function serializeProjectViewers() {
     const st = v.state;
     const tab = document.querySelector('.center-tab[data-tab-id="' + id + '"]');
     const label = tab && tab.querySelector('.center-tab-label');
-    // 图片/文档标签仍复用上一个三维视图的相机；以相机身份而非 activeTabId 判断。
+    // The image and document tabs still reuse the camera of the previous 3D view, so the camera identity is used rather than activeTabId.
     const target = camera === v.camera ? controls.target : v.target;
     v.camera.updateMatrix();
     out.push({
@@ -290,7 +290,7 @@ function serializeTree() {
     for (let i = 0; i < children.length; i++) {
       const el = children[i];
       if (!el.classList || !el.classList.contains('lp-sub-item')) {
-        // 新建矿区/模型外面有一层无 class 的包装 div，不能把整个分支跳过。
+        // A newly created mining area or model is wrapped in a div with no class, so the whole branch must not be skipped.
         if (el.children && !(el.classList && el.classList.contains('lp-nested-items'))) arr.push(...serContainer(el));
         continue;
       }
@@ -299,7 +299,7 @@ function serializeTree() {
       const item = { role: el.getAttribute('data-role') || '', name: span ? span.textContent : '' };
       if (el.dataset.regionId) item.regionId = el.dataset.regionId;
       if(el.dataset.surfaceKind)item.surfaceKind=el.dataset.surfaceKind;
-      // 叶子数据引用（文件名 + 路径）——state 优先；空时从 DOM 兜底（演示数据占位等场景）
+      // the leaf data reference (file name and path) comes from the state first, and falls back to the DOM when it is empty, for the demo placeholder data
       const tbl = el.getAttribute('data-table-id');
       const drw = el.getAttribute('data-drawing-id');
       const pdf = el.getAttribute('data-pdf-id');
@@ -360,7 +360,7 @@ function serializeTree() {
   out.tunnel = serContainer(subitemsTunnelModel);
   out.block = subitemsBlockModel ? serContainer(subitemsBlockModel) : [];
   out.drawing = serContainer(subitemsDrawingMgmt);
-  // ★ 第 102 节：「地表」大类（遥感影像 / 地形图）随项目一起存档
+  // Section 102: the Surface category (remote sensing imagery and topographic maps) is archived together with the project
   out.surface = subitemsSurface ? serContainer(subitemsSurface) : [];
   out.testdata = serContainer(subitemsTestData);
   out.report = serContainer(subitemsReport);
@@ -422,7 +422,7 @@ function serializeProject() {
       camera: cam
     },
     tabs: serializeTabs(),
-    // 点图层（孔口表格式导入）：解析后的数据内联存储，重开项目免原文件
+    // point layers imported in the collar table format store the parsed data inline, so reopening the project does not need the original file
     points: Object.values(state.pointLayers || {}).map(l => ({
       id: l.id, name: l.name, fileName: l.fileName, filePath: l.filePath || null, regionId: l.regionId,
       data: (l.rows && l.rows.length) ? [l.headers].concat(l.rows.map(r => r.slice())) : (l.data || []),
@@ -432,19 +432,19 @@ function serializeProject() {
       autoCols: (l.autoCols || []).slice(), colsLocked: !!l.colsLocked, isEmptyCategory: !!l.isEmptyCategory
     })),
     pointOrder: (state.pointOrder || []).slice(),
-    // 线图层（内联 entities，直接恢复）
+    // line layers store the entities inline and are restored directly
     lines: (typeof serializeLineLayers === 'function') ? serializeLineLayers() : [],
     lineOrder: (state.lineOrder || []).slice(),
-    // 文档书签 / 笔记（大纲源自文档本身，不持久化）
+    // document bookmarks and notes (the outline comes from the document itself and is not persisted)
     docAnnots: (typeof serializeDocAnnots === 'function') ? serializeDocAnnots() : {}
   };
 }
 
 // ============================================================
-// ★ 离开「点绘制」的守卫（切换标签 / 新建 / 打开项目前调用）
-// 三选项：保存并离开 / 不保存离开 / 取消（留在原地继续绘制）。
-// 返回 Promise<boolean>：true=可以继续离开，false=用户取消。
-// 用自建 modal 而非 confirm()，因为需要三选项（原生 confirm 只有两选项）。
+// the guard that leaves the point drawing mode (called before switching tabs, creating a project or opening one)
+// three choices: save and leave, leave without saving, or cancel and stay where you are and keep drawing.
+// returns a Promise<boolean>, where true means the leave can go ahead and false means the user cancelled
+// A custom modal is used instead of confirm() because three choices are needed, while the native confirm only offers two.
 // ============================================================
 function _pdResolveDialog(el, val) {
   el.classList.remove('show');
@@ -500,20 +500,20 @@ async function guardLeavePointDraw(reason) {
       return false;
     }
   }
-  // 无论保存与否，都退出绘制状态
+  // the drawing state is left whether or not the work was saved
   setPointAddMode(false);
   flashPointHint('Point drawing mode exited');
   return true;
 }
 
-// ★ 导入新文件的统一守卫：必须在「打开系统文件对话框之前」调用。
-// 因为对话框一弹出，用户的注意力/上下文就已切换，事后再提醒为时已晚。
-// 用法：先 await guardImportPointDraw('即将导入模型文件')，返回 false 则直接 return。
+// the shared guard for importing a new file: it has to be called before the system file dialog is opened.
+// Once the dialog appears the user's attention and context have already shifted, so reminding them afterwards is too late.
+// the usage is to await guardImportPointDraw with a message first and return straight away when it gives false
 async function guardImportPointDraw(reason) {
   return await guardLeavePointDraw(reason || 'Importing a new file');
 }
 
-// —— 保存项目（返回 true=已保存成功；false=取消或失败） ——
+// -- save the project (returns true when it was saved and false when it was cancelled or failed) --
 async function doSaveProject(silent) {
   let data;
   try { data = serializeProject(); }
@@ -551,14 +551,14 @@ async function doSaveProject(silent) {
 }
 
 // ============================================================
-// 清空当前工作环境（新建 / 打开项目前调用）
+// clear the current working environment (called before creating or opening a project)
 // ============================================================
 function clearProject() {
   window.regionCompare?.exit();
   if(tabViewers.get('view'))tabViewers.get('view').regionId=null;
   if (window.researchRegions) researchRegions.reset();
   if (_sessionSaveTimer) { clearTimeout(_sessionSaveTimer); _sessionSaveTimer = null; }
-  // 1. 关闭所有非「视图」标签
+  // 1. close every tab except the View tab
   Array.from(tabViewers.keys()).forEach(tid => {
     if (tid !== 'view') {
       const viewer = tabViewers.get(tid);
@@ -568,7 +568,7 @@ function clearProject() {
   });
   window.switchTab('view');
   ensureProjectLevelStateFields();
-  // 2. 清空 3D 场景（先取快照，再重置 state）
+  // 2. clear the 3D scene (take a snapshot first, then reset the state)
   const modelsSnapshot = state.models.slice();
   modelsSnapshot.forEach(m => {
     if (m.geoImageTexture) m.geoImageTexture.dispose();
@@ -588,7 +588,7 @@ function clearProject() {
   state.rulerPoints = [];
   while (lmList.firstChild) lmList.removeChild(lmList.firstChild);
   lmEmpty.style.display = '';
-  // 3. 恢复初始树结构
+  // 3. restore the initial tree structure
   if (initialTreeHTML) {
     subitemsDrillhole.innerHTML = initialTreeHTML.drillhole;
     subitems3DModel.innerHTML = initialTreeHTML.models3d;
@@ -596,14 +596,14 @@ function clearProject() {
     subitemsTunnelModel.innerHTML = initialTreeHTML.tunnel;
     if (subitemsBlockModel) subitemsBlockModel.innerHTML = initialTreeHTML.block || '';
     subitemsDrawingMgmt.innerHTML = initialTreeHTML.drawing;
-    // ★ 第 102 节：「地表」恢复为初始两个空分类模板
+    // Section 102: Surface is restored to the template with its two empty categories
     if (subitemsSurface) subitemsSurface.innerHTML = initialTreeHTML.surface || '';
     subitemsTestData.innerHTML = initialTreeHTML.testdata;
     subitemsReport.innerHTML = initialTreeHTML.report;
     subitemsPoint.innerHTML = initialTreeHTML.point;
     if (subitemsLine) subitemsLine.innerHTML = initialTreeHTML.line || '';
   }
-  // 4. 重置内存数据
+  // 4. reset the in-memory data
   state.models = [];
   state.tables = {};
   state.drawings = {};
@@ -625,7 +625,7 @@ function clearProject() {
     y: { enabled: false, dir: 'pos', value: 0 }
   };
   if (typeof geoMeshCache !== 'undefined') geoMeshCache.clear();
-  // 5. 重新绑定右键/双击（初始 HTML 内节点需要交互）
+  // 5. rebind the context menu and the double click, because the nodes in the initial HTML need interaction
   try { bindDrillholeAreaContextMenus(subitemsDrillhole); bindTableContextMenus(subitemsDrillhole); } catch (e) {}
   try { bindCategoryContextMenus(subitems3DModel); } catch (e) {}
   try { bindGeochemContextMenus(subitemsGeochemModel); } catch (e) {}
@@ -634,12 +634,12 @@ function clearProject() {
   try { if (subitemsSurface) bindDrawingContextMenus(subitemsSurface); } catch (e) {}
   try { bindTestDataContextMenus(subitemsTestData); } catch (e) {}
   try { bindReportContextMenus(subitemsReport); } catch (e) {}
-  // 6. 刷新图例 / 渲染顺序 / 空状态
+  // 6. refresh the legend, the render order and the empty state
   try { updateLegend(); } catch (e) {}
   try { updateRenderOrder(); } catch (e) {}
   try { updateViewInfo(); } catch (e) {}
   try { buildAxisLabels(); } catch (e) {}
-  // 新项目不能继承上个项目的同名文档书签与笔记。
+  // A new project must not inherit the document bookmarks and notes of the previous project under the same name.
   Object.keys(docStore).forEach(key => delete docStore[key]);
   if (noteSaveTimer) { clearTimeout(noteSaveTimer); noteSaveTimer = null; }
   noteBindKey = '';
@@ -647,7 +647,7 @@ function clearProject() {
   refreshDocPanels();
 }
 
-// 当前是否有工作内容
+// whether there is currently any work content
 function hasProjectContent() {
   if (window.researchRegions && researchRegions.hasChanges()) return true;
   ensureProjectLevelStateFields();
@@ -657,7 +657,7 @@ function hasProjectContent() {
 }
 
 // ============================================================
-// 恢复（打开项目）
+// restore, when opening a project
 // ============================================================
 async function restoreProject(data, options = {}) {
   data = window.normalizeLegacyProjectCategories(data);
@@ -675,7 +675,7 @@ async function restoreProject(data, options = {}) {
   };
   const tree = data.tree || {};
   const scene = data.scene || {};
-  // clearProject 会恢复演示树模板；读取存档时以存档树为准，避免每次打开重复追加。
+  // clearProject restores the demo tree template, but the archive tree takes precedence when reading the archive, so that opening does not append again every time.
   [['drillhole', subitemsDrillhole], ['models3d', subitems3DModel], ['geochem', subitemsGeochemModel],
     ['tunnel', subitemsTunnelModel], ['block', subitemsBlockModel], ['drawing', subitemsDrawingMgmt],
     ['surface', subitemsSurface],
@@ -683,23 +683,23 @@ async function restoreProject(data, options = {}) {
       if (Array.isArray(tree[key]) && container) container.innerHTML = '';
     });
   const hasViewers = Array.isArray(data.viewers) && data.viewers.length > 0;
-  // 先恢复模型和各自原点，项目树随后按稳定 modelId 绑定，不重复加载模型。
+  // The models and their origins are restored first, then the project tree binds them by the stable model id without loading the models again.
   const viewerIds = hasViewers ? await restoreProjectViewers(data.viewers, read, missing,{lazy:!!options.lazyViewers,activeId:data.activeViewer||'view'}) : null;
   if (!hasViewers && scene.origin) state.origin = Object.assign({}, scene.origin);
   if (scene.lithologyColors) state.lithologyColors = scene.lithologyColors;
   if (scene.geochemColormap) state.geochemColormap = scene.geochemColormap;
   restoreDocAnnots(data.docAnnots || {});
 
-  // —— 点图层（内联数据，直接恢复，无需原文件） ——
+  // -- point layers (inline data, restored directly, no original file needed) --
   if (data.points && data.points.length) restorePointLayers(data.points, data.pointOrder, { skipScene: hasViewers });
 
-  // —— 线图层（内联 entities，直接恢复） ——
+  // -- line layers (inline entities, restored directly) --
   if (data.lines && data.lines.length) {
     try { await restoreLineLayers(data.lines, { skipScene: hasViewers }); }
     catch (e) { console.warn('[Line restoration] Failed: ', e); }
   }
 
-  // —— 钻孔区域 + 表格 ——
+  // -- the drillhole areas and the tables --
   if (window.researchRegions) {
     for (const [items, attribute] of [[data.points || [], 'data-point-id'], [data.lines || [], 'data-line-id']]) {
       for (const item of items) document.querySelectorAll('[' + attribute + ']').forEach(node => {
@@ -713,7 +713,7 @@ async function restoreProject(data, options = {}) {
     await restoreScopeProjectTree(tree,read,missing,scene,hasViewers);
   }
 
-  // —— 场景模型应用保存时的颜色/透明度/可见性 ——
+  // -- apply the saved colour, opacity and visibility to the models in the scene --
   if (!hasViewers) {
   (scene.models || []).forEach(sm => {
     const m = state.models.find(x => x.fileName === sm.fileName);
@@ -731,7 +731,7 @@ async function restoreProject(data, options = {}) {
     } catch (e) {}
   });
 
-  // —— 场景设置恢复 ——
+  // -- restore the scene settings --
   if (scene.clipConfig) Object.assign(state.clipConfig, JSON.parse(JSON.stringify(scene.clipConfig)));
   if (scene.lithologyColors) state.lithologyColors = scene.lithologyColors;
   if (scene.geochemColormap) state.geochemColormap = scene.geochemColormap;
@@ -739,7 +739,7 @@ async function restoreProject(data, options = {}) {
   if (scene.camera) {
     try { camera.position.fromArray(scene.camera.pos); controls.target.fromArray(scene.camera.target); controls.update(); } catch (e) {}
   }
-  // 应用剖切配置
+  // apply the clipping configuration
   try {
     const planes = (typeof getActiveClipPlanes === 'function') ? getActiveClipPlanes() : [];
     state.models.forEach(m => {
@@ -752,7 +752,7 @@ async function restoreProject(data, options = {}) {
   try { updateLegend(); } catch (e) {}
   }
 
-  // —— 标签页恢复 ——
+  // -- restore the tabs --
   let restoredDocumentTab=null;const hasActiveDocument=(data.tabs||[]).some(tab=>tab.active);
   for (const t of (data.tabs || [])) {
     const previousTabs=new Set(tabViewers.keys());
@@ -776,7 +776,7 @@ async function restoreProject(data, options = {}) {
           if (typeof res === 'string') {
             window.createNewTab('table', { tableName: tb.fileName, tableHtml: res, tableRows: tb.rows, tableCols: tb.cols });
           } else {
-          // 大表：首屏 + 分块懒加载
+          // large tables: the first screen plus chunked lazy loading
           window.createNewTab('table', {
             tableName: tb.fileName, tableHtml: res.firstHtml,
             tableRows: tb.rows, tableCols: tb.cols, lazyTable: res.lazy
@@ -816,7 +816,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 三维地质模型 ——
+  // -- the 3D geological models --
   for (const mn of (tree.models3d || [])) {
     addNewModelNode(mn.name);
     const wrapper = subitems3DModel.firstChild;
@@ -836,7 +836,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 地球化学模型 ——
+  // -- the geochemical models --
   for (const mn of (tree.geochem || [])) {
     addNewGeochemModelNode(mn.name);
     const wrapper = subitemsGeochemModel.firstChild;
@@ -846,7 +846,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 三维坑道模型 ——
+  // -- the 3D tunnel models --
   for (const mn of (tree.tunnel || [])) {
     addNewTunnelModelNode(mn.name);
     const wrapper = subitemsTunnelModel.firstChild;
@@ -856,7 +856,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 块体模型 ——
+  // -- the block models --
   for (const group of (tree.block || [])) {
     const category=addNewBlockModelNode(group.name);
     for (const file of (group.children || [])) {
@@ -865,7 +865,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 图件管理 ——
+  // -- figure management --
   for (const grp of (tree.drawing || [])) {
     addDrawingGroup(grp.name);
     const groups = subitemsDrawingMgmt.querySelectorAll('[data-role="drawing-group"]');
@@ -887,13 +887,13 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
     }
   }
 
-  // —— 地表（第 102 节：遥感影像 / 地形图） ——
-  //   ① 先按存档恢复「地表」下的图件；
-  //   ② 再把旧存档遗留在「图件管理」下的同名分类（连同其中图件）整体搬到「地表」。
+  // -- Surface (section 102: remote sensing imagery and topographic maps) --
+  // first, restore the figures under Surface from the archive;
+  // second, move the categories of the same name that the old archive left under figure management, together with the figures in them, over to Surface
   await restoreSurfaceTree(tree.surface, read, missing, scene, hasViewers);
   migrateDrawingCatsToSurface();
 
-  // —— 测试数据管理（任意嵌套） ——
+  // -- test data management (any nesting) --
   async function restoreTdChildren(items, folderNode) {
     for (const it of (items || [])) {
       if (it.children) {
@@ -908,7 +908,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
   }
   await restoreTdChildren(tree.testdata, null);
 
-  // —— 报告管理（任意嵌套） ——
+  // -- report management (any nesting) --
   async function restoreReportChildren(items, folderNode) {
     for (const it of (items || [])) {
       if (it.children) {
@@ -917,7 +917,7 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
         const nf = folders[folders.length - 1];
         await restoreReportChildren(it.children, nf);
       } else {
-        // Word(.docx) 与 PDF 按扩展名分流恢复
+        // the Word (.docx) and PDF files are restored separately by extension
         if (/\.docx$/i.test(it.fileName || '')) {
           await restoreWordFile(folderNode, it, read, missing);
         } else {
@@ -929,9 +929,9 @@ async function restoreScopeProjectTree(tree,read,missing,scene,hasViewers) {
   await restoreReportChildren(tree.report, null);
 }
 
-// —— 恢复表格文件节点（钻孔分类下） ——
+// -- restore the table file nodes (beneath the drillhole categories) --
 async function restoreTableNode(categoryNode, f, read, missing) {
-  // 静默跳过演示占位 / 无源文件条目（HTML 硬编码的占位图件等），不把噪音塞进 missing 弹窗
+  // the demo placeholders and the entries with no source file, such as the hard-coded placeholder figures in the HTML, are skipped silently so that no noise reaches the missing dialog
   if (!f.filePath && !f.fileName) return;
   const bytes = await read(f.filePath || f.fileName, f.fileName);
   if (!bytes) return;
@@ -973,7 +973,7 @@ async function restoreTableNode(categoryNode, f, read, missing) {
   }
 }
 
-// —— 恢复 3D 模型（3d 地质 / geochem 地球化学 / tunnel 坑道） ——
+// -- restore the 3D models (3d geological, geochem geochemical and tunnel) --
 async function restoreModelNode(categoryItem, f, kind, read, missing, scene, useViewers) {
   const fileName = f.fileName || f.name;
   if (useViewers) {
@@ -988,7 +988,7 @@ async function restoreModelNode(categoryItem, f, kind, read, missing, scene, use
     if (kind === 'tunnel') {
       const strPath = f.strFilePath || null;
       const dtmPath = f.filePath || null;
-      // ★ 几何缓存优先：两个源文件路径齐备且命中时跳过「读盘 + 重新解析」
+      // the geometry cache comes first: when both source file paths are present and the cache hits, reading from disk and parsing again are skipped
       let geoMesh = (strPath && dtmPath) ? await geoCacheTunnelGet(strPath, dtmPath) : null;
       if (!geoMesh && strPath && dtmPath && window.backendClient?.available) geoMesh = await parseLocalModel(dtmPath,strPath,()=>null);
       if (!geoMesh) {
@@ -999,7 +999,7 @@ async function restoreModelNode(categoryItem, f, kind, read, missing, scene, use
         const dtmText = new TextDecoder('utf-8').decode(dtmBytes);
         pendingCategoryItem = categoryItem;
         geoMesh = parseTunnelModel(strText, dtmText, fileName);
-        // 解析成功 → 异步写缓存（不等待本次恢复，供下次打开命中）
+        // after a successful parse the cache is written asynchronously, without waiting for the current restore, so that the next open hits it
         if (strPath && dtmPath) geoCacheTunnelPut(strPath, dtmPath, geoMesh);
       } else {
         console.log('[Geometry cache] Tunnel model cache hit: ' + fileName);
@@ -1009,7 +1009,7 @@ async function restoreModelNode(categoryItem, f, kind, read, missing, scene, use
       loadModelToScene(geoMesh, '3D Tunnel Models', fileName, { filePath: f.filePath || null, strFilePath: f.strFilePath || null });
     } else {
       const filePath = f.filePath || null;
-      // ★ 几何缓存优先：有真实路径且命中时跳过「读盘 + 重新解析」
+      // the geometry cache comes first: when there is a real path and the cache hits, reading from disk and parsing again are skipped
       let geoMesh = filePath ? await geoCacheTsGet(filePath) : null;
       if (!geoMesh && filePath && /\.(ts|obj|asc)$/i.test(filePath) && window.backendClient?.available) geoMesh = await parseLocalModel(filePath,null,()=>null);
       if (!geoMesh || !geoMesh.vertices || !geoMesh.vertices.length || !geoMesh.indices || !geoMesh.indices.length) {
@@ -1042,9 +1042,9 @@ async function restoreModelNode(categoryItem, f, kind, read, missing, scene, use
   }
 }
 
-// —— 恢复图件文件节点 ——
+// -- restore the figure file nodes --
 async function restoreDrawingNode(catNode, f, read, missing) {
-  // 静默跳过演示占位 / 无源文件条目（HTML 硬编码的占位图件等），不把噪音塞进 missing 弹窗
+  // the demo placeholders and the entries with no source file, such as the hard-coded placeholder figures in the HTML, are skipped silently so that no noise reaches the missing dialog
   if (!f.filePath && !f.fileName) return;
   const bytes = await read(f.filePath || f.fileName, f.fileName);
   if (!bytes) return;
@@ -1065,12 +1065,12 @@ async function restoreDrawingNode(catNode, f, read, missing) {
     fileNode.setAttribute('data-drawing-id', id);
     fileNode.innerHTML = '<svg class="sub-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>' + escapeHtml(f.fileName) + '</span>';
     nested.appendChild(fileNode);
-    // ★ 第 102 节：按「该分类实际所在的容器」重绑（图件管理 / 地表皆可）
+    // Section 102: rebind according to the container the category actually sits in, whether that is figure management or Surface
     try { bindDrawingContextMenus((catNode && catNode.parentElement) || subitemsDrawingMgmt); } catch (e) {}
   }
 }
 
-// —— 恢复「地表」大类（第 102 节：遥感影像 / 地形图） ——
+// -- restore the Surface category (section 102: remote sensing imagery and topographic maps) --
 async function restoreSurfaceTree(items, read, missing, savedScene, useViewers) {
   if (!subitemsSurface || !Array.isArray(items) || items.length === 0) return;
   for (const cat of items) {
@@ -1083,7 +1083,7 @@ async function restoreSurfaceTree(items, read, missing, savedScene, useViewers) 
       }
       continue;
     }
-    // 「地表」下的分类是内置固定节点，按名字定位；万一被改名/删除则补建
+    // the categories under Surface are built-in fixed nodes that are located by name, and they are recreated if they were renamed or deleted
     let catNode = Array.from(subitemsSurface.querySelectorAll('[data-role="drawing-category"]'))
       .find(n => (cat.surfaceKind && n.dataset.surfaceKind === cat.surfaceKind) || ((n.querySelector('span') || {}).textContent || '').trim() === cat.name);
     if (!catNode) {
@@ -1104,9 +1104,9 @@ async function restoreSurfaceTree(items, read, missing, savedScene, useViewers) 
   }
 }
 
-// ★ 第 102 节：旧存档兼容 —— 把「图件管理」下遗留的『遥感影像』『地形图』分类
-//   （连同其中已导入的图件）整体搬到「地表」下的同名分类，然后移除旧节点，
-//   避免同一分类在项目树上出现两处。返回被搬迁的图件节点数（>0 = 发生了迁移）。
+// Section 102: compatibility with old archives moves the leftover remote sensing imagery and topographic map categories from figure management
+// together with the figures they contain over to the categories of the same name under Surface, and the old nodes are then removed,
+// so that the same category does not appear twice on the project tree. It returns the number of figure nodes that were moved, where a value above zero means a migration happened.
 function migrateDrawingCatsToSurface() {
   if (!subitemsSurface || !subitemsDrawingMgmt) return 0;
   const MOVED_NAMES = ['Remote Sensing Imagery', 'Topographic map', 'Geological map'];
@@ -1134,7 +1134,7 @@ function migrateDrawingCatsToSurface() {
       }
       oldCat.remove();
     });
-    // 迁移后让该分类处于展开可见状态
+    // after the migration the category is left expanded and visible
     target.classList.remove('collapsed');
     targetNested.classList.add('expanded');
   });
@@ -1145,9 +1145,9 @@ function migrateDrawingCatsToSurface() {
   return moved;
 }
 
-// —— 恢复 PDF 文件节点 ——
+// -- restore the PDF file nodes --
 async function restorePdfFile(folderNode, f, read, missing) {
-  // 静默跳过演示占位 / 无源文件条目（HTML 硬编码的占位图件等），不把噪音塞进 missing 弹窗
+  // the demo placeholders and the entries with no source file, such as the hard-coded placeholder figures in the HTML, are skipped silently so that no noise reaches the missing dialog
   if (!f.filePath && !f.fileName) return;
   const bytes = await read(f.filePath || f.fileName, f.fileName);
   if (!bytes) return;
@@ -1156,7 +1156,7 @@ async function restorePdfFile(folderNode, f, read, missing) {
   addPdfFileNode(fileLike, url, folderNode);
 }
 
-// —— 恢复测试数据文件节点 ——
+// -- restore the test data file nodes --
 async function restoreWordFile(folderNode, f, read, missing) {
   if (!f.filePath && !f.fileName) return;
   const bytes = await read(f.filePath || f.fileName, f.fileName);
@@ -1168,7 +1168,7 @@ async function restoreWordFile(folderNode, f, read, missing) {
 }
 
 async function restoreTestDataFile(folderNode, f, read, missing) {
-  // 静默跳过演示占位 / 无源文件条目（HTML 硬编码的占位图件等），不把噪音塞进 missing 弹窗
+  // the demo placeholders and the entries with no source file, such as the hard-coded placeholder figures in the HTML, are skipped silently so that no noise reaches the missing dialog
   if (!f.filePath && !f.fileName) return;
   const bytes = await read(f.filePath || f.fileName, f.fileName);
   if (!bytes) return;
@@ -1192,7 +1192,7 @@ async function restoreTestDataFile(folderNode, f, read, missing) {
 }
 
 // ============================================================
-// 打开项目
+// open a project
 // ============================================================
 async function doOpenProject(requestedPath) {
   if (pointAddMode) {
@@ -1241,7 +1241,7 @@ async function doOpenProject(requestedPath) {
 }
 
 // ============================================================
-// 新建项目
+// create a project
 // ============================================================
 async function doNewProject() {
   if (pointAddMode) {
@@ -1266,23 +1266,23 @@ function applyNewProject(name) {
   currentProjectPath = null;
   currentProjectName = name || 'New project';
   updateProjectSubtitle();
-  // 新建项目后清空上次会话草稿，避免下次启动误恢复旧现场
+  // clear the previous session draft after creating a project, so that the next start does not wrongly restore the old state
   try { if (window.electronAPI && window.electronAPI.clearSession) window.electronAPI.clearSession(); } catch (e) {}
   try { fitViewToAll(); } catch (e) {}
 }
 
 // ============================================================
-// 几何缓存（第二层持久化 · IndexedDB）
-// 把「解析结果 geoMesh」以 真实文件路径+修改时间+大小 为钥匙缓存到本地库，
-// 打开项目 / 恢复会话时命中缓存 → 跳过读源文件+重新解析，直接建模型（秒开）。
-// 只覆盖 .ts 地质模型 与 .str+.dtm 坑道模型（解析最耗时、收益最大的两类）。
-// 门控：仅桌面环境（window.electronAPI.statProjectFile 存在）生效；
-//       浏览器直接打开时自动跳过；演示数据无真实路径 → 不写缓存。
-// 容错：任何一步出错都静默返回「未命中」，流程与现在完全一致，永不更差。
-// 控制台工具：geoCacheStats() 查看占用 / geoCacheClearAll() 清空
+// the geometry cache, the second persistence layer, in IndexedDB
+// the parse result geoMesh is cached in the local database, keyed by the real file path together with the modification time and the size,
+// when opening a project or restoring a session, a cache hit skips reading the source file and parsing again and builds the model directly, so it opens instantly.
+// only the .ts geological models and the .str with .dtm tunnel models are covered, since those are the slowest to parse and give the most benefit.
+// the gate: it only applies in the desktop environment, where window.electronAPI.statProjectFile exists;
+// it is skipped automatically when the page is opened in a browser, and the demo data has no real path so nothing is written to the cache.
+// error handling: if any step fails it silently reports a miss, the flow stays exactly as it is, and it is never worse.
+// console tools: geoCacheStats() shows the usage and geoCacheClearAll() empties the cache
 // ============================================================
 
-// IndexedDB 连接（懒加载 + 复用，失败静默禁用返回 null）
+// the IndexedDB connection (lazily loaded and reused, disabled silently on failure and returning null)
 let _geoCacheDB = null;
 function geoCacheOpenDB() {
   if (_geoCacheDB) return Promise.resolve(_geoCacheDB);
@@ -1306,7 +1306,7 @@ function geoCacheOpenDB() {
   } catch (e) { return Promise.resolve(null); }
 }
 
-// 读取一条缓存记录（无/出错 → null）
+// read one cache record (null when it is missing or on error)
 async function geoCacheGet(key) {
   try {
     const db = await geoCacheOpenDB();
@@ -1323,7 +1323,7 @@ async function geoCacheGet(key) {
   } catch (e) { return null; }
 }
 
-// 写入/覆盖一条缓存记录（失败静默）
+// write or overwrite one cache record (silently ignored on failure)
 async function geoCachePut(key, record) {
   try {
     const db = await geoCacheOpenDB();
@@ -1341,7 +1341,7 @@ async function geoCachePut(key, record) {
   } catch (e) { return false; }
 }
 
-// 取磁盘文件 stat（仅桌面；无 electronAPI / 失败 → null）
+// get the stat of a file on disk (desktop only; null when there is no electronAPI or on failure)
 async function geoStatFile(path) {
   try {
     if (!path || !window.electronAPI || !window.electronAPI.statProjectFile) return null;
@@ -1350,7 +1350,7 @@ async function geoStatFile(path) {
   } catch (e) { return null; }
 }
 
-// —— .ts 地质 / 地球化学模型：钥匙 = 'ts:' + 真实路径 ——
+// -- the .ts geological and geochemical models: the key is 'ts:' followed by the real path --
 function geoCacheTsKey(filePath) { return 'ts:' + filePath; }
 
 async function geoCacheTsGet(filePath) {
@@ -1379,7 +1379,7 @@ async function geoCacheTsPut(filePath, geoMesh) {
   } catch (e) { return false; }
 }
 
-// —— 坑道模型：钥匙 = 'tunnel:' + str路径 + '|' + dtm路径，两个文件各自校验 ——
+// -- the tunnel models: the key is 'tunnel:' followed by the str path and a pipe and the dtm path, and each file is verified separately --
 function geoCacheTunnelKey(strPath, dtmPath) { return 'tunnel:' + strPath + '|' + dtmPath; }
 
 async function geoCacheTunnelGet(strPath, dtmPath) {
@@ -1411,7 +1411,7 @@ async function geoCacheTunnelPut(strPath, dtmPath, geoMesh) {
   } catch (e) { return false; }
 }
 
-// 统计缓存占用（控制台工具）
+// report the cache usage (a console tool)
 async function geoCacheStats() {
   try {
     const db = await geoCacheOpenDB();
@@ -1433,7 +1433,7 @@ async function geoCacheStats() {
   } catch (e) { return { ok: false, reason: e.message }; }
 }
 
-// 清空全部几何缓存（控制台工具）
+// clear the whole geometry cache (a console tool)
 async function geoCacheClearAll() {
   try {
     const db = await geoCacheOpenDB();
@@ -1452,28 +1452,28 @@ async function geoCacheClearAll() {
 }
 
 // ============================================================
-// 会话自动记忆（第一层持久化）
-// 桌面环境：现场草稿固定保存到 userData/shanwei-session.json
-//   · 关闭窗口  → 静默自动保存后退出（写盘失败才兜底弹「保存项目」框）
-//   · 平时操作  → 图层列表变化防抖 2 秒自动保存（防崩溃/断电丢失）
-//   · 启动程序  → 检测到草稿则恢复上次现场（同份草稿自动静默恢复，新草稿询问一次）
-// 浏览器环境（无 electronAPI）：本区代码全部自动失效，行为与原来一致
+// the automatic session memory, the first persistence layer
+// desktop environment: the session draft is always saved to userData/shanwei-session.json
+// closing the window saves it silently and exits, and only a failure to write falls back to the save project dialog
+// during normal use a change in the layer list triggers a debounced autosave after two seconds, so a crash or a power loss loses nothing
+// on start, a detected draft restores the previous state, where the same draft is restored silently and a new draft is asked about once
+// browser environment (no electronAPI): all the code in this section is disabled automatically and the behaviour is unchanged
 // ============================================================
 
-// 是否包含「真实导入」的工作内容（排除纯演示数据，演示模型无磁盘路径）
+// whether it contains any real imported work content, excluding the pure demo data, whose models have no path on disk
 function hasRealProjectContent() {
   if (window.researchRegions && researchRegions.hasChanges()) return true;
   ensureProjectLevelStateFields();
   if (getProjectModels().some(m => m.filePath || m.strFilePath || m.isPointLayer || m.isLineLayer || m.isDrillhole)) return true;
   if (['tables', 'drawings', 'pdfs', 'words', 'testData', 'pointLayers', 'lineLayers']
       .some(key => Object.keys(state[key]).length > 0)) return true;
-  // ★ 第 74 节补充：用户自建的「空分类 / 空子分类」也算真实工作内容。
-  //   原实现只看 state 里有没有数据对象 —— 但「新建子分类」只改 DOM 树、不产生 state 条目，
-  //   于是刚建好、还没导入图片的空子分类会被判定为「无内容」→ 草稿不落盘 → 重开项目消失。
-  //   这正是需求 1 想解决的隐患：不弹保存窗口的前提，是草稿通道真的能存住。
-  //   判据：树里存在用户自建节点。特征 —— data-role 为分类类角色且【不】带任何数据引用属性
+  // Section 74 addition: an empty category or subcategory that the user created also counts as real work content.
+  // The original implementation only looked for data objects in the state, but creating a subcategory only changes the DOM tree and produces no state entry,
+  // so a subcategory that was just created and has no images yet was judged to have no content, the draft was not written to disk, and the project disappeared when it was reopened.
+  // This is exactly the risk that requirement 1 addresses: not interrupting with a save dialog only makes sense if the draft channel really can store the work.
+  // the criterion: a node the user created exists in the tree. The signature is a category-like data-role with no data reference attribute at all,
   //   （data-table-id / data-drawing-id / data-pdf-id / data-word-id / data-testdata-id /
-  //     data-model-id 都没有 → 说明这是个尚未挂载内容的容器节点，而非内置的固定骨架节点）。
+  // not even a data-model-id, which means it is a container that has not been given any content yet rather than one of the built-in fixed skeleton nodes.
   try {
     const roots = [subitemsDrawingMgmt, subitemsSurface, subitemsDrillhole, subitems3DModel,
                    subitemsGeochemModel, subitemsTunnelModel, subitemsTestData,
@@ -1483,14 +1483,14 @@ function hasRealProjectContent() {
       const nodes = root.querySelectorAll('.lp-sub-item[data-role]');
       for (const n of nodes) {
         const role = n.getAttribute('data-role') || '';
-        // 只认「分类/分组」类角色，避免把文件叶子节点误判
+        // only category and group roles are recognised, so that a file leaf node is not misjudged
         if (!/categor|group|folder|area/.test(role)) continue;
         const hasDataRef = n.hasAttribute('data-table-id') || n.hasAttribute('data-drawing-id') ||
           n.hasAttribute('data-pdf-id') || n.hasAttribute('data-word-id') ||
           n.hasAttribute('data-testdata-id') || n.hasAttribute('data-model-id');
         if (hasDataRef) continue;
-        // 内置固定骨架（如「图件管理」下的默认分类、「地表」下的遥感影像/地形图）不算用户工作内容：
-        // 判据 = 该分类名不在任一内置清单里，或它有子节点（用户往里加过东西）
+        // the built-in fixed skeleton, such as the default categories under figure management and the remote sensing imagery and topographic maps under Surface, does not count as user work content:
+        // the criterion is that the category name is in none of the built-in lists, or that it has child nodes because the user put something in it
         const nm = ((n.querySelector('span') || {}).textContent || '').trim();
         const isDefaultCat = DEFAULT_DRAWING_SUBCATEGORIES.indexOf(nm) >= 0 ||
           SURFACE_BUILTIN_CATEGORIES.indexOf(nm) >= 0;
@@ -1504,7 +1504,7 @@ function hasRealProjectContent() {
   return false;
 }
 
-// 立即保存会话草稿 → true=已落盘；false=无需保存（空/纯演示）或保存失败
+// save the session draft immediately, returning true when it was written and false when there was nothing to save or the save failed
 async function saveSessionNow() {
   if (projectRestoreInProgress) return false;
   if (!window.electronAPI || !window.electronAPI.saveSession) return false;
@@ -1518,7 +1518,7 @@ async function saveSessionNow() {
   }
 }
 
-// 防抖 2 秒自动保存（图层列表变化时由观察器调用，防崩溃丢失）
+// the debounced autosave after two seconds, called by the observer when the layer list changes, so a crash loses nothing
 let _sessionSaveTimer = null;
 function scheduleSessionSave() {
   if (projectRestoreInProgress) return;
@@ -1530,7 +1530,7 @@ function scheduleSessionSave() {
   }, 2000);
 }
 
-// 监听图层管理列表变化：导入/删除任何内容后自动落盘草稿
+// watch the layer management list and write the draft automatically after anything is imported or deleted
 (function () {
   if (!window.electronAPI || !window.electronAPI.saveSession) return;
   try {
@@ -1541,7 +1541,7 @@ function scheduleSessionSave() {
   } catch (e) {}
 })();
 
-// 用草稿数据执行恢复动作（loading → 清场 → 重建），返回 true=恢复流程完成
+// perform the restore with the draft data (loading, then clearing, then rebuilding) and return true when the restore is complete
 async function restoreFromSession(data) {
   showImportLoading('Restoring the previous session...');
   await new Promise(r => setTimeout(r, 30));
@@ -1563,7 +1563,7 @@ async function restoreFromSession(data) {
   }
 }
 
-// 启动时探测上次现场 → true=已处理（无需再导入演示数据）；false=无草稿/取消/失败
+// probe for the previous state at start, returning true when it has been handled so that the demo data does not need to be imported again, and false when there is no draft, the user cancelled or it failed
 async function maybeRestoreSession() {
   if (!window.electronAPI || !window.electronAPI.readSession || !window.electronAPI.clearSession) return true;
   let raw = null;
@@ -1582,18 +1582,18 @@ async function maybeRestoreSession() {
   const savedAt = data.savedAt || '';
   const key = 'szs_session_decided';
   const decided = sessionStorage.getItem(key);
-  // 本份草稿已确认过（如开发期文件监听 reload）→ 不再询问，按上次选择静默执行
+  // this draft has already been confirmed, for example after a file watcher reload during development, so it is not asked about again and the last choice is carried out silently
   if (decided === savedAt) {
     const restored = await restoreFromSession(data);
     if (restored) return true;
-    // 静默恢复失败：清草稿与记忆，交回演示数据兜底
+    // if the silent restore fails, clear the draft and the memory and fall back to the demo data
     try { await window.electronAPI.clearSession(); } catch (e) {}
     sessionStorage.removeItem(key);
     return false;
   }
   if (decided === 'skip') return false; // 上次明确丢弃过同现场（草稿残留时兜底）
 
-  // —— 首次遇到这份新草稿：询问一次 ——
+  // -- the first time this new draft is seen, ask once --
   const name = data.projectName || 'Untitled project';
   const modelN = (data.scene.models || []).length;
   const tabN = (data.tabs || []).length;
@@ -1611,37 +1611,37 @@ async function maybeRestoreSession() {
   sessionStorage.setItem(key, savedAt);
   const restored2 = await restoreFromSession(data);
   if (restored2) return true;
-  // 恢复失败：清草稿与记忆，避免下次启动反复卡在同一现场
+  // if the restore fails, clear the draft and the memory so that the next start does not get stuck on the same state
   try { await window.electronAPI.clearSession(); } catch (e) {}
   sessionStorage.removeItem(key);
   return false;
 }
 
 // ============================================================
-// 关闭前询问：主进程拦截 close → 弹窗询问是否保存
+// ask before closing: the main process intercepts the close and a dialog asks whether to save
 // ============================================================
 (function () {
   if (!window.electronAPI || !window.electronAPI.onCloseRequest) return;
   const overlay = document.getElementById('project-close-overlay');
   if (!overlay) return;
   window.electronAPI.onCloseRequest(async () => {
-    // ⓪ 若正在点绘制：先把绘制态收尾（结束绘制会保存到类别），再走原流程
+    // first, if point drawing is in progress, finish it, since ending the drawing saves it to the category, and then continue with the original flow
     if (typeof pointAddMode !== 'undefined' && pointAddMode) {
       try { setPointAddMode(false); } catch (e) {}
     }
-    // ① 自动记忆：静默保存现场草稿，成功则直接放行关闭（不再打断用户）
+    // second, the automatic memory saves the draft silently and lets the close proceed when it works, without interrupting the user
     try {
       const saved = await saveSessionNow();
       if (saved) { window.electronAPI.allowClose(); return; }
     } catch (e) {}
-    // ② 有真实工作内容但保存失败 → 兜底弹「保存项目文件」框，防止数据丢失
+    // third, when there is real work content but the save failed, the save project file dialog is shown as a fallback so that nothing is lost
     if (hasRealProjectContent()) {
       const nm = document.getElementById('project-close-name');
       if (nm) nm.textContent = currentProjectName;
       overlay.style.display = 'flex';
       return;
     }
-    // ③ 空场景 / 纯演示数据 → 直接放行
+    // fourth, an empty scene or pure demo data lets the close proceed straight away
     window.electronAPI.allowClose();
   });
   document.getElementById('project-close-cancel').addEventListener('click', () => {
@@ -1659,13 +1659,13 @@ async function maybeRestoreSession() {
 })();
 
 /* ============================================================
- * AI 智勘助手悬浮球：按住拖动换位 + 位置记忆（localStorage）
- * 要点：
- *  1. pointerdown 记录起点，位移 >4px 才算"拖动"（否则视为点击，
- *     为以后接入 AI 对话面板保留语义）；
- *  2. 拖动中加 .dragging 禁过渡动画，位置限制在窗口可视区内；
- *  3. 松手把 {left,top} 记忆到 localStorage('szs_aiFabPos')，
- *     下次启动自动恢复；位置被挤出屏幕（改窗口大小）时自动夹回。
+ * The AI assistant floating button: hold and drag to move it, and the position is remembered in localStorage
+ * The key points:
+ *  1. pointerdown records the starting point and the drag only counts once the movement exceeds 4 pixels, otherwise it is treated as a click,
+ *     which keeps the semantics for a future AI chat panel);
+ *  2. while dragging the .dragging class disables the transition animation and the position is confined to the visible area of the window;
+ *  3. on release the {left, top} pair is remembered in localStorage under the key szs_aiFabPos,
+ .
  * ============================================================ */
 (function () {
   const fab = document.querySelector('.ai-fab');
@@ -1681,7 +1681,7 @@ async function maybeRestoreSession() {
   function savePos() {
     try {
       localStorage.setItem(POS_KEY, JSON.stringify({ left: Math.round(curLeft), top: Math.round(curTop) }));
-    } catch (err) { /* 存储异常静默忽略 */ }
+    } catch (err) { /* a storage failure is ignored silently */ }
   }
 
   function restorePos() {
@@ -1695,7 +1695,7 @@ async function maybeRestoreSession() {
       fab.style.left = L + 'px';
       fab.style.top = T + 'px';
       fab.style.bottom = 'auto';
-    } catch (e) { /* 损坏数据静默回退左下角默认位 */ }
+    } catch (e) { /* corrupted data silently falls back to the default position in the bottom left */ }
   }
 
   fab.addEventListener('pointerdown', (e) => {
@@ -1736,7 +1736,7 @@ async function maybeRestoreSession() {
   fab.addEventListener('pointerup', endDrag);
   fab.addEventListener('pointercancel', endDrag);
 
-  // 窗口尺寸变化：若当前位置被挤出可视区则自动夹回并更新记忆
+  // when the window size changes, a position pushed outside the visible area is clamped back and the memory is updated
   window.addEventListener('resize', () => {
     const r = fab.getBoundingClientRect();
     const L = clamp(r.left, 0, Math.max(0, window.innerWidth - fab.offsetWidth));
@@ -1750,7 +1750,7 @@ async function maybeRestoreSession() {
     }
   });
 
-  // 初始化：恢复记忆位置（DOM 就绪后执行）
+  // initialise: restore the remembered position once the DOM is ready
   if (document.readyState === 'loading') {
     window.addEventListener('DOMContentLoaded', restorePos);
   } else {

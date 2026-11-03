@@ -1,7 +1,7 @@
 // ============================================================
-// Electron 主进程
-// 核心策略：注册 app:// 自定义协议，让渲染进程的 fetch / <img src> / <script src>
-// 等相对路径自动映射到 src/ 目录下的本地文件，实现 index8.html 零改动迁移。
+// Electron main process
+// Core strategy: register the app:// custom protocol so that fetch, <img src> and <script src> in the renderer resolve to local files under src/, which is what makes the index8.html dynamic migration work.
+// The relative paths map automatically onto the local files in the src directory, so index8.html migrates without a single change.
 // ============================================================
 
 const { app, BrowserWindow, protocol, shell, dialog, ipcMain } = require('electron');
@@ -14,21 +14,25 @@ guardDiagnosticStream(process.stderr);
 const { PythonManager } = require('./desktop/python-manager');
 const pythonManager = new PythonManager({ root: app.isPackaged ? process.resourcesPath : __dirname, packaged: app.isPackaged });
 
-// 放宽 Chromium 限制（大图 / GPU 表面 / 内存）
+// Relax the Chromium limits (large images, GPU surfaces, memory)
 app.commandLine.appendSwitch('disable-gpu-surface-limit');
 app.commandLine.appendSwitch('js-flags', '--max-old-space-size=4096');
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
-// 允许加载本地文件时绕过 CORS（file:// 场景备用）
+// Allow local file loads to bypass CORS (a fallback for the file:// scenario)
 app.commandLine.appendSwitch('disable-web-security');
-// 禁用 Chromium 沙箱（桌面应用不需要，且某些环境下沙箱会导致启动失败）
+// Disable the Chromium sandbox (a desktop application does not need it, and in some environments it prevents the application from starting)
 app.commandLine.appendSwitch('no-sandbox');
 // ------------------------------------------------------------
-// 硬件加速策略（2026-09-28 §78 修正）
-// 原为无条件 app.disableHardwareAcceleration()，动机是「命令行无头测试时 GPU 进程
-// 反复崩溃」。但代价是日常使用全程走软件渲染：三维场景帧率极低 → 主线程被渲染占满
-// → 输入法预编辑无法提交（表现为「重命名时只能删除、打不进字」）并整体卡顿。
-// 现改为：默认启用硬件加速；仅显式传 --sw（或设 SHANWEI_SW_RENDER=1）时关闭，
-// 供自动化测试 / 显卡兼容模式使用。
+// Hardware acceleration policy (corrected in section 78 on 2026-09-28)
+// This used to call app.disableHardwareAcceleration() unconditionally, motivated by
+// repeated GPU process crashes during headless command-line tests. The cost was that
+// everyday use always ran in software rendering: the frame rate in 3D scenes dropped very
+// low, the main thread was occupied by rendering, and the input method pre-edit could not
+// be committed (appearing as "during rename you can only delete, not type"), with the
+// whole application lagging.
+// It is now: hardware acceleration is enabled by default and disabled only when --sw is
+// passed explicitly (or SHANWEI_SW_RENDER=1 is set), for automated tests and for graphics
+// compatibility mode.
 // ------------------------------------------------------------
 const SOFTWARE_RENDER = process.argv.includes('--sw') || process.env.SHANWEI_SW_RENDER === '1';
 if (SOFTWARE_RENDER) {
@@ -38,7 +42,7 @@ if (SOFTWARE_RENDER) {
   console.log('[Electron] Rendering mode: Hardware acceleration (GPU) ');
 }
 
-// 将用户数据目录重定向到项目内（避免 AppData\Roaming 权限问题）
+// Redirect the user data directory into the project (avoids AppData\Roaming permission problems)
 const USER_DATA_DIR = path.join(__dirname, 'userData');
 const CACHE_DIR = path.join(__dirname, 'cache');
 const writableUserData = app.isPackaged ? path.join(app.getPath('appData'), 'ShanweiGeo-English', 'userData') : USER_DATA_DIR;
@@ -47,14 +51,16 @@ fs.mkdirSync(writableUserData, { recursive: true });
 fs.mkdirSync(writableCache, { recursive: true });
 app.setPath('userData', writableUserData);
 app.setPath('cache', writableCache);
-// Python 侧的 COORD 目录与主进程保持一致：userData/tools/COORD
+// Keep the COORD directory on the Python side consistent with the main process: userData/tools/COORD
 pythonManager.coordDir = path.join(writableUserData, 'tools', 'COORD');
 if(app.isPackaged)app.setAppLogsPath(path.join(app.getPath('appData'),'ShanweiGeo-English','logs'));
 else app.setAppLogsPath(path.join(__dirname, 'logs'));
 
-// 定位原版 COORD 可执行文件。
-// 优先级：SHANWEI_COORD_DIR 环境变量 → userData/tools/COORD（打包版与开发版一致）
-// → 开发环境下的本机安装目录。不在源码中硬编码绝对路径，避免发布后失效。
+// Locate the original COORD executable.
+// Priority: the SHANWEI_COORD_DIR environment variable, then userData/tools/COORD (the
+// same for the packaged and development builds), then the local installation directory in
+// a development environment. No absolute path is hard-coded in the source, so the build
+// does not break after release.
 function resolveCoordExecutable(){
   const candidates=[];
   const fromEnv=process.env.SHANWEI_COORD_DIR;
@@ -65,12 +71,12 @@ function resolveCoordExecutable(){
   candidates.push(path.join(app.getPath('userData'),'tools','COORD','COORD.exe'));
   candidates.push(path.join(__dirname,'tools','COORD','COORD.exe'));
   for(const candidate of candidates){
-    try{ if(candidate&&fs.existsSync(candidate)&&fs.statSync(candidate).isFile())return candidate; }catch(error){ /* 忽略无效候选 */ }
+    try{ if(candidate&&fs.existsSync(candidate)&&fs.statSync(candidate).isFile())return candidate; }catch(error){ /* ignore an invalid candidate*/ }
   }
   return null;
 }
 
-// 必须在 app.ready 之前注册 scheme，否则 fetch API 不可用
+// the scheme has to be registered before app.ready, otherwise the fetch API is unavailable
 protocol.registerSchemesAsPrivileged([{
   scheme: 'app',
   privileges: {
@@ -84,10 +90,10 @@ protocol.registerSchemesAsPrivileged([{
   }
 }]);
 
-// 应用源码目录（index8.html 和所有资源都在这里）
+// the application source directory, where index8.html and every asset live
 const SRC_DIR = path.join(__dirname, 'src');
 
-// MIME 类型映射
+// the MIME type mapping
 function getMimeType(ext) {
   const map = {
     '.html': 'text/html; charset=utf-8',
@@ -117,8 +123,8 @@ function getMimeType(ext) {
 }
 
 let mainWindow = null;
-// 窗口关闭许可标记：渲染层确认「保存/不保存」后置 true，放行真正关闭
-// （拦截 close → 询问渲染层 → 渲染层决策后再 close，避免未保存丢失）
+// the flag that permits the window to close: it is set to true once the renderer has decided to save or not, which lets the close go through
+// (the close is intercepted, the renderer is asked, and only then is the window closed, so that unsaved work is not lost)
 let allowClose = false;
 
 function createWindow() {
@@ -141,8 +147,8 @@ function createWindow() {
     }
   });
 
-  // 通过 app:// 协议加载主页面，相对路径会自动解析为 app://local/xxx
-  // 2026-09-08 新建 index8 分支：桌面版主页面由 index7 升级为 index8（OBJ 导入新主线，index7 保留回退）
+  // load the main page through the app:// protocol, where the relative paths resolve to app://local/xxx automatically
+  // 2026-09-08, the index8 branch was created: the desktop main page moved up from index7 to index8, with the OBJ import as the new main line and index7 kept as a fallback
   mainWindow.loadURL('app://local/index8.html');
   const ownerId = mainWindow.webContents.id;
   mainWindow.webContents.on('did-start-navigation', (_event, _url, isInPlace, isMainFrame) => {
@@ -150,13 +156,13 @@ function createWindow() {
   });
   mainWindow.webContents.on('destroyed', () => pythonManager.cancelOwner(ownerId));
 
-  // 页面加载日志（用于验证迁移是否成功）
+  // the page load log, used to verify that the migration worked
   mainWindow.webContents.on('did-start-loading', () => {
     console.log('[Electron] Page loading started...');
   });
   mainWindow.webContents.on('did-finish-load', () => {
     console.log('[Electron] Page loaded ✓');
-    // 仅开发模式（--dev 参数）下延迟 5 秒自动运行功能诊断（含图件大图解码测试），生产环境不执行
+    // only in development mode, that is with the --dev argument, a functional diagnostic including the large figure decoding test runs automatically after five seconds; it never runs in production
     if (process.argv.includes('--dev')) {
       setTimeout(() => runDiagnostics(mainWindow), 5000);
     }
@@ -169,12 +175,12 @@ function createWindow() {
     console.log(`[Page ${levelStr}] ${message}`);
   });
 
-  // 开发模式打开 DevTools
+  // open the DevTools in development mode
   if (process.argv.includes('--dev')) {
     mainWindow.webContents.openDevTools();
   }
 
-  // 拦截外部链接，用系统浏览器打开
+  // intercept the external links and open them in the system browser
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('http://') || url.startsWith('https://')) {
       shell.openExternal(url);
@@ -187,7 +193,7 @@ function createWindow() {
     mainWindow = null;
   });
 
-  // ★ 关闭前询问是否保存项目（拦截 close → 通知渲染层弹窗询问）
+  // ask whether to save the project before closing (the close is intercepted and the renderer is notified so that it can show the dialog)
   mainWindow.on('close', (e) => {
     if (!allowClose) {
       e.preventDefault();
@@ -198,25 +204,25 @@ function createWindow() {
   });
 }
 
-// 注册 app:// 协议处理器
+// register the app:// protocol handler
 function registerAppProtocol() {
-  // 图片缩放缓存（避免重复处理）
+  // the image scaling cache, which avoids processing the same image twice
   const imageResizeCache = new Map();
-  // Chromium 图片像素上限（约 1.28 亿像素，留余量用 1 亿）
+  // the Chromium image pixel limit, about 128 million pixels, with a margin so 100 million is used
   const MAX_IMAGE_PIXELS = 100000000;
 
   protocol.handle('app', async (request) => {
     try {
       const url = new URL(request.url);
       let relativePath = url.pathname;
-      // Windows 路径修正：去掉开头的 /
+      // Windows path correction: remove the leading slash
       if (process.platform === 'win32' && relativePath.startsWith('/')) {
         relativePath = relativePath.slice(1);
       }
-      // 解码 URL 编码（中文文件名）
+      // decode the URL encoding, which matters for Chinese file names
       relativePath = decodeURIComponent(relativePath);
 
-      // 防止路径穿越攻击
+      // prevent a path traversal attack
       const fullPath = path.resolve(SRC_DIR, relativePath);
       const rel = path.relative(SRC_DIR, fullPath);
       if (rel.startsWith('..')) {
@@ -231,9 +237,9 @@ function registerAppProtocol() {
       const ext = path.extname(fullPath);
       const imgExts = ['.jpg', '.jpeg', '.png', '.bmp', '.gif', '.webp', '.tif', '.tiff'];
 
-      // 如果是图片文件，检查是否需要缩小
+      // if it is an image file, check whether it has to be scaled down
       if (imgExts.indexOf(ext.toLowerCase()) !== -1) {
-        // 检查缓存
+        // check the cache
         if (imageResizeCache.has(fullPath)) {
           const cached = imageResizeCache.get(fullPath);
           return new Response(new Uint8Array(cached.buffer), {
@@ -255,7 +261,7 @@ function registerAppProtocol() {
           const pixelCount = metadata.width * metadata.height;
 
           if (pixelCount > MAX_IMAGE_PIXELS) {
-            // 超过限制，需要缩小
+            // the limit is exceeded so it has to be scaled down
             const scale = Math.sqrt(MAX_IMAGE_PIXELS / pixelCount);
             const newWidth = Math.floor(metadata.width * scale);
             const newHeight = Math.floor(metadata.height * scale);
@@ -267,7 +273,7 @@ function registerAppProtocol() {
               .jpeg({ quality: 85 })
               .toBuffer();
 
-            // 缓存缩小后的图片
+            // cache the scaled down image
             imageResizeCache.set(fullPath, {
               buffer: resizedBuffer,
               originalSize: metadata.width + 'x' + metadata.height,
@@ -288,18 +294,18 @@ function registerAppProtocol() {
           }
         } catch (sharpErr) {
           console.warn('[Image processing] sharp Processing failed, Use original image:', sharpErr.message);
-          // sharp 处理失败，继续返回原图
+          // if sharp fails, the original image is returned anyway
         }
       }
 
-      // 读取文件并返回
+      // read the file and return it
       const buffer = fs.readFileSync(fullPath);
       const headers = {
         'Content-Type': getMimeType(ext),
         'Content-Length': String(buffer.length),
         'Access-Control-Allow-Origin': '*',
-        // 2026-09-09 修复：禁用 HTTP 缓存，避免覆盖升级后（如 xlsx.full.min.js 换成官方 SheetJS）
-        // 仍被 userData/Cache 中的旧响应命中，导致运行时加载旧版解析器
+        // 2026-09-09 fix: the HTTP cache is disabled, so that after an overwrite upgrade, for example when xlsx.full.min.js is replaced by the official
+        // the old response in userData/Cache is not still matched and the runtime loads the old parser
         'Cache-Control': 'no-store'
       };
 
@@ -328,10 +334,10 @@ app.whenReady().then(() => {
 });
 
 // ============================================================
-// 开发文件监听：检测到文件改动后自动刷新页面
-// 渲染层（src/index8.html、preload.js）改动 → 自动 reload
-// 主进程 main.js 改动 → 打印提示（需重启应用）
-// Windows 适配：fs.watch(事件驱动) + fs.watchFile(stat 轮询) 双保险
+// a development file watcher that refreshes the page automatically when a file changes
+// a change in the renderer layer, that is src/index8.html or preload.js, triggers an automatic reload
+// a change in the main process main.js prints a notice, because the application has to be restarted
+// Windows support: fs.watch for the events together with fs.watchFile for the stat polling, so that one covers the other
 // ============================================================
 function setupFileWatcher() {
   const watchList = [
@@ -340,9 +346,9 @@ function setupFileWatcher() {
     { file: path.join(__dirname, 'preload.js'),                    reload: true,  desc: 'preload.js' }
   ];
 
-  // 防抖计时器（避免编辑器保存时的多次触发）
+  // a debounce timer, so that saving in the editor does not trigger it several times
   const debounceTimers = new Map();
-  // 记录最后一次 mtime+size，避免重复触发
+  // keep the last mtime and size so that it is not triggered again
   const lastSignatures = new Map();
 
   function getFileSignature(file) {
@@ -353,7 +359,7 @@ function setupFileWatcher() {
   }
 
   function handleChange(file, reload, desc, source) {
-    // 签名校验：只有真的变化了才触发
+    // the signature check only triggers when something really changed
     const sig = getFileSignature(file);
     const last = lastSignatures.get(file);
     if (sig && sig === last) return;
@@ -381,15 +387,15 @@ function setupFileWatcher() {
       console.warn(`[File watcher] Skip missing files: ${file}`);
       return;
     }
-    // 初始化签名
+    // initialise the signature
     lastSignatures.set(file, getFileSignature(file));
 
     try {
-      // 方法 1：fs.watch 事件驱动（persistent: true 保证持续监听）
+      // method 1: fs.watch for the events, with persistent set to true so the watch keeps running
       fs.watch(file, { persistent: true }, (eventType, filename) => {
         handleChange(file, reload, desc, `fs.watch:${eventType}:${filename || '-'}`);
       });
-      // 方法 2：同时监听父目录（应对编辑器"写临时文件→替换"策略）
+      // method 2: watch the parent directory as well, to handle an editor that writes a temporary file and then replaces it
       const parentDir = path.dirname(file);
       const baseName = path.basename(file);
       fs.watch(parentDir, { persistent: true }, (eventType, filename) => {
@@ -397,7 +403,7 @@ function setupFileWatcher() {
           handleChange(file, reload, desc, `dir.watch:${eventType}:${filename}`);
         }
       });
-      // 方法 3：fs.watchFile stat 轮询兜底（800ms 间隔，Windows 下更稳）
+      // method 3: fs.watchFile polling the stat as a fallback, at an interval of 800 ms, which is more reliable on Windows
       fs.watchFile(file, { persistent: true, interval: 800 }, (curr, prev) => {
         if (curr.mtimeMs !== prev.mtimeMs || curr.size !== prev.size) {
           handleChange(file, reload, desc, `watchFile:mtime`);
@@ -411,7 +417,7 @@ function setupFileWatcher() {
 }
 
 
-// IPC 处理器：响应 preload.js 暴露的接口
+// the IPC handlers, which answer the interfaces that preload.js exposes
 function registerIpcHandlers() {
   function assertPythonSender(event) {
     if (!mainWindow || event.sender !== mainWindow.webContents || event.senderFrame !== event.sender.mainFrame ||
@@ -502,7 +508,7 @@ function registerIpcHandlers() {
       return { ok: true };
     } catch (error) { return { ok: false, error: error.message }; }
   });
-  // 读取本地文件（备用方案）
+  // read a local file, a fallback
   ipcMain.handle('read-file', (event, relativePath) => {
     try {
       const fullPath = path.resolve(SRC_DIR, relativePath);
@@ -515,20 +521,20 @@ function registerIpcHandlers() {
     }
   });
 
-  // 保存文件对话框
+  // the save file dialog
   ipcMain.handle('show-save-dialog', async (event, options) => {
     const result = await dialog.showSaveDialog(mainWindow, options);
     return result;
   });
 
-  // 打开文件对话框（项目文件打开）
+  // the open file dialog, for opening a project file
   ipcMain.handle('show-open-dialog', async (event, options) => {
     const result = await dialog.showOpenDialog(mainWindow, options);
     return result;
   });
 
-  // 读取任意路径文件（打开项目时按路径加载原始数据文件）
-  // 返回 base64 字符串（JSON 安全传输二进制）
+  // read a file at any path, used to load the original data files by path when a project is opened
+  // return a base64 string, which transports binary data safely inside JSON
   ipcMain.handle('read-project-file', async (event, filePath) => {
     try {
       if (typeof filePath !== 'string' || !filePath) return { ok: false, error: 'Path is empty' };
@@ -539,7 +545,7 @@ function registerIpcHandlers() {
     }
   });
 
-  // 获取任意路径文件的 stat 信息（几何缓存命中判定用：校验源文件是否被改过）
+  // get the stat information of a file at any path, used to decide whether the geometry cache hits by checking whether the source file has changed
   ipcMain.handle('stat-project-file', async (event, filePath) => {
     try {
       if (typeof filePath !== 'string' || !filePath) return { ok: false, error: 'Path is empty' };
@@ -550,7 +556,7 @@ function registerIpcHandlers() {
     }
   });
 
-  // 写入任意路径文件（保存项目文件，UTF-8 文本）
+  // write a file at any path, used to save the project file as UTF-8 text
   ipcMain.handle('write-project-file', async (event, filePath, content) => {
     try {
       if (typeof filePath !== 'string' || !filePath) return { ok: false, error: 'Path is empty' };
@@ -562,10 +568,10 @@ function registerIpcHandlers() {
     }
   });
 
-  // 现场草稿固定写到 userData 下的固定文件，无需用户选择路径
+  // the session draft always goes to a fixed file under userData, so the user never has to choose a path
   const SESSION_FILE = path.join(USER_DATA_DIR, 'shanwei-session.json');
 
-  // 写入会话草稿（内容是渲染层 serializeProject() 的 JSON 字符串）
+  // write the session draft, whose content is the JSON string produced by serializeProject() in the renderer
   ipcMain.handle('session-save', (event, content) => {
     try {
       if (typeof content !== 'string' || !content) return { ok: false, error: 'Content is empty' };
@@ -576,7 +582,7 @@ function registerIpcHandlers() {
     }
   });
 
-  // 读取会话草稿（不存在时返回 { ok:true, data:null }）
+  // read the session draft, returning { ok: true, data: null } when it does not exist
   ipcMain.handle('session-read', () => {
     try {
       if (!fs.existsSync(SESSION_FILE)) return { ok: true, data: null };
@@ -587,7 +593,7 @@ function registerIpcHandlers() {
     }
   });
 
-  // 删除会话草稿（用户取消恢复 / 新建项目后调用，避免下次启动误恢复）
+  // delete the session draft, called when the user cancels the restore or creates a project, so that the next start does not wrongly restore it
   ipcMain.handle('session-clear', () => {
     try {
       if (fs.existsSync(SESSION_FILE)) fs.unlinkSync(SESSION_FILE);
@@ -597,7 +603,7 @@ function registerIpcHandlers() {
     }
   });
 
-  // 允许窗口关闭（渲染进程完成「保存/不保存」决策后调用）
+  // allow the window to close, called once the renderer has decided to save or not
   ipcMain.on('allow-close', () => {
     allowClose = true;
     if (mainWindow && !mainWindow.isDestroyed()) {
@@ -605,26 +611,26 @@ function registerIpcHandlers() {
     }
   });
 
-  // 打开外部链接
+  // open an external link
   ipcMain.on('open-external', (event, url) => {
     shell.openExternal(url);
   });
 
-  // ===== 开发基础设施 =====
+  // ===== development infrastructure =====
 
-  // 热刷新：重新加载当前页面（修改代码后自动调用此接口刷新验证）
+  // hot reload: reload the current page, called automatically after a code change to verify the refresh
   ipcMain.on('refresh-app', () => {
     if (mainWindow && !mainWindow.isDestroyed()) {
       console.log('[Live reload] Reload page...');
-      // 清空 sharp 图片缓存（重新加载时重新读取，便于测试图片处理改动）
+      // clear the sharp image cache so that a reload reads the images again, which makes it easy to test the image handling changes
       if (protocol) {
-        // 协议层缓存无法直接清空，这里强制重新加载即可
+        // the cache at the protocol layer cannot be cleared directly, so a forced reload is enough here
       }
       mainWindow.reload();
     }
   });
 
-  // 获取当前应用状态（诊断用）
+  // get the current application state, for diagnostics
   ipcMain.handle('get-app-state', () => {
     return {
       userDataDir: app.getPath('userData'),
@@ -644,7 +650,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-// 全局错误处理
+// the global error handling
 let pythonShutdownComplete = false;
 let pythonShutdownPending = false;
 app.on('before-quit', event => {
@@ -661,7 +667,7 @@ process.on('uncaughtException', (err) => {
 });
 
 // ============================================================
-// 自动诊断：检查页面各功能模块是否正常
+// the automatic diagnostic checks whether the functional modules of the page are working
 // ============================================================
 async function runDiagnostics(win) {
   console.log('\n========== Starting diagnostics ==========');
@@ -740,20 +746,20 @@ async function runDiagnostics(win) {
     console.log(result);
     console.log('========== Diagnostics complete ==========\n');
 
-    // 测试图片加载（通过 app:// 协议 fetch 本地图片）
+    // test the image loading by fetching a local image through the app:// protocol
     await testImageLoading(win);
   } catch (err) {
     console.error('[Diagnostics failed]', err.message);
   }
 }
 
-// 测试图片加载
+// test the image loading
 async function testImageLoading(win) {
   console.log('========== Starting image loading test ==========');
   const imgScript = `
     (async function() {
       const results = {};
-      // 测试 fetch 加载图片文件
+      // test that fetch loads an image file
       const testFiles = [
         '图件/2千地形地质图.JPG',
         '图件/资源估算图/Ⅱ-1、Ⅲ-1、Ⅵ-1水平投影资源量估算图.JPG'
@@ -776,13 +782,13 @@ async function testImageLoading(win) {
         }
       }
 
-      // 测试 openDrawingInNewTab 函数是否存在
+      // test whether the openDrawingInNewTab function exists
       results.openDrawingInNewTabExists = typeof openDrawingInNewTab === 'function';
 
-      // 测试 state.drawings 状态
+      // test the state.drawings state
       results.stateDrawingsKeys = (state && state.drawings) ? Object.keys(state.drawings) : [];
 
-      // 测试图件节点
+      // test the figure node
       const drawingNodes = document.querySelectorAll('[data-drawing-id]');
       results.drawingNodeDetails = Array.from(drawingNodes).map(n => ({
         id: n.getAttribute('data-drawing-id'),
@@ -790,28 +796,28 @@ async function testImageLoading(win) {
         name: n.querySelector('span') ? n.querySelector('span').textContent.trim() : ''
       }));
 
-      // 尝试调用 openDrawingInNewTab 加载第一张图片
+      // try to call openDrawingInNewTab to load the first image
       if (drawingNodes.length > 0 && typeof openDrawingInNewTab === 'function') {
         try {
           results.openDrawingCall = '正在调用 openDrawingInNewTab...';
           openDrawingInNewTab(drawingNodes[0]);
-          // 等待 3 秒让标签页创建和图片加载
+          // wait three seconds for the tab and the image to be created and loaded
           await new Promise(r => setTimeout(r, 3000));
           results.openDrawingResult = '调用成功';
           results.stateDrawingsKeysAfter = (state && state.drawings) ? Object.keys(state.drawings) : [];
-          // 检查是否创建了新标签页（class 名是 .center-tab）
+          // check whether a new tab was created, whose class name is .center-tab
           const tabs = document.querySelectorAll('.center-tab');
           results.tabCountAfter = tabs.length;
           results.tabNames = Array.from(tabs).map(t => {
             const label = t.querySelector('.center-tab-label');
             return label ? label.textContent.trim() : '';
           }).join(' | ');
-          // 检查 tabViewers Map
+          // check the tabViewers map
           results.tabViewersSize = (typeof tabViewers !== 'undefined') ? tabViewers.size : 'undefined';
-          // 检查图片查看器是否存在
+          // check whether the image viewer exists
           const imgViewer = document.querySelector('.image-viewer-wrap');
           results.imageViewerExists = !!imgViewer;
-          // 检查图片标签中的 img 元素
+          // check the img element inside the image tab
           const imgEl = imgViewer ? imgViewer.querySelector('img') : null;
           results.imgElementExists = !!imgEl;
           if (imgEl) {
@@ -835,14 +841,14 @@ async function testImageLoading(win) {
     console.log(result);
     console.log('========== Image loading test complete ==========\n');
 
-    // 测试超大图片（资源估算图）显示
+    // test the display of a very large image, the resource estimate figure
     await testLargeImageDisplay(win);
   } catch (err) {
     console.error('[Image loading test failed]', err.message);
   }
 }
 
-// 测试超大图片显示
+// test the display of a very large image
 async function testLargeImageDisplay(win) {
   console.log('========== Starting large image test ==========');
   const largeImgScript = `

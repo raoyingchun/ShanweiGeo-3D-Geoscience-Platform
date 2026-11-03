@@ -1,3 +1,6 @@
+# Localisation glossary: source term | English translation.
+# The Chinese left-hand column is the source string that the localisation
+# tooling matches against. It is required input, not untranslated UI text.
 # Long UI messages and terminology. User data and filesystem paths are not translated.
 山维智勘三维地质模型可视化系统|ShanweiGeo 3D Geoscience Platform
 山维智勘数据库|ShanweiGeo Workspace

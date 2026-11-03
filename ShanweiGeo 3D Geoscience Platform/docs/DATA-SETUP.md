@@ -5,8 +5,14 @@ size. This document explains what they contain and how to restore them.
 
 | Directory | Size | Purpose | Tracked |
 | --- | --- | --- | --- |
-| `src/图件/` | ~440 MB | Scanned geological maps, cross-sections and resource-estimate figures | Yes, via Git LFS |
-| `素材库/` | ~52 MB | Reference mineral imagery and vein-texture candidates | No |
+| `src/图件/` (figure library) | ~440 MB | Scanned geological maps, cross-sections and resource-estimate figures | Yes, via Git LFS |
+| `素材库/` (reference library) | ~52 MB | Reference mineral imagery and vein-texture candidates | No |
+
+> **Note on directory names.** The two directories above keep their original
+> Chinese names because they are real paths on disk that the application
+> resolves at runtime. Renaming them would break the figure manager and the
+> material library. This document refers to them by their English glosses in
+> parentheses; the paths themselves are unchanged.
 
 Everything else — source code, the Poly Haven texture set, the Python backend
 and the packaging configuration — is tracked in the repository and can be
@@ -41,7 +47,7 @@ If a clone reports missing LFS objects, run `git lfs pull` in the repository.
 
 ---
 
-## Restoring `src/图件/`
+## Restoring the figure library (`src/图件/`)
 
 The figure library is the scanned geology archive for the project area:
 
@@ -49,14 +55,16 @@ The figure library is the scanned geology archive for the project area:
 src/图件/
 ├── 2千地形地质图.JPG              (1:2000 topographic geological map)
 ├── 剖面图/                        (cross-sections, one file per line)
-│   ├── 1线.JPG
-│   ├── 2线.JPG
+│   ├── 1线.JPG                    (line 1)
+│   ├── 2线.JPG                    (line 2)
 │   ├── ...
-│   └── 42线.JPG
+│   └── 42线.JPG                   (line 42)
 └── 资源估算图/                    (resource-estimate projections)
     ├── Ⅱ-1、Ⅲ-1、Ⅵ-1水平投影资源量估算图.JPG
     ├── ...
 ```
+
+The individual file names are also unchanged, for the same reason.
 
 The figures are loaded by the figure manager in `src/app/app_4.js`. The
 application reads the directory at runtime, so restoring the files is enough —
@@ -78,21 +86,21 @@ directory layout above is reproduced exactly.
 
 ---
 
-## Restoring `素材库/`
+## Restoring the reference library (`素材库/`)
 
 Reference imagery used while authoring the material library:
 
 ```
 素材库/
 ├── 常见矿石图片/                  (common ore photographs, by commodity)
-│   ├── 磷矿_磷块岩/
-│   ├── 金矿_含金矿石/
-│   ├── 钨矿_白钨矿/
+│   ├── 磷矿_磷块岩/                (phosphate rock)
+│   ├── 金矿_含金矿石/              (gold ore)
+│   ├── 钨矿_白钨矿/                (tungsten, scheelite)
 │   ├── ...
-│   └── 锡矿_锡石/
+│   └── 锡矿_锡石/                  (tin, cassiterite)
 └── 矿脉贴图候选/                   (vein-texture candidates)
-    ├── 原图/
-    └── 裁剪展示图/
+    ├── 原图/                      (source images)
+    └── 裁剪展示图/                 (cropped display images)
 ```
 
 This directory is a **design-time reference only** — no runtime code path

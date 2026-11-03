@@ -37,7 +37,7 @@ async function preprocess(filePath,quality,gpuLimit,cacheDir){
   await fs.promises.writeFile(png,data);await fs.promises.writeFile(metaFile,JSON.stringify(meta));
  }
  let coordinate={};if(/\.tiff?$/i.test(filePath)){try{coordinate=await tiffCoordinates(filePath);}catch(error){coordinate.error=error.message;}}
- // 世界文件只读几百字节；每次检查，配套文件修改立即生效。
+ // the world file is only a few hundred bytes, so it is checked every time and a change to the companion file takes effect immediately.
  for(const ext of coordinate.world?[]:['tfw','pgw','jgw','wld']){
   try{const content=await fs.promises.readFile(filePath.replace(/\.[^.]+$/,'.'+ext),'utf8');const world=content.replace(/^\uFEFF/,'').trim().split(/\s+/).map(Number);
    if(world.length!==6||world.some(v=>!Number.isFinite(v))||Math.abs(world[0]*world[3]-world[1]*world[2])<1e-20)throw new Error('Invalid world file format');

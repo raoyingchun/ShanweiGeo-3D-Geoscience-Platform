@@ -1,3 +1,6 @@
+# Localisation source strings: Chinese source phrases collected from the
+# application for translation. This file is input to the localisation tooling,
+# not untranslated UI text. Each line is one source phrase.
 的横向围绕中心缩放才不会向右溢出被裁切
 否则向下拖过若干条目时会把多行整片染蓝
 每一帧重新采样并模糊其背后的画布区域

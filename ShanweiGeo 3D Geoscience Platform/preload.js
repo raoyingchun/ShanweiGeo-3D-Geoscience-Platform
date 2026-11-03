@@ -1,7 +1,7 @@
 // ============================================================
-// preload.js - 安全桥接层
-// 通过 contextBridge 向渲染进程暴露受限的 Electron API
-// 渲染进程无法直接访问 Node.js，只能用这里暴露的接口
+// preload.js, the safe bridge layer
+// expose a restricted Electron API to the renderer through contextBridge
+// the renderer cannot reach Node.js directly and can only use the interfaces exposed here
 // ============================================================
 
 const { contextBridge, ipcRenderer } = require('electron');
@@ -26,54 +26,54 @@ contextBridge.exposeInMainWorld('electronAPI', {
     ipcRenderer.on('python:event', listener);
     return () => ipcRenderer.removeListener('python:event', listener);
   },
-  // 获取应用版本信息
+  // get the application version
   getVersion: () => process.versions.electron,
 
-  // 判断是否在 Electron 环境中
+  // detect whether the code runs in Electron
   isElectron: true,
 
-  // 平台信息
+  // the platform information
   platform: process.platform,
 
-  // 通过 IPC 读取本地文件（备用方案，当 app:// 协议不够用时使用）
+  // read a local file over IPC, a fallback for when the app:// protocol is not enough
   readFile: (relativePath) => ipcRenderer.invoke('read-file', relativePath),
 
-  // 保存文件对话框
+  // the save file dialog
   showSaveDialog: (options) => ipcRenderer.invoke('show-save-dialog', options),
 
-  // 打开文件对话框（项目文件）
+  // the open file dialog, for project files
   showOpenDialog: (options) => ipcRenderer.invoke('show-open-dialog', options),
 
-  // 读取任意路径文件（返回 { ok, data(base64), error }）
+  // read a file at any path (returns { ok, data (base64), error })
   readProjectFile: (filePath) => ipcRenderer.invoke('read-project-file', filePath),
 
-  // 获取任意路径文件的 stat（返回 { ok, size, mtimeMs, error }，几何缓存命中判定用）
+  // get the stat of a file at any path (returns { ok, size, mtimeMs, error }, used to decide whether the geometry cache hits)
   statProjectFile: (filePath) => ipcRenderer.invoke('stat-project-file', filePath),
 
-  // 写入任意路径文件（返回 { ok, error }）
+  // write a file at any path (returns { ok, error })
   writeProjectFile: (filePath, content) => ipcRenderer.invoke('write-project-file', filePath, content),
 
-  // 会话自动记忆：写入/读取/清除固定会话草稿（userData/shanwei-session.json）
+  // automatic session memory: write, read and clear the fixed session draft (userData/shanwei-session.json)
   saveSession: (content) => ipcRenderer.invoke('session-save', content),
   readSession: () => ipcRenderer.invoke('session-read'),
   clearSession: () => ipcRenderer.invoke('session-clear'),
 
-  // 关闭前询问：主进程拦截窗口关闭时通知渲染层（渲染层弹「是否保存」弹窗）
+  // ask before closing: when the main process intercepts the window close it notifies the renderer, which shows the save prompt
   onCloseRequest: (callback) => {
     ipcRenderer.on('window-close-request', () => callback());
   },
 
-  // 允许关闭：渲染层完成保存/不保存决策后调用，真正关闭窗口
+  // allow the close: called once the renderer has decided to save or not, and it really closes the window
   allowClose: () => ipcRenderer.send('allow-close'),
 
-  // 打开外部链接
+  // open an external link
   openExternal: (url) => ipcRenderer.send('open-external', url),
 
-  // ===== 开发基础设施 =====
+  // ===== development infrastructure =====
 
-  // 热刷新：重新加载当前页面（修改代码后调用，自动刷新验证）
+  // hot reload: reload the current page (called after a code change, to verify the automatic refresh)
   refreshApp: () => ipcRenderer.send('refresh-app'),
 
-  // 获取应用状态（诊断用）
+  // get the application state, for diagnostics
   getAppState: () => ipcRenderer.invoke('get-app-state')
 });

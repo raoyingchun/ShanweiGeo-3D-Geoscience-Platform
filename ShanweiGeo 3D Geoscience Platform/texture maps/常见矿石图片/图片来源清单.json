@@ -2,7 +2,7 @@
   {
     "license": "CC BY 2.0",
     "description": "<p>High-grade gold ore (bonanza-grade gold ore) (field of view ~10.5 cm across) from the Sleeper Open-Pit Mine (section 21, T40N, R35E), eastern side of Sod House Road, south of Rt. 140, northwestern margin of the Slumbering Hills, eastern margin of Desert Valley, northwest of the town of Winnemucca, central Humboldt County, northern Nevada, USA (41° 20’ 24” North, 118° 02” 58” West).\n</p><p>Geology - auriferous quartz-adularia rhyolite (some consider this rock to be a latite).  Native gold (Au) occurs in this rock as colloform bands, partially replaces breccia clasts, and also disseminated in the matrix.  Published research indicates that Sleeper Mine rocks represent an ancient epithermal gold deposit (hot springs gold deposit), formed by volcanism during Basin &amp; Range extensional tectonics.\n</p>\nAge - the Sleeper Rhyolite dates to 16.3-16.5 million years (latest Early Miocene), and the gold mineralization dates to about 14.3-15.8 million years (during the early Middle Miocene).",
-    "category": "金矿_含金矿石",
+    "category": "金矿_含金矿石 (gold ore)",
     "source": "https://commons.wikimedia.org/wiki/File:Auriferous_brecciated_quartz-adularia_rhyolite_(Sleeper_Rhyolite_Gold_Ore,_Nevada)_1_(14719259472).jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Auriferous_brecciated_quartz-adularia_rhyolite_%28Sleeper_Rhyolite_Gold_Ore%2C_Nevada%29_1_%2814719259472%29.jpg/1280px-Auriferous_brecciated_quartz-adularia_rhyolite_%28Sleeper_Rhyolite_Gold_Ore%2C_Nevada%29_1_%2814719259472%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -14,7 +14,7 @@
   {
     "license": "CC BY 2.0",
     "description": "<p>High-grade gold ore (bonanza-grade gold ore) (field of view ~4.0 cm across) from the Sleeper Open-Pit Mine (section 21, T40N, R35E), eastern side of Sod House Road, south of Rt. 140, northwestern margin of the Slumbering Hills, eastern margin of Desert Valley, northwest of the town of Winnemucca, central Humboldt County, northern Nevada, USA (41° 20’ 24” North, 118° 02” 58” West).\n</p><p>Geology - auriferous quartz-adularia rhyolite (some consider this rock to be a latite).  Native gold (Au) occurs in this rock as colloform bands, partially replaces breccia clasts, and also disseminated in the matrix.  Published research indicates that Sleeper Mine rocks represent an ancient epithermal gold deposit (hot springs gold deposit), formed by volcanism during Basin &amp; Range extensional tectonics.\n</p>\nAge - the Sleeper Rhyolite dates to 16.3-16.5 million years (latest Early Miocene), and the gold mineralization dates to about 14.3-15.8 million years (during the early Middle Miocene).",
-    "category": "金矿_含金矿石",
+    "category": "金矿_含金矿石 (gold ore)",
     "source": "https://commons.wikimedia.org/wiki/File:Auriferous_brecciated_quartz-adularia_rhyolite_(Sleeper_Rhyolite_Gold_Ore,_Nevada)_2_(14739423003).jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Auriferous_brecciated_quartz-adularia_rhyolite_%28Sleeper_Rhyolite_Gold_Ore%2C_Nevada%29_2_%2814739423003%29.jpg/1280px-Auriferous_brecciated_quartz-adularia_rhyolite_%28Sleeper_Rhyolite_Gold_Ore%2C_Nevada%29_2_%2814739423003%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -24,7 +24,7 @@
     "file": "金矿_含金矿石/gold_02.jpg"
   },
   {
-    "category": "铅矿_方铅矿",
+    "category": "铅矿_方铅矿 (lead ore, galena)",
     "file": "铅矿_方铅矿/galena_01.jpg",
     "title": "File:261 Galène.JPG",
     "author": "<a href=\"//commons.wikimedia.org/wiki/User:Moreau.henri\" title=\"User:Moreau.henri\">Moreau.henri</a>",
@@ -36,7 +36,7 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
   },
   {
-    "category": "铅矿_方铅矿",
+    "category": "铅矿_方铅矿 (lead ore, galena)",
     "file": "铅矿_方铅矿/galena_02.jpg",
     "title": "File:1227 Galenit a chalkopyrit - Banská Štiavnica.jpg",
     "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Mineralysk&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Mineralysk (page does not exist)\">Mineralysk</a>",
@@ -50,7 +50,7 @@
   {
     "license": "CC BY-SA 4.0",
     "description": "Black tetrahedral crystals of sphalerite up to 8 mm in size across this matrix (4.5 × 3.0 × 2.0 cm) with chalcopyrite and calcite. Found from Creede, Mineral County, Colorado, USA.",
-    "category": "锌矿_闪锌矿",
+    "category": "锌矿_闪锌矿 (zinc ore, sphalerite)",
     "source": "https://commons.wikimedia.org/wiki/File:Sphalerite_-_Creede,_Mineral_County,_Colorado,_USA.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Sphalerite_-_Creede%2C_Mineral_County%2C_Colorado%2C_USA.jpg/1280px-Sphalerite_-_Creede%2C_Mineral_County%2C_Colorado%2C_USA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -60,7 +60,7 @@
     "file": "锌矿_闪锌矿/sphalerite_01.jpg"
   },
   {
-    "category": "锌矿_闪锌矿",
+    "category": "锌矿_闪锌矿 (zinc ore, sphalerite)",
     "file": "锌矿_闪锌矿/sphalerite_02.jpg",
     "title": "File:33Sphalerit harz hg.jpg",
     "author": "<a href=\"//commons.wikimedia.org/wiki/User:Hgrobe\" title=\"User:Hgrobe\">Hannes Grobe</a>",
@@ -74,7 +74,7 @@
   {
     "license": "CC BY-SA 4.0",
     "description": "<a href=\"https://en.wikipedia.org/wiki/Muscovite\" class=\"extiw\" title=\"en:Muscovite\">Muscovite</a>, <a href=\"https://en.wikipedia.org/wiki/Scheelite\" class=\"extiw\" title=\"en:Scheelite\">Scheelite</a>\n<dl><dd><dl><dd>Locality: Mianyang Mine, <a href=\"https://en.wikipedia.org/wiki/Mianyang\" class=\"extiw\" title=\"en:Mianyang\">Mianyang</a>, Mianyang Prefecture, <a href=\"https://en.wikipedia.org/wiki/Sichuan\" class=\"extiw\" title=\"en:Sichuan\">Sichuan Province</a>, China</dd>\n<dd>Size: 12.7 x 9.7 x 10.6 cm  1620 g cm</dd></dl></dd></dl>",
-    "category": "钨矿_白钨矿",
+    "category": "钨矿_白钨矿 (tungsten, scheelite)",
     "source": "https://commons.wikimedia.org/wiki/File:Scheelite_MHNT.MIN.2004.0.88_(p).jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Scheelite_MHNT.MIN.2004.0.88_%28p%29.jpg/1280px-Scheelite_MHNT.MIN.2004.0.88_%28p%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -86,7 +86,7 @@
   {
     "license": "Public domain",
     "description": "scheelite, mica var. muscovite : Yaogangxian Mine, Yaogangxian W-Sn ore field, Yizhang Co., Chenzhou Prefecture, Hunan Province, China",
-    "category": "钨矿_白钨矿",
+    "category": "钨矿_白钨矿 (tungsten, scheelite)",
     "source": "https://commons.wikimedia.org/wiki/File:Scheelite;_mica.jpg",
     "licenseUrl": null,
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Scheelite%3B_mica.jpg/1280px-Scheelite%3B_mica.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -98,7 +98,7 @@
   {
     "license": "CC BY-SA 2.0 br",
     "description": null,
-    "category": "钨矿_黑钨矿",
+    "category": "钨矿_黑钨矿 (tungsten, wolframite)",
     "source": "https://commons.wikimedia.org/wiki/File:Wolframite.jpeg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/br/deed.en",
     "download": "https://upload.wikimedia.org/wikipedia/commons/8/81/Wolframite.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -110,7 +110,7 @@
   {
     "license": "CC BY-SA 3.0",
     "description": "Wolframite in Pegmatite, which was found in Niddle Hill Mine Jubilee Kowloon Hong Kong . The photo is taken in Stephen Hui Geological Museum (where it’s collected) .",
-    "category": "钨矿_黑钨矿",
+    "category": "钨矿_黑钨矿 (tungsten, wolframite)",
     "source": "https://commons.wikimedia.org/wiki/File:Wolframite_in_Pegmatite.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Wolframite_in_Pegmatite.jpg/1280px-Wolframite_in_Pegmatite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -122,7 +122,7 @@
   {
     "license": "GFDL 1.2",
     "description": "<a href=\"https://en.wikipedia.org/wiki/Cassiterite\" class=\"extiw\" title=\"en:Cassiterite\">Cassiterite bipyramids</a>, chemical formula SnO<sub>2</sub>. locality Southeast slope Xuebaoding, Pingwu country, province Sichuan in China. Edge length ca. 30mm. Collection M.R.",
-    "category": "锡矿_锡石",
+    "category": "锡矿_锡石 (tin ore, cassiterite)",
     "source": "https://commons.wikimedia.org/wiki/File:Cassiterite.jpg",
     "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Cassiterite.jpg/1280px-Cassiterite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -134,7 +134,7 @@
   {
     "license": "CC BY 3.0",
     "description": "<a href=\"https://en.wikipedia.org/wiki/Cassiterite\" class=\"extiw\" title=\"en:Cassiterite\">Cassiterite</a>, 80mm plate of cassiterite and <a href=\"https://en.wikipedia.org/wiki/quartz\" class=\"extiw\" title=\"en:quartz\">quartz</a> crystals\n<dl><dd><dl><dd>Locality: Mt Bischoff mine, Waratah, Waratah district, Tasmania, Australia - Exposed in the Tasmanian Museum, specimen X6066</dd></dl></dd></dl>",
-    "category": "锡矿_锡石",
+    "category": "锡矿_锡石 (tin ore, cassiterite)",
     "source": "https://commons.wikimedia.org/wiki/File:Cassiterite_-_Mt_Bischoff_mine,_Waratah,_Tasmania,_Australia.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "download": "https://upload.wikimedia.org/wikipedia/commons/9/90/Cassiterite_-_Mt_Bischoff_mine%2C_Waratah%2C_Tasmania%2C_Australia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -144,7 +144,7 @@
     "file": "锡矿_锡石/cassiterite_02.jpg"
   },
   {
-    "category": "锰矿_软锰矿",
+    "category": "锰矿_软锰矿 (manganese ore, pyrolusite)",
     "file": "锰矿_软锰矿/pyrolusite_01.jpg",
     "title": "File:Pyrolusite - USGS Mineral Specimens 851.jpg",
     "author": "Andrew Silver",
@@ -156,7 +156,7 @@
     "licenseUrl": null
   },
   {
-    "category": "锰矿_软锰矿",
+    "category": "锰矿_软锰矿 (manganese ore, pyrolusite)",
     "file": "锰矿_软锰矿/pyrolusite_02.jpg",
     "title": "File:Pyrolusite - USGS Mineral Specimens 852.jpg",
     "author": "Andrew Silver",
@@ -176,11 +176,11 @@
     "source": "https://commons.wikimedia.org/wiki/File:Black_concretionary_phosphorite_(Morris_Member,_Phosphoria_Formation,_mid-Permian;_Waterloo_Mine,_Bear_Lake_County,_Idaho,_USA)_(34327234316).jpg",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Black_concretionary_phosphorite_%28Morris_Member%2C_Phosphoria_Formation%2C_mid-Permian%3B_Waterloo_Mine%2C_Bear_Lake_County%2C_Idaho%2C_USA%29_%2834327234316%29.jpg/1280px-Black_concretionary_phosphorite_%28Morris_Member%2C_Phosphoria_Formation%2C_mid-Permian%3B_Waterloo_Mine%2C_Bear_Lake_County%2C_Idaho%2C_USA%29_%2834327234316%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "title": "File:Black concretionary phosphorite (Morris Member, Phosphoria Formation, mid-Permian; Waterloo Mine, Bear Lake County, Idaho, USA) (34327234316).jpg",
-    "category": "磷矿_磷块岩",
+    "category": "磷矿_磷块岩 (phosphate rock)",
     "file": "磷矿_磷块岩/phosphorite_01.jpg"
   },
   {
-    "category": "磷矿_磷块岩",
+    "category": "磷矿_磷块岩 (phosphate rock)",
     "file": "磷矿_磷块岩/phosphorite_02.jpg",
     "title": "File:Fossiliferous peloidal phosphorite, Yunnan Province China.jpg",
     "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/47445767@N05\">James St. John</a>",
@@ -194,7 +194,7 @@
   {
     "license": "CC BY-SA 3.0",
     "description": "<a href=\"https://en.wikipedia.org/wiki/Chalcopyrite\" class=\"extiw\" title=\"en:Chalcopyrite\">Chalcopyrite</a> \"Blister Copper\", Botroïdale form (7x4.3cm) \n<dl><dd><dl><dd>Locality : Redruth Cornwall England</dd></dl></dd></dl>",
-    "category": "铜矿_黄铜矿",
+    "category": "铜矿_黄铜矿 (copper ore, chalcopyrite)",
     "source": "https://commons.wikimedia.org/wiki/File:Chalcopyrite_botro%C3%AFdale.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Chalcopyrite_botro%C3%AFdale.jpg/1280px-Chalcopyrite_botro%C3%AFdale.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -206,7 +206,7 @@
   {
     "license": "CC BY-SA 3.0",
     "description": "<a href=\"https://en.wikipedia.org/wiki/Chalcopyrite\" class=\"extiw\" title=\"en:Chalcopyrite\">en:Chalcopyrite</a> with <a href=\"https://en.wikipedia.org/wiki/Sphalerite\" class=\"extiw\" title=\"en:Sphalerite\">Sphalerite</a> and <a href=\"https://en.wikipedia.org/wiki/Fluorite\" class=\"extiw\" title=\"en:Fluorite\">Fluorite</a>\n<dl><dd><dl><dd>Locality : Locality: Huaron Mining District, San Jose de Huayllay District, <a href=\"https://en.wikipedia.org/wiki/Cerro_de_Pasco\" class=\"extiw\" title=\"en:Cerro de Pasco\">Cerro de Pasco</a>, <a href=\"https://en.wikipedia.org/wiki/Daniel_Alcides_Carri%C3%B3n_Province\" class=\"extiw\" title=\"en:Daniel Alcides Carrión Province\">Daniel Alcides Carrión Province</a>, Pasco Department, Peru.</dd>\n<dd>Size :11.5x11 cm</dd></dl></dd></dl>",
-    "category": "铜矿_黄铜矿",
+    "category": "铜矿_黄铜矿 (copper ore, chalcopyrite)",
     "source": "https://commons.wikimedia.org/wiki/File:Chalcopyrite_perou.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Chalcopyrite_perou.jpg/1280px-Chalcopyrite_perou.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -218,7 +218,7 @@
   {
     "license": "CC BY-SA 3.0",
     "description": "A pyrite with crystals of hematite",
-    "category": "铁矿_赤铁矿",
+    "category": "铁矿_赤铁矿 (iron ore, hematite)",
     "source": "https://commons.wikimedia.org/wiki/File:Pyrit-with-hematite-01.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Pyrit-with-hematite-01.jpg/1280px-Pyrit-with-hematite-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -230,7 +230,7 @@
   {
     "license": "CC BY-SA 2.5",
     "description": "<p>Hematite<br>\nTrigonal iron oxide<br>\nIbitiara, Mina Gerais<br>\nBrazil<br>\nHMNS 5440\n</p>\n<div style=\"width:100%; border:1px solid #aaaaaa; background:#f2f2f2; padding:0; text-align:center;\"><b>Wikipedia Loves Art at the Houston Museum of Natural Science</b><br>\n<p>This photo of item # <b><a rel=\"nofollow\" class=\"external text\" href=\"http://www.hmns.org/search.asp?r=1&amp;search=1&amp;terms=5440&amp;Send=SEARCH\">5440</a></b> at the <a href=\"https://en.wikipedia.org/wiki/Houston_Museum_of_Natural_Science\" class=\"extiw\" title=\"w:Houston Museum of Natural Science\">Houston Museum of Natural Science</a> was contributed under the team name <b>\"<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/groups/wikipedia_loves_art/pool/tags/Assignment_Houston_One/\">Assignment_Houston_One</a>\"</b> as part of the <a href=\"https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Loves_Art\" class=\"extiw\" title=\"w:Wikipedia:Wikipedia Loves Art\">Wikipedia Loves Art</a> project in February 2009. <br>Houston Museum of Natural Science\n</p>\n<div style=\"clear:both;\"></div>The <b><a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/54179321@N00/3315647726\">original photograph</a></b> on Flickr was taken by <b><a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/54179321@N00/\">sulla55</a></b>—<i>please add a comment</i> to the original Flickr page whenever a use has been made on Wikipedia or another project.\n<div style=\"clear:both;\"></div><i>Project galleries on Flickr: <a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/groups/wikipedia_loves_art/pool/tags/hmns/\">this institution</a>,  <a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/groups/wikipedia_loves_art/pool/tags/Assignment_Houston_One/\">this team</a></i></div>",
-    "category": "铁矿_赤铁矿",
+    "category": "铁矿_赤铁矿 (iron ore, hematite)",
     "source": "https://commons.wikimedia.org/wiki/File:WLA_hmns_Hematite.jpg",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
     "download": "https://upload.wikimedia.org/wikipedia/commons/1/19/WLA_hmns_Hematite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",

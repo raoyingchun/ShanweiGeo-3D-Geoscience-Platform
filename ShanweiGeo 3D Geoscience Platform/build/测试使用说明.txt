@@ -1,25 +1,60 @@
-山维智勘 Windows 测试版（2026-10-19）
+ShanweiGeo Windows test build (19 October 2026)
 
-一、启动
-适用于 Windows 10/11 64位电脑。将整个ZIP解压到普通本地文件夹，双击“山维智勘测试版.exe”。不要只复制EXE；resources、DLL等同目录文件必须完整保留。无需安装Node.js或Python，首次使用无需联网。
+1. Startup
 
-二、开始测试
-1. 新建项目，创建矿床/矿区/矿段或使用默认范围。
-2. 三维块体模型：新建分类，导入“测试样例/demo-blocks.csv”（1000块，3类）。
-3. 三维地质模型：在模型分类导入“测试样例/demo-model.ts”。
-4. 地表高程：在高程入口导入“测试样例/demo-terrain.asc”。
-5. 遥感影像/图件管理：导入“测试样例/demo-image.tif”，双击显示，也可进入配准模式。
-6. 报告管理：导入“测试样例/demo-document.pdf”，测试打开、选字、标签与笔记。
-7. 测试同一文件重复打开是否跳转已有标签、项目保存后重新打开。
-所有样例均为合成数据，不代表真实矿区。您也可以导入自己的数据；请先确认使用权限。
+For 64-bit Windows 10 and 11 computers. Extract the entire ZIP into an
+ordinary local folder and double-click the executable. Do not copy only the
+EXE: the resources folder and the accompanying DLLs must be kept alongside it.
+Neither Node.js nor Python needs to be installed, and no network access is
+required for first use.
 
-三、测试边界
-本包未附带个人项目、矿区数据、用户会话及个人材质库。
-原版COORD是独立外部工具，本包不附带；相关坐标转换入口需要另行配置原软件，其余模型、图件、文档功能不依赖COORD。
-本包是未做代码签名的测试版本，不含自动更新。遇到系统拦截时请核对文件来源并联系提供者。
-67万块等大模型仍需要合适显卡与内存；可在显示设置中选择流畅画质。切勿用本测试版直接覆盖唯一的生产项目。
+2. Starting the test
 
-四、保存位置及反馈
-缓存、会话、笔记及日志存放于：%APPDATA%\ShanweiGeo-Test
-项目保存位置由您选择。
-反馈时请提供：操作步骤、预期结果、实际结果、错误截图、Windows版本及显卡型号；必要时附上述目录logs中的日志。日志可能包含本地文件路径，请检查后再分享。
+1. Create a project, then create a deposit, mining area or mine section, or
+   accept the default extent.
+2. 3D block model: create a category and import "Sample Data/demo-blocks.csv"
+   (1,000 blocks, 3 classes).
+3. 3D geological model: in the model category, import
+   "Sample Data/demo-model.ts".
+4. Surface elevation: import "Sample Data/demo-terrain.asc" through the
+   elevation entry point.
+5. Remote sensing imagery and figure management: import
+   "Sample Data/demo-image.tif", double-click to display it, and optionally
+   enter registration mode.
+6. Report management: import "Sample Data/demo-document.pdf" and test
+   opening, text selection, labels and notes.
+7. Test whether opening the same file again switches to the existing tab, and
+   whether a saved project reopens correctly.
+
+All sample files are synthetic and do not represent a real mining area. You
+may import your own data; please confirm that you have the necessary rights
+first.
+
+3. Testing boundaries
+
+This package does not include personal projects, mining area data, user
+sessions or a personal material library.
+
+The original COORD application is a separate external tool and is not
+included in this package. The coordinate conversion entry points need the
+original software to be configured separately; the remaining model, figure and
+document features do not depend on COORD.
+
+This is an unsigned test build with no automatic update. If your system
+blocks it, verify the source of the file and contact the provider.
+
+Large models such as the 670,000-block model still require a suitable
+graphics card and sufficient memory; a smoother quality option is available
+in the display settings. Never overwrite the only copy of a production
+project with this test build.
+
+4. Save locations and feedback
+
+Caches, sessions, notes and logs are stored under %APPDATA%\ShanweiGeo-Test.
+The project save location is chosen by you.
+
+When reporting a problem, please provide the steps taken, the expected
+result, the actual result, an error screenshot, the Windows version and the
+graphics card model; attach the logs from the logs folder of the directory
+above when relevant. Logs may contain local file paths, so review them before
+sharing.

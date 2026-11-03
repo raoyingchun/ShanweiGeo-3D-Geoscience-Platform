@@ -10,7 +10,7 @@ class PythonManager {
     this.root = root;
     this.pythonPath = pythonPath || path.join(root, 'runtime', 'python', 'python.exe');
     if (!pythonPath && !fs.existsSync(this.pythonPath) && !packaged) this.pythonPath = process.env.SHANWEI_PYTHON || 'python';
-    // 原版 COORD 位于 userData/tools/COORD（可写目录），不在 resources 内。
+    // the original COORD lives in userData/tools/COORD, which is a writable directory and is not inside resources.
     this.coordDir = coordDir || path.join(root, 'tools', 'COORD');
     this.timeoutMs = timeoutMs;
     this.tasks = new Map();

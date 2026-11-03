@@ -152,7 +152,7 @@ function configureTerrainImageMaterial(model){
   const material=model.material,active=model.terrainSettings?.colorMode==='image'&&!!model.terrainTexture;material.map=active?model.terrainTexture:null;
   const cropValues=terrainCropUniforms.get(material)||{enabled:{value:0},bounds:{value:new THREE.Vector4()}};
   const currentCrop=model.terrainImage?.crop;cropValues.enabled.value=currentCrop?1:0;cropValues.bounds.value.set(currentCrop?.minX||0,currentCrop?.minY||0,currentCrop?.maxX||0,currentCrop?.maxY||0);terrainCropUniforms.set(material,cropValues);
-  // 只调整带影像的地形面，普通地质模型保持原有深度和排序设置。
+  // only the terrain surfaces that carry imagery are adjusted, while the ordinary geological models keep their existing depth and ordering settings.
   material.polygonOffset=active;
   material.polygonOffsetFactor=active?-4:0;
   material.polygonOffsetUnits=active?-4:0;

@@ -3,6 +3,10 @@
 The repository is initialised and committed locally on the `main` branch. This
 document covers creating the remote repository and completing the first push.
 
+> **Note.** The commands below use `YOUR_PATH` and `YOUR_USERNAME` as
+> placeholders. Replace them with the local path of your checkout and your own
+> GitHub username before running anything.
+
 ---
 
 ## Before you start
@@ -15,9 +19,8 @@ You need:
 
 ### Set your commit identity
 
-The repository currently uses a placeholder email. Replace it with your real
-GitHub privacy address before pushing, so commits are attributed to your
-account:
+Replace the placeholder email with your real GitHub privacy address before
+pushing, so commits are attributed to your account:
 
 ```bash
 git config user.email "YOUR_GITHUB_ID+YOUR_USERNAME@users.noreply.github.com"
@@ -39,29 +42,29 @@ winget install --id GitHub.cli        # if not installed
 gh auth login                         # sign in
 ```
 
-Then create the private repository and push in one step:
+Then create the repository and push in one step:
 
 ```bash
-cd "D:/山维智勘数据库-chatgpt/ShanweiGeo-English"
-gh repo create ShanweiGeo-English --private --source=. --remote=origin --push
+cd "YOUR_PATH/ShanweiGeo 3D Geoscience Platform"
+gh repo create ShanweiGeo-3D-Geoscience-Platform --source=. --remote=origin --push
 ```
 
-`--private` matches the intended visibility. Use `--public` instead if you
-later decide to open the project.
+Add `--private` if you want the repository to stay private; omit it for a
+public repository.
 
 ## Option B — Web interface + git
 
 1. Go to <https://github.com/new>
-2. Repository name: `ShanweiGeo-English`
-3. Visibility: **Private**
+2. Repository name: `ShanweiGeo-3D-Geoscience-Platform`
+3. Visibility: **Public** or **Private**, depending on your intent
 4. **Do not** tick "Add a README file", `.gitignore` or a licence — the
    repository already has all three.
 5. Create the repository.
 6. Back in the project:
 
 ```bash
-cd "D:/山维智勘数据库-chatgpt/ShanweiGeo-English"
-git remote add origin https://github.com/YOUR_USERNAME/ShanweiGeo-English.git
+cd "YOUR_PATH/shanweiGeo-3D-Geoscience-Platform"
+git remote add origin https://github.com/YOUR_USERNAME/ShanweiGeo-3D-Geoscience-Platform.git
 git push -u origin main
 ```
 
@@ -80,6 +83,11 @@ have one, create it at
 | Scanned geological figures | ~440 MB | **Git LFS** |
 | `素材库/` reference imagery | ~52 MB | excluded, not pushed |
 | Dependencies, build output, Python runtime | ~1 GB | excluded, not pushed |
+
+> **Note on directory names.** `素材库/` (reference library) keeps its original
+> Chinese name because it is a real path on disk. The application does not read
+> it at runtime, but the path is preserved so the directory keeps its identity
+> across clones.
 
 The LFS objects upload first, then the git history follows. Expect the first
 push to take a while on a slow connection — 440 MB over LFS plus ~150 MB of
@@ -107,9 +115,9 @@ limit for regular uploads but is fine as a **release asset**:
 
 ```bash
 npm run build:english
-gh release create v1.0.0 dist-english-<date>/ShanweiGeo-English-<date>-x64.zip \
-  --title "ShanweiGeo English v1.0.0" \
-  --notes "Initial public release."
+gh release create v1.0.0 dist-release/ShanweiGeo-3D-Geoscience-Platform-Windows-x64.zip \
+  --title "ShanweiGeo 3D Geoscience Platform v1.0.0" \
+  --notes "Initial release."
 ```
 
 ### Collaborators
@@ -118,7 +126,7 @@ For a private repository, add people under **Settings → Collaborators**, then
 they clone with:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ShanweiGeo-English.git
+git clone https://github.com/YOUR_USERNAME/ShanweiGeo-3D-Geoscience-Platform.git
 git lfs pull        # if the LFS objects were not fetched automatically
 ```
 
@@ -126,23 +134,17 @@ git lfs pull        # if the LFS objects were not fetched automatically
 
 ## Local housekeeping
 
-Two directories are not needed for development and can be removed to reclaim
-space. Both are regenerable.
+Build output directories are not needed for development and can be removed to
+reclaim space. They are all regenerable.
 
 ```bash
-# ~710 MB — the current packaged build (keep the ZIP if you need to share it)
-rm -rf dist-english-20261021-r2/win-unpacked
-
-# ~371 MB — an earlier build of the same artefact
-rm -rf dist-english-20261021
+# the current packaged build (keep the ZIP if you need to share it)
+rm -rf "ShanweiGeo 3D Geoscience Platform/dist-release/win-unpacked"
 ```
 
-The packaged ZIP in `dist-english-20261021-r2/` is the shareable
-deliverable; keep it or move it elsewhere before deleting the directory.
-
-`node_modules/` (468 MB) is required for `npm start` and can be restored with
-`npm install`. `runtime/` (21 MB) and `backend/vendor/` (93 MB) are release
-artifacts — the embedded Python runtime and the offline NumPy/PyProj wheels.
+`node_modules/` is required for `npm start` and can be restored with
+`npm install`. `runtime/` and `backend/vendor/` are release artifacts — the
+embedded Python runtime and the offline NumPy/PyProj wheels.
 
 ---
 
