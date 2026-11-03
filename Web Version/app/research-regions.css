@@ -1,0 +1,21 @@
+.research-regions{padding:10px;border-bottom:3px solid var(--border);color:var(--text);font-size:12px}
+.lp-sub-item.rr-file-current{background:var(--brand-dim);color:var(--brand);box-shadow:inset 3px 0 var(--brand);font-weight:600}
+.research-regions h3{font-size:13px;margin:0 0 8px}.rr-toolbar{display:flex;flex-wrap:wrap;gap:4px}
+.research-regions button{border:1px solid var(--border);background:var(--bg2);color:inherit;border-radius:4px;padding:4px 6px;cursor:pointer;font:inherit}
+.research-regions button:disabled{opacity:.4;cursor:default}.rr-tree{max-height:220px;overflow:auto;margin-top:8px}.rr-children{margin-left:12px;border-left:1px solid var(--border);padding-left:4px}
+.rr-row>button{width:100%;text-align:left;border:0;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rr-row>button.active{background:var(--brand,#0969da);color:white}
+.rr-scope{margin:8px 0;line-height:1.5;overflow-wrap:anywhere}.research-regions small{color:var(--text-muted);display:block;line-height:1.5}.rr-editor{padding:8px 0}.rr-editor input{width:100%;box-sizing:border-box;margin:6px 0;background:var(--bg);color:var(--text);border:1px solid var(--border);padding:6px;border-radius:4px}.rr-editor button{margin-right:6px}.rr-error{color:#d1242f;margin:4px 0}.rr-current{padding:5px 12px;background:var(--bg2);color:var(--text-muted);font-size:12px;border-bottom:1px solid var(--border)}
+.rr-dialog{margin:auto;width:min(420px,90vw);padding:18px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);box-shadow:0 12px 40px #0003;font-size:13px}
+.rr-dialog::backdrop{background:#0005}.rr-dialog strong,.rr-dialog small{display:block;margin-bottom:8px}.rr-dialog small{color:var(--text-muted)}.rr-dialog input{user-select:text;pointer-events:auto;font-size:14px}.rr-dialog input:focus{outline:2px solid var(--brand);outline-offset:1px}.rr-dialog button{border:1px solid var(--border);border-radius:5px;padding:6px 12px;background:var(--bg2);color:inherit;cursor:pointer}.rr-delete-message{line-height:1.7;margin:12px 0}.rr-dialog .rr-delete-confirm{background:#cf222e;color:white;border-color:#cf222e}
+.rr-context-menu{z-index:20000}.rr-context-menu:not([hidden]){display:block}.rr-context-menu[hidden]{display:none} button.ctx-menu-item{border:0;width:100%;text-align:left;background:transparent;font-family:inherit} button.ctx-menu-item:hover,button.ctx-menu-item:focus-visible{background:var(--brand-dim);color:var(--brand);outline:none} button.ctx-menu-item.danger:hover{background:#fde5e5;color:#cf222e}
+.rr-row[data-region-level="deposit"]>button{background:#e5edff;color:#244780;font-size:14px;font-weight:700;padding:7px 6px;border-left:3px solid #6488c5}
+.rr-row[data-region-level="area"]>button{background:#e5f3ed;color:#27634c;font-size:13px;font-weight:600;padding:6px;border-left:3px solid #68a88a}
+.rr-row[data-region-level="section"]>button{background:#fff2dd;color:#78551e;font-size:12px;font-weight:400;padding:5px 6px;border-left:3px solid #d5ad63}
+.rr-row>button:hover{filter:brightness(.96)}
+.rr-row[data-region-level]>button.active{background:var(--brand,#0969da);color:#fff;border-left-color:#fff;box-shadow:inset 0 0 0 1px #ffffff55;font-weight:700}
+.rr-row>button{display:flex;align-items:center;gap:6px}.rr-node-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rr-active-badge{flex-shrink:0;margin-left:auto;font-size:10px;font-weight:500;padding:2px 4px;border-radius:3px;background:#ffffff26;color:#fff}
+[data-theme="dark"] .rr-row[data-region-level="deposit"]>button:not(.active){background:#25344e;color:#c2d7ff}
+[data-theme="dark"] .rr-row[data-region-level="area"]>button:not(.active){background:#233d33;color:#bce6d2}
+[data-theme="dark"] .rr-row[data-region-level="section"]>button:not(.active){background:#413625;color:#efd3a4}
+#research-current-scope.rr-current{position:absolute;top:8px;left:8px;max-width:calc(100% - 24px);box-sizing:border-box;z-index:10;padding:4px 8px;border:0;border-radius:4px;background:var(--bg);font-size:11px;opacity:.9;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#canvas-wrap:has(.region-compare:not([hidden]))>#research-current-scope{display:none}

@@ -1,0 +1,18 @@
+/* English labels need more horizontal space. Data and document content retain their fonts. */
+html[lang="en"] { --font-sans: "Segoe UI", Arial, sans-serif; }
+html[lang="en"] .ctx-menu { min-width: 220px; }
+html[lang="en"] .modal-dialog { max-width: calc(100vw - 40px); }
+html[lang="en"] .modal-header { line-height: 1.4; }
+html[lang="en"] .lp-sub-item > span, html[lang="en"] .lp-section-title { overflow: hidden; text-overflow: ellipsis; }
+html[lang="en"] .prop-label { flex: 0 1 52%; }
+html[lang="en"] .prop-value { min-width: 0; overflow-wrap: anywhere; }
+html[lang="en"] .region-compare-header { flex-wrap: wrap; }
+html[lang="en"] .cs-dialog { width: min(1040px, calc(100vw - 48px)); }
+
+html[lang="en"] .main-function-rail { overflow-x: hidden; }
+html[lang="en"] .rail-action-label { text-orientation: mixed; letter-spacing: .3px; white-space: nowrap; }
+html[lang="en"] .main-function-rail .rail-action { min-height: 148px; }
+html[lang="en"] .coord-shell { width: min(1080px, 94vw); font-family: "Segoe UI", Arial, sans-serif; }
+html[lang="en"] .cs-layout { grid-template-columns: minmax(0,1fr) 210px minmax(0,1fr); }
+html[lang="en"] .coord-shell .cs-body button, html[lang="en"] .coord-shell .cs-foot button { font-family: "Segoe UI", Arial, sans-serif; }
+html[lang="en"] .cs-option select { max-width: 155px; }
