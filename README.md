@@ -2,12 +2,24 @@
 
 ShanweiGeo 3D Geoscience Platform is a local desktop workspace for 3D geoscience data management and visualization. It combines geological models, drillholes, terrain, imagery, maps and supporting documents in one working environment.
 
+## Screenshots
+
+![Region comparison between a geological map and a 3D block model](docs/images/region-comparison.png)
+
+*Region comparison: a geological map with drillhole traces coloured by gold
+assay on the left, the corresponding 3D block model with a draped terrain
+surface on the right. The panes can be viewed independently or synchronised.*
+
+More views, with an explanation of what each one shows and how to reproduce
+it, are in **[docs/SCREENSHOTS.md](docs/SCREENSHOTS.md)**.
+
 ## Repository layout
 
 - **ShanweiGeo 3D Geoscience Platform/**: English application source code, local processing backend and runtime assets.
 - **Web Version/**: browser build of the same application, including the
   browser bridge, launch scripts and automated tests.
 - **Test data/**: exploration datasets and example models for importing into the application. All folder and file names are in English; original numeric data and document contents are retained.
+- **docs/**: reference screenshots of the application.
 
 ## Web version
 
